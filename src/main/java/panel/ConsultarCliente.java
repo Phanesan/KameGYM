@@ -12,12 +12,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Consultar extends JPanel {
+public class ConsultarCliente extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Consultar() {
+	public ConsultarCliente() {
 		setLayout(null);
 		
 		JPanel panel = new JPanel();

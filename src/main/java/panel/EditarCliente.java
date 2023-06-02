@@ -10,6 +10,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import main.java.Main;
+
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -130,6 +133,11 @@ public class EditarCliente extends JPanel {
 		JButton btnActualizar = new JButton("Actualizar");
 		btnActualizar.setFont(new Font("Impact", Font.PLAIN, 23));
 		btnActualizar.setBounds(519, 687, 251, 40);
+		btnActualizar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		panel.add(btnActualizar);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Tarifa");

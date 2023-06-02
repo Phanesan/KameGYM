@@ -12,12 +12,12 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Cliente extends JPanel {
+public class ClienteLobby extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Cliente() {
+	public ClienteLobby() {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);

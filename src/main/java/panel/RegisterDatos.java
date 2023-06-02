@@ -8,7 +8,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
-public class DatosClientes extends JPanel {
+public class RegisterDatos extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField txtDd;
@@ -18,7 +18,7 @@ public class DatosClientes extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public DatosClientes() {
+	public RegisterDatos() {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);

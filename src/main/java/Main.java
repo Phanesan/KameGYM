@@ -5,11 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import main.java.panel.Clientes;
+import main.java.panel.ConsultarCliente;
 import main.java.panel.CrearCliente;
 import main.java.panel.EditarCliente;
-import main.java.panel.Cliente;
-import main.java.panel.DatosClientes;
+import main.java.panel.ClienteLobby;
+import main.java.panel.RegisterDatos;
 import main.java.panel.Inicio;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
