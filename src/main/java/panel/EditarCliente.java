@@ -14,7 +14,8 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Editar extends JPanel {
+public class EditarCliente extends JPanel {
+	
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -24,9 +25,9 @@ public class Editar extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Editar() {
+	public EditarCliente() {
 		
-setLayout(null);
+		setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1200, 800);
@@ -151,14 +152,5 @@ setLayout(null);
 		
 		
 
-	}
-	public static void main(String[] args) {
-        JFrame ventana = new JFrame("Consultar"); 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(1200, 800); 
-        ventana.setLocationRelativeTo(null); 
-        Editar v1 = new Editar(); 
-        ventana.getContentPane().add(v1); 
-        ventana.setVisible(true); 
 	}
 }

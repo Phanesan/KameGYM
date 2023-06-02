@@ -13,12 +13,14 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JToolBar;
 
+import main.java.Main;
+
 public class Clientes extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Clientes() {
+	public Clientes(Main main) {
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
@@ -33,6 +35,7 @@ public class Clientes extends JPanel {
 		btnNewButton.setFont(new Font("Impact", Font.PLAIN, 23));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new Consultar());
 			}
 		});
 		btnNewButton.setBounds(770, 130, 278, 50);
@@ -93,14 +96,4 @@ public class Clientes extends JPanel {
 
 
 	}
-	
-	 /*public static void main(String[] args) {
-	        JFrame ventana = new JFrame("Cliente"); 
-	        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        ventana.setSize(1200, 800); 
-	        ventana.setLocationRelativeTo(null); 
-	        Clientes v1 = new Clientes(); 
-	        ventana.getContentPane().add(v1); 
-	        ventana.setVisible(true); 
-	    }*/
 }

@@ -5,9 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.java.panel.Clientes;
+import main.java.panel.CrearCliente;
+import main.java.panel.EditarCliente;
+
 public class Main {
 
-	private JFrame frame;
+	public JFrame frame;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -31,9 +35,11 @@ public class Main {
 		frame.setSize(1200,800);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
+		changePanel(frame,new EditarCliente());
 	}
 	
-	public void changePanel(JPanel panel) throws NullPointerException{
+	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
 		if(panel == null) {
 			throw new NullPointerException("Panel nulo");
 		} else {
@@ -42,6 +48,8 @@ public class Main {
 			}
 			frame.getContentPane().add(panel);
 		}
+		frame.revalidate();
+		frame.repaint();
 	}
 
 }

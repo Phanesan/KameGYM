@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class Crear extends JPanel {
+public class CrearCliente extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -26,7 +26,7 @@ public class Crear extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Crear() {
+	public CrearCliente() {
 		setLayout(null);
 		
 		JPanel panel = new JPanel();
