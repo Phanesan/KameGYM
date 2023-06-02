@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 import main.java.panel.Clientes;
 import main.java.panel.CrearCliente;
 import main.java.panel.EditarCliente;
+import main.java.panel.Cliente;
+import main.java.panel.DatosClientes;
+import main.java.panel.Inicio;
+import main.java.panel.Lobby;
+import main.java.panel.Login;
+import main.java.panel.Register;
 
 public class Main {
 
