@@ -55,27 +55,27 @@ public class EditarCliente extends JPanel {
 		menuBar.add(mnNewMenu_3);
 		
 		JLabel lblNewLabel = new JLabel("Repetir Contraseña");
-		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel.setBounds(88, 660, 194, 22);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Contraseña");
-		lblNewLabel_1.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_1.setBounds(88, 560, 129, 22);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Correo");
-		lblNewLabel_2.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_2.setBounds(88, 460, 129, 22);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Apellidos");
-		lblNewLabel_3.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_3.setBounds(88, 360, 194, 22);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Nombre");
-		lblNewLabel_4.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_4.setBounds(88, 260, 152, 22);
 		panel.add(lblNewLabel_4);
 		
@@ -85,12 +85,12 @@ public class EditarCliente extends JPanel {
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("ID:123456");
-		lblNewLabel_6.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_6.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_6.setBounds(271, 119, 178, 53);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_6_1 = new JLabel("Cliente 1");
-		lblNewLabel_6_1.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_6_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_6_1.setBounds(271, 77, 178, 53);
 		panel.add(lblNewLabel_6_1);
 		
@@ -101,7 +101,7 @@ public class EditarCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton.setFont(new Font("Impact", Font.PLAIN, 23));
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 23));
 		btnNewButton.setBounds(830, 687, 251, 40);
 		panel.add(btnNewButton);
 		
@@ -131,7 +131,7 @@ public class EditarCliente extends JPanel {
 		panel.add(textField_4);
 		
 		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setFont(new Font("Impact", Font.PLAIN, 23));
+		btnActualizar.setFont(new Font("Arial", Font.BOLD, 23));
 		btnActualizar.setBounds(519, 687, 251, 40);
 		btnActualizar.addActionListener(new ActionListener() {
 			@Override
@@ -141,7 +141,7 @@ public class EditarCliente extends JPanel {
 		panel.add(btnActualizar);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Tarifa");
-		lblNewLabel_3_1.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_3_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_3_1.setBounds(670, 339, 194, 22);
 		panel.add(lblNewLabel_3_1);
 		
@@ -150,7 +150,7 @@ public class EditarCliente extends JPanel {
 		panel.add(comboBox);
 		
 		JLabel lblNewLabel_3_1_1 = new JLabel("Instructor");
-		lblNewLabel_3_1_1.setFont(new Font("Impact", Font.PLAIN, 23));
+		lblNewLabel_3_1_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_3_1_1.setBounds(670, 470, 194, 22);
 		panel.add(lblNewLabel_3_1_1);
 		
