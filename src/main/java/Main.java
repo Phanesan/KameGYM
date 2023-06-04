@@ -47,7 +47,7 @@ public class Main {
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
 		if(panel == null) {
-			throw new NullPointerException("Panel nulo ");
+			throw new NullPointerException("Panel nulo");
 		} else {
 			if(frame.getContentPane().getComponents().length != 0) {
 				frame.getContentPane().remove(0);

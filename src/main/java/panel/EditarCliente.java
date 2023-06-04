@@ -66,7 +66,7 @@ public class EditarCliente extends JPanel {
 		
 		JLabel lblNewLabel_2 = new JLabel("Correo");
 		lblNewLabel_2.setFont(new Font("Impact", Font.PLAIN, 23));
-		lblNewLabel_2.setBounds(88, 460, 107, 22);
+		lblNewLabel_2.setBounds(88, 460, 129, 22);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Apellidos");
@@ -80,18 +80,18 @@ public class EditarCliente extends JPanel {
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(219, 77, 173, 172);
+		lblNewLabel_5.setBounds(88, 77, 173, 172);
 		lblNewLabel_5.setOpaque(true);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("ID:123456");
 		lblNewLabel_6.setFont(new Font("Impact", Font.PLAIN, 23));
-		lblNewLabel_6.setBounds(402, 141, 178, 53);
+		lblNewLabel_6.setBounds(271, 119, 178, 53);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_6_1 = new JLabel("Cliente 1");
 		lblNewLabel_6_1.setFont(new Font("Impact", Font.PLAIN, 23));
-		lblNewLabel_6_1.setBounds(402, 77, 178, 53);
+		lblNewLabel_6_1.setBounds(271, 77, 178, 53);
 		panel.add(lblNewLabel_6_1);
 		
 		
@@ -161,4 +161,5 @@ public class EditarCliente extends JPanel {
 		
 
 	}
+
 }
