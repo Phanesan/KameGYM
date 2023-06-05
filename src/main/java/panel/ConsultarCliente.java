@@ -75,14 +75,4 @@ public class ConsultarCliente extends JPanel {
 		lblNewLabel_2.setOpaque(true);
 		panel.add(lblNewLabel_2);
 	}
-	/*
-	public static void main(String[] args) {
-        JFrame ventana = new JFrame("Consultar"); 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(1200, 800); 
-        ventana.setLocationRelativeTo(null); 
-        Consultar v1 = new Consultar(); 
-        ventana.getContentPane().add(v1); 
-        ventana.setVisible(true); 
-    }*/
 }

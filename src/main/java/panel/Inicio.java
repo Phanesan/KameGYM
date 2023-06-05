@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
+import main.java.Util;
+
 public class Inicio extends JPanel {
 
 	/**
@@ -16,25 +18,10 @@ public class Inicio extends JPanel {
 		setSize(1200,800);
 		setLayout(null);
 		
-		JLabel lblEsfera = new JLabel("");
-		lblEsfera.setIcon(new ImageIcon("C:\\Users\\ruben\\Documents\\GitHub\\KameGYM\\Esfera.png"));
-		lblEsfera.setBounds(538, 341, 124, 122);
-		add(lblEsfera);
-		
-		JLabel lblKame = new JLabel("");
-		lblKame.setIcon(new ImageIcon("C:\\Users\\ruben\\Documents\\GitHub\\KameGYM\\kame.png"));
-		lblKame.setBounds(123, 303, 405, 193);
-		add(lblKame);
-		
-		JLabel lblGym = new JLabel("");
-		lblGym.setIcon(new ImageIcon("C:\\Users\\ruben\\Documents\\GitHub\\KameGYM\\gym.png"));
-		lblGym.setBounds(672, 303, 453, 193);
-		add(lblGym);
-		
 		JLabel lblKameLogo = new JLabel("");
-		lblKameLogo.setIcon(new ImageIcon("C:\\Users\\ruben\\Documents\\GitHub\\KameGYM\\kame logo.png"));
+		lblKameLogo.setIcon(new ImageIcon(Util.resizeImage(1186, 621, Util.getStream("main/resources/logoInicio.png"))));
 		lblKameLogo.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblKameLogo.setBounds(319, 104, 621, 621);
+		lblKameLogo.setBounds(7, 65, 1186, 621);
 		add(lblKameLogo);
 		
 	}

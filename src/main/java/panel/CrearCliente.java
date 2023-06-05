@@ -200,13 +200,5 @@ public class CrearCliente extends JPanel {
 		
 	}
 
-	/*public static void main(String[] args) {
-        JFrame ventana = new JFrame("Cliente"); 
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.setSize(1200, 800); 
-        ventana.setLocationRelativeTo(null); 
-        Crear v1 = new Crear(); 
-        ventana.getContentPane().add(v1); 
-        ventana.setVisible(true); 
-    }*/
+
 }
