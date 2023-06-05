@@ -52,27 +52,13 @@ public class ConsultarCliente extends JPanel {
 		lblNewLabel_1.setBounds(560, 504, 129, 33);
 		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Descargar Reporte");
-		btnNewButton.setFont(new Font("Impact", Font.PLAIN, 15));
-		btnNewButton.setBounds(70, 648, 173, 44);
-		panel.add(btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Descargar Credencial");
-		btnNewButton_1.setFont(new Font("Impact", Font.PLAIN, 15));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setBounds(380, 648, 173, 44);
-		panel.add(btnNewButton_1);
-		
 		JButton btnNewButton_2 = new JButton("Historial Asistencia");
 		btnNewButton_2.setFont(new Font("Impact", Font.PLAIN, 15));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(690, 648, 173, 44);
+		btnNewButton_2.setBounds(360, 648, 173, 44);
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Historial de Pagos");
@@ -81,7 +67,7 @@ public class ConsultarCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_3.setBounds(970, 648, 173, 44);
+		btnNewButton_3.setBounds(710, 648, 173, 44);
 		panel.add(btnNewButton_3);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
