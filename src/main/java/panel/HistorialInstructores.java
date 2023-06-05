@@ -10,6 +10,8 @@ import main.java.Util;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JTable;
 
 public class HistorialInstructores extends JPanel {
@@ -52,9 +54,19 @@ public class HistorialInstructores extends JPanel {
 		panel.add(table);
 		
 		JLabel Back = new JLabel("");
-		Back.setBounds(10, 39, 130, 110);
+		Back.setBounds(10, 39, 130, 120);
 		panel.add(Back);
 		Back.setIcon(new ImageIcon(Util.resizeImage(130, 110, Util.getStream("main/resources/back.png"))));
 
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 1190, 22);
+		panel.add(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Inicio");
+		menuBar.add(mnNewMenu);
+		
+		JMenu mnNewMenu_1 = new JMenu("Logout");
+		menuBar.add(mnNewMenu_1);
+		panel.setBackground(Color.decode("#FF7121"));
 	}
 }

@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 
 import main.java.panel.ConsultarCliente;
 import main.java.panel.ConsultarInstructores;
-import main.java.panel.ConsultarInstructoresCredencial;
 import main.java.panel.CrearClase;
 import main.java.panel.CrearCliente;
 import main.java.panel.CrearTarifa;
@@ -20,6 +19,9 @@ import main.java.panel.RegisterDatos;
 import main.java.panel.Clases;
 import main.java.panel.Inicio;
 import main.java.panel.InstructorCrear;
+import main.java.panel.InstructorEditar;
+import main.java.panel.InstructorEliminar;
+import main.java.panel.InstructoresCredencial;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
 import main.java.panel.Register;
@@ -51,7 +53,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new ConsultarInstructores());
+		changePanel(frame,new InstructorEliminar());
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
