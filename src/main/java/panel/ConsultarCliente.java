@@ -6,8 +6,14 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
+import main.java.Util;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -48,12 +54,12 @@ public class ConsultarCliente extends JPanel {
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
-		lblNewLabel_1.setFont(new Font("Impact", Font.PLAIN, 23));
-		lblNewLabel_1.setBounds(560, 504, 129, 33);
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
+		lblNewLabel_1.setBounds(554, 504, 100, 33);
 		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton_2 = new JButton("Historial Asistencia");
-		btnNewButton_2.setFont(new Font("Impact", Font.PLAIN, 15));
+		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 15));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -62,7 +68,7 @@ public class ConsultarCliente extends JPanel {
 		panel.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("Historial de Pagos");
-		btnNewButton_3.setFont(new Font("Impact", Font.PLAIN, 15));
+		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 15));
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -70,9 +76,9 @@ public class ConsultarCliente extends JPanel {
 		btnNewButton_3.setBounds(710, 648, 173, 44);
 		panel.add(btnNewButton_3);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(0, 22, 1200, 292);
-		lblNewLabel_2.setOpaque(true);
+		JLabel lblNewLabel_2 = new JLabel("");
+		//lblNewLabel_2.setIcon(new ImageIcon(Util.resizeImage(1200, 400, Util.getStream("main/resources/TituloConsulta.png"))));
+		lblNewLabel_2.setBounds(7, 65, 1200, 400);
 		panel.add(lblNewLabel_2);
 	}
 }
