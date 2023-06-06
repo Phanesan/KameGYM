@@ -21,7 +21,6 @@ import main.java.panel.Inicio;
 import main.java.panel.InstructorCrear;
 import main.java.panel.InstructorEditar;
 import main.java.panel.InstructorEliminar;
-import main.java.panel.InstructoresCredencial;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
 import main.java.panel.Register;
@@ -53,7 +52,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new InstructorEliminar());
+		changePanel(frame,new InstructorCrear());
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
