@@ -1,6 +1,8 @@
 package main.java;
 
 import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +18,7 @@ import main.java.panel.HistorialInstructores;
 import main.java.panel.Clases;
 import main.java.panel.ClienteLobby;
 import main.java.panel.RegisterDatos;
+import main.java.sql.ConectionDB;
 import main.java.panel.Clases;
 import main.java.panel.Inicio;
 import main.java.panel.InstructorCrear;
@@ -52,7 +55,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new InstructorCrear());
+		changePanel(frame,new Login());
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
