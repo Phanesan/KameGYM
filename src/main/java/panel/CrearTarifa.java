@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import main.java.Util;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class CrearTarifa extends JPanel {
 	private JTextField textField;
@@ -60,6 +61,11 @@ public class CrearTarifa extends JPanel {
 		textField_2.setColumns(10);
 		textField_2.setBounds(269, 464, 661, 43);
 		add(textField_2);
+		
+		JButton btnNewButton = new JButton("Crear");
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 30));
+		btnNewButton.setBounds(469, 591, 309, 65);
+		add(btnNewButton);
 		
 		
 	}
