@@ -7,8 +7,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import main.java.Util;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class CrearCliente extends JPanel {
@@ -34,6 +39,13 @@ public class CrearCliente extends JPanel {
 		add(panel);
 		panel.setBackground(Color.decode("#FF7121"));
 		panel.setLayout(null);
+		
+		JButton lblBack = new JButton("");
+		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
+		lblBack.setBounds(10, 31, 65, 65);
+		lblBack.setBackground(null);
+		add(lblBack);
+		
 		JMenuBar menuBar = new JMenuBar();
 		
 		menuBar.setBounds(0, 0, 1200, 22);
