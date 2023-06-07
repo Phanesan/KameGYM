@@ -42,12 +42,6 @@ public class CrearCliente extends JPanel {
 		JMenu mnNewMenu = new JMenu("Inicio");
 		menuBar.add(mnNewMenu);
 		
-		JMenu mnNewMenu_1 = new JMenu("Cuenta");
-		menuBar.add(mnNewMenu_1);
-		
-		JMenu mnNewMenu_2 = new JMenu("Clases");
-		menuBar.add(mnNewMenu_2);
-		
 		JMenu mnNewMenu_3 = new JMenu("Logout");
 		menuBar.add(mnNewMenu_3);
 		
@@ -102,18 +96,18 @@ public class CrearCliente extends JPanel {
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(219, 77, 173, 172);
+		lblNewLabel_5.setBounds(88, 77, 173, 172);
 		lblNewLabel_5.setOpaque(true);
 		panel.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("foto de perfil");
 		lblNewLabel_6.setFont(new Font("Impact", Font.PLAIN, 23));
-		lblNewLabel_6.setBounds(402, 130, 178, 53);
+		lblNewLabel_6.setBounds(271, 123, 178, 53);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_6_1 = new JLabel("Selecciona una ");
 		lblNewLabel_6_1.setFont(new Font("Impact", Font.PLAIN, 23));
-		lblNewLabel_6_1.setBounds(402, 100, 178, 53);
+		lblNewLabel_6_1.setBounds(270, 92, 178, 53);
 		panel.add(lblNewLabel_6_1);
 		
 		JLabel lblNewLabel_7 = new JLabel("kg");

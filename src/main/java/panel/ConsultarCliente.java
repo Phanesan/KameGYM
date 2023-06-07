@@ -7,12 +7,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 import main.java.Util;
 
 import javax.swing.JLabel;
 import java.awt.Font;
-
+import java.awt.Graphics;
+import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -57,28 +59,54 @@ public class ConsultarCliente extends JPanel {
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_1.setBounds(554, 504, 100, 33);
 		panel.add(lblNewLabel_1);
-		
-		JButton btnNewButton_2 = new JButton("Historial Asistencia");
-		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 15));
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton Historial_Asistencia = new JButton("");
+		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
+		ImageIcon editar_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
+		Historial_Asistencia.setRolloverIcon(editar_in);
+		Historial_Asistencia.setBorderPainted(false);
+		Historial_Asistencia.setOpaque(false);
+		Historial_Asistencia.setContentAreaFilled(false);
+		Historial_Asistencia.setIcon(editar_out);
+		Historial_Asistencia.setPressedIcon(editar_in);
+		Historial_Asistencia.setUI(new BasicButtonUI() {
+	        @Override
+	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
+	    });
+		Historial_Asistencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(360, 648, 173, 44);
-		panel.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Historial de Pagos");
-		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 15));
-		btnNewButton_3.addActionListener(new ActionListener() {
+		Historial_Asistencia.setFont(new Font("Arial", Font.BOLD, 32));
+		Historial_Asistencia.setBounds(300, 540, 230, 200);
+		add(Historial_Asistencia);
+		panel.add(Historial_Asistencia);
+
+		////////////////////////////////
+		JButton Historial_de_Pagos = new JButton("");
+		ImageIcon editar_in1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
+		ImageIcon editar_out1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
+		Historial_de_Pagos.setRolloverIcon(editar_in);
+		Historial_de_Pagos.setBorderPainted(false);
+		Historial_de_Pagos.setOpaque(false);
+		Historial_de_Pagos.setContentAreaFilled(false);
+		Historial_de_Pagos.setIcon(editar_out);
+		Historial_de_Pagos.setPressedIcon(editar_in);
+		Historial_de_Pagos.setUI(new BasicButtonUI() {
+	        @Override
+	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
+	    });
+		Historial_de_Pagos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_3.setBounds(710, 648, 173, 44);
-		panel.add(btnNewButton_3);
+		Historial_de_Pagos.setFont(new Font("Arial", Font.BOLD, 32));
+		Historial_de_Pagos.setBounds(670, 540, 230, 200);
+		add(Historial_de_Pagos);
+		panel.add(Historial_de_Pagos);
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		//lblNewLabel_2.setIcon(new ImageIcon(Util.resizeImage(1200, 400, Util.getStream("main/resources/TituloConsulta.png"))));
-		lblNewLabel_2.setBounds(7, 65, 1200, 400);
-		panel.add(lblNewLabel_2);
+		////////////////////////////////
 	}
+	
+	
+	
 }
