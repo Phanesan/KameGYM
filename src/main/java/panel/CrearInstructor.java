@@ -13,7 +13,7 @@ import main.java.Util;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class InstructorCrear extends JPanel {
+public class CrearInstructor extends JPanel {
 	
 	private JTextField textField;
 	private JTextField textField_1;
@@ -26,7 +26,7 @@ public class InstructorCrear extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public InstructorCrear() {
+	public CrearInstructor() {
 		setLayout(null);
 		
 		JLabel Back = new JLabel("");

@@ -26,17 +26,13 @@ public class ConsultarCliente extends JPanel {
 	 * Create the panel.
 	 */
 	public ConsultarCliente() {
+		setBackground(Color.decode("#FF7121"));
+		setSize(1200,800);
 		setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 11, 1212, 800);
-		add(panel);
-		panel.setBackground(Color.decode("#FF7121"));
-		panel.setLayout(null);
 		JMenuBar menuBar = new JMenuBar();
-		
 		menuBar.setBounds(0, 0, 1200, 22);
-		panel.add(menuBar);
+		add(menuBar);
 		
 		JMenu mnNewMenu = new JMenu("Inicio");
 		menuBar.add(mnNewMenu);
@@ -53,12 +49,18 @@ public class ConsultarCliente extends JPanel {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(550, 393, 100, 100);
 		lblNewLabel.setOpaque(true);
-		panel.add(lblNewLabel);
+		add(lblNewLabel);
+		
+		JButton lblBack = new JButton("");
+		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
+		lblBack.setBounds(10, 31, 65, 65);
+		lblBack.setBackground(null);
+		add(lblBack);
 		
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_1.setBounds(554, 504, 100, 33);
-		panel.add(lblNewLabel_1);
+		add(lblNewLabel_1);
 		JButton Historial_Asistencia = new JButton("");
 		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
 		ImageIcon editar_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
@@ -79,7 +81,7 @@ public class ConsultarCliente extends JPanel {
 		Historial_Asistencia.setFont(new Font("Arial", Font.BOLD, 32));
 		Historial_Asistencia.setBounds(300, 540, 230, 200);
 		add(Historial_Asistencia);
-		panel.add(Historial_Asistencia);
+		add(Historial_Asistencia);
 
 		////////////////////////////////
 		JButton Historial_de_Pagos = new JButton("");
@@ -102,7 +104,7 @@ public class ConsultarCliente extends JPanel {
 		Historial_de_Pagos.setFont(new Font("Arial", Font.BOLD, 32));
 		Historial_de_Pagos.setBounds(670, 540, 230, 200);
 		add(Historial_de_Pagos);
-		panel.add(Historial_de_Pagos);
+		add(Historial_de_Pagos);
 		
 		////////////////////////////////
 	}

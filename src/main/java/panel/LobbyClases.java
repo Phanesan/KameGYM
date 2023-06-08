@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import main.java.Main;
 import main.java.Util;
 
 import javax.swing.AbstractButton;
@@ -18,19 +19,20 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Clases extends JPanel {
+public class LobbyClases extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Clases() {
+	public LobbyClases(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
 		
-		JLabel lblBack = new JLabel("");
+		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
 		add(lblBack);
 		
 		JComboBox comboBox = new JComboBox();
@@ -51,13 +53,14 @@ public class Clases extends JPanel {
             @Override
             protected void paintButtonPressed(Graphics g, AbstractButton b) {}
         });
-		btnEditar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 32));
 		btnEditar.setBounds(153, 233, 200, 200);
 		add(btnEditar);
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new EditarClase());
+			}
+		});
 		
 		JButton btnConsultar = new JButton("");
 		ImageIcon consultar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Consultar_In.png")));
@@ -76,6 +79,14 @@ public class Clases extends JPanel {
 		btnConsultar.setFont(new Font("Arial", Font.BOLD, 32));
 		btnConsultar.setBounds(313, 499, 200, 200);
 		add(btnConsultar);
+		btnConsultar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new ConsultarClases());
+			}
+		});
 		
 		JButton btnEliminar = new JButton("");
 		ImageIcon eliminar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Eliminar_In.png")));
@@ -94,6 +105,14 @@ public class Clases extends JPanel {
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 32));
 		btnEliminar.setBounds(671, 499, 200, 200);
 		add(btnEliminar);
+		btnEliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		JButton btnCrear = new JButton("");
 		ImageIcon crear_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_In.png")));
@@ -112,5 +131,13 @@ public class Clases extends JPanel {
 		btnCrear.setFont(new Font("Arial", Font.BOLD, 32));
 		btnCrear.setBounds(827, 233, 200, 200);
 		add(btnCrear);
+		btnCrear.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new CrearClase());
+			}
+		});
 	}
 }

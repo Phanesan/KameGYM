@@ -1,22 +1,22 @@
 package main.java.panel;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import main.java.Util;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
-public class CrearTarifa extends JPanel {
-	
+public class EditarTarifa extends JPanel {
+
 	/**
 	 * Create the panel.
 	 */
-	public CrearTarifa() {
+	public EditarTarifa() {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -29,41 +29,50 @@ public class CrearTarifa extends JPanel {
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 32));
-		lblNombre.setBounds(269, 212, 193, 37);
+		lblNombre.setBounds(107, 190, 193, 37);
 		add(lblNombre);
 		
-		JTextField textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField.setColumns(10);
-		textField.setBounds(269, 260, 661, 43);
-		add(textField);
+		JTextField txtTarifa = new JTextField();
+		txtTarifa.setText("Tarifa 1");
+		txtTarifa.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtTarifa.setColumns(10);
+		txtTarifa.setBounds(107, 238, 661, 43);
+		add(txtTarifa);
 		
-		JLabel lblDuracion = new JLabel("Duracion");
+		JLabel lblDuracion = new JLabel("Duracion (mins)");
 		lblDuracion.setFont(new Font("Arial", Font.BOLD, 32));
-		lblDuracion.setBounds(269, 314, 193, 37);
+		lblDuracion.setBounds(107, 292, 258, 37);
 		add(lblDuracion);
 		
 		JTextField textField_1 = new JTextField();
+		textField_1.setText("60");
 		textField_1.setFont(new Font("Arial", Font.PLAIN, 18));
 		textField_1.setColumns(10);
-		textField_1.setBounds(269, 362, 661, 43);
+		textField_1.setBounds(107, 340, 661, 43);
 		add(textField_1);
 		
 		JLabel lblPrecio = new JLabel("Precio");
 		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
-		lblPrecio.setBounds(269, 416, 193, 37);
+		lblPrecio.setBounds(107, 394, 193, 37);
 		add(lblPrecio);
 		
 		JTextField textField_2 = new JTextField();
+		textField_2.setText("$123456789");
 		textField_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		textField_2.setColumns(10);
-		textField_2.setBounds(269, 464, 661, 43);
+		textField_2.setBounds(107, 442, 661, 43);
 		add(textField_2);
 		
-		JButton btnNewButton = new JButton("Crear");
+		JButton btnNewButton = new JButton("Actualizar");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 30));
-		btnNewButton.setBounds(469, 591, 309, 65);
+		btnNewButton.setBounds(309, 564, 309, 65);
 		add(btnNewButton);
 		
+		JLabel lblImage = new JLabel("");
+		lblImage.setBackground(Color.WHITE);
+		lblImage.setBounds(878, 0, 340, 800);
+		lblImage.setIcon(new ImageIcon(Util.resizeImage(340, 800, Util.getStream("main/resources/g2.jpg"))));
+		add(lblImage);
 	}
+
 }

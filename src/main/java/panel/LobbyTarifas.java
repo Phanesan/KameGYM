@@ -13,88 +13,98 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import main.java.Main;
 import main.java.Util;
 import javax.swing.JComboBox;
 
-public class Tarifas extends JPanel {
+public class LobbyTarifas extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Tarifas() {
+	public LobbyTarifas(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
 		
-		JLabel lblBack = new JLabel("");
+		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
 		add(lblBack);
 		
-		
-		JButton Consultar = new JButton("");
+		JButton btnConsultar = new JButton("");
 		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Consultar_In.png")));
 		ImageIcon editar_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Consultar_Out.png")));
-		Consultar.setRolloverIcon(editar_in);
-		Consultar.setBorderPainted(false);
-		Consultar.setOpaque(false);
-		Consultar.setContentAreaFilled(false);
-		Consultar.setIcon(editar_out);
-		Consultar.setPressedIcon(editar_in);
-		Consultar.setUI(new BasicButtonUI() {
+		btnConsultar.setRolloverIcon(editar_in);
+		btnConsultar.setBorderPainted(false);
+		btnConsultar.setOpaque(false);
+		btnConsultar.setContentAreaFilled(false);
+		btnConsultar.setIcon(editar_out);
+		btnConsultar.setPressedIcon(editar_in);
+		btnConsultar.setUI(new BasicButtonUI() {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 	    });
-		Consultar.addActionListener(new ActionListener() {
+		btnConsultar.setFont(new Font("Arial", Font.BOLD, 32));
+		btnConsultar.setBounds(300, 240, 230, 200);
+		add(btnConsultar);
+		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new ConsultarTarifa());
 			}
 		});
-		Consultar.setFont(new Font("Arial", Font.BOLD, 32));
-		Consultar.setBounds(300, 240, 230, 200);
-		add(Consultar);
 		
 		/////////////////
-		JButton Editar = new JButton("");
+		JButton btnEditar = new JButton("");
 		ImageIcon editar_in1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
 		ImageIcon editar_out1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
-		Editar.setRolloverIcon(editar_in1);
-		Editar.setBorderPainted(false);
-		Editar.setOpaque(false);
-		Editar.setContentAreaFilled(false);
-		Editar.setIcon(editar_out1);
-		Editar.setPressedIcon(editar_in1);
-		Editar.setUI(new BasicButtonUI() {
+		btnEditar.setRolloverIcon(editar_in1);
+		btnEditar.setBorderPainted(false);
+		btnEditar.setOpaque(false);
+		btnEditar.setContentAreaFilled(false);
+		btnEditar.setIcon(editar_out1);
+		btnEditar.setPressedIcon(editar_in1);
+		btnEditar.setUI(new BasicButtonUI() {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 	    });
-		Consultar.addActionListener(new ActionListener() {
+		btnEditar.setFont(new Font("Arial", Font.BOLD, 32));
+		btnEditar.setBounds(650, 240, 230, 200);
+		add(btnEditar);
+		btnEditar.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new EditarTarifa());
 			}
 		});
-		Editar.setFont(new Font("Arial", Font.BOLD, 32));
-		Editar.setBounds(650, 240, 230, 200);
-		add(Editar);
 		//////////
-		JButton Crear = new JButton("");
+		JButton btnCrear = new JButton("");
 		ImageIcon editar_in2 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_In.png")));
 		ImageIcon editar_out2 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_Out.png")));
-		Crear.setRolloverIcon(editar_in2);
-		Crear.setBorderPainted(false);
-		Crear.setOpaque(false);
-		Crear.setContentAreaFilled(false);
-		Crear.setIcon(editar_out2);
-		Crear.setPressedIcon(editar_in2);
-		Crear.setUI(new BasicButtonUI() {
+		btnCrear.setRolloverIcon(editar_in2);
+		btnCrear.setBorderPainted(false);
+		btnCrear.setOpaque(false);
+		btnCrear.setContentAreaFilled(false);
+		btnCrear.setIcon(editar_out2);
+		btnCrear.setPressedIcon(editar_in2);
+		btnCrear.setUI(new BasicButtonUI() {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 	    });
-		Crear.addActionListener(new ActionListener() {
+		btnCrear.setFont(new Font("Arial", Font.BOLD, 32));
+		btnCrear.setBounds(300, 500, 230, 200);
+		add(btnCrear);
+		btnCrear.addActionListener(new ActionListener() {
+			
+			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new CrearTarifa());
 			}
 		});
-		Crear.setFont(new Font("Arial", Font.BOLD, 32));
-		Crear.setBounds(300, 500, 230, 200);
-		add(Crear);
 		///////
 		JButton Eliminar = new JButton("");
 		ImageIcon editar_in3 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Eliminar_In.png")));
@@ -109,7 +119,7 @@ public class Tarifas extends JPanel {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 	    });
-		Crear.addActionListener(new ActionListener() {
+		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});

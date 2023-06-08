@@ -11,11 +11,11 @@ import main.java.panel.CrearCliente;
 import main.java.panel.CrearTarifa;
 import main.java.panel.EditarClase;
 import main.java.panel.EditarCliente;
-import main.java.panel.Clases;
-import main.java.panel.ClienteLobby;
+import main.java.panel.LobbyClases;
+import main.java.panel.LobbyCliente;
 import main.java.panel.RegisterDatos;
-import main.java.panel.Tarifas;
-import main.java.panel.Clases;
+import main.java.panel.LobbyTarifas;
+import main.java.panel.LobbyClases;
 import main.java.panel.Inicio;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
@@ -48,7 +48,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new ConsultarCliente());
+		changePanel(frame,new Lobby(this));
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
