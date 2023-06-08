@@ -18,12 +18,12 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ClienteLobby extends JPanel {
+public class LobbyCliente extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public ClienteLobby(Main main) {
+	public LobbyCliente(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -50,6 +50,14 @@ public class ClienteLobby extends JPanel {
 		btnNewUser.setFont(new Font("Arial", Font.BOLD, 32));
 		btnNewUser.setBounds(170, 538, 283, 55);
 		add(btnNewUser);
+		btnNewUser.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new CrearCliente());
+			}
+		});
 		
 		JLabel lblImage = new JLabel("");
 		lblImage.setBackground(Color.WHITE);
@@ -91,5 +99,13 @@ public class ClienteLobby extends JPanel {
 		btnRealizar.setFont(new Font("Arial", Font.BOLD, 32));
 		btnRealizar.setBounds(759, 525, 283, 55);
 		add(btnRealizar);
+		btnRealizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//main.changePanel(main.frame, new pagoCliente());
+			}
+		});
 	}
 }

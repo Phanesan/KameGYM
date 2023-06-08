@@ -37,7 +37,7 @@ public class Lobby extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new ClienteLobby(main));
+				main.changePanel(main.frame, new LobbyCliente(main));
 			}
 		});
 		
@@ -50,7 +50,7 @@ public class Lobby extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new Tarifas(main));
+				main.changePanel(main.frame, new LobbyTarifas(main));
 			}
 		});
 		
@@ -63,7 +63,7 @@ public class Lobby extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new Clases());
+				main.changePanel(main.frame, new LobbyClases(main));
 			}
 		});
 		
@@ -71,14 +71,6 @@ public class Lobby extends JPanel {
 		btnInstructores.setFont(new Font("Arial", Font.BOLD, 32));
 		btnInstructores.setBounds(815, 593, 238, 55);
 		add(btnInstructores);
-		/*btnInstructores.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new Instructores(main));		
-			}
-		});*/
 	}
 
 }

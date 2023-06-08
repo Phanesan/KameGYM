@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
-public class InstructorEditar extends JPanel {
+public class EditarInstructor extends JPanel {
 	
 	private JTextField textField;
 	private JTextField textField_1;
@@ -26,7 +26,7 @@ public class InstructorEditar extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public InstructorEditar() {
+	public EditarInstructor() {
 		setLayout(null);
 		
 
