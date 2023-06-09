@@ -23,9 +23,10 @@ public class EditarClase extends JPanel {
 		setSize(1200,800);
 		setLayout(null);
 		
-		JLabel lblBack = new JLabel("");
+		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
 		add(lblBack);
 		
 		JLabel lblNombre = new JLabel("Nombre");

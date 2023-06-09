@@ -5,10 +5,14 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+
+import main.java.sql.ConectionDB;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.awt.event.ActionEvent;
 
 public class Login extends JPanel {
@@ -59,6 +63,10 @@ public class Login extends JPanel {
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 32));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Connection sql = ConectionDB.connect();
+				
+				
 			}
 		});
 		btnNewButton.setBounds(514, 655, 171, 55);

@@ -2,7 +2,10 @@ package main.java.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public abstract class ConectionDB {
 	
@@ -19,6 +22,45 @@ public abstract class ConectionDB {
 			e.printStackTrace();
 		}
 		return connection;
+	}
+	
+	public static void loginRequest(String query) throws SQLException{
+		Connection sql = connect();
+		try {
+			Statement statement = sql.createStatement();
+			
+			statement.executeQuery("");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException();
+		}
+	}
+	
+	public static void registerRequest(String correo,
+										String nombre,
+										String apellidos,
+										String password,
+										String peso,
+										String estatura,
+										String fechaDeNacimiento) throws SQLException{
+		Connection sql = connect();
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.usuario WHERE correo = ? HAVING count > 0";
+			PreparedStatement statement = sql.prepareStatement(query);
+			
+			statement.setString(1, "test@gmail.com");
+			
+			ResultSet result = statement.executeQuery();
+			result.next();
+			
+			if(result.getInt("count") > 0) {
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException();
+		}
 	}
 	
 }
