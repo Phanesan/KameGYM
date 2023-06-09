@@ -51,11 +51,18 @@ public class ConsultarCliente extends JPanel {
 		lblNewLabel.setOpaque(true);
 		add(lblNewLabel);
 		
-		JButton lblBack = new JButton("");
+		JLabel lblBack = new JLabel("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 31, 65, 65);
 		lblBack.setBackground(null);
 		add(lblBack);
+		
+		JLabel Fondo = new JLabel("");
+		Fondo.setIcon(new ImageIcon(Util.resizeImage(1200, 380, Util.getStream("main/resources/ClientesConsulta.jpg"))));
+		Fondo.setBounds(0, 0, 1200, 400);
+		Fondo.setBackground(null);
+		add(Fondo);
+		
 		
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
