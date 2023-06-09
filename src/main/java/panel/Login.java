@@ -6,6 +6,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.java.Main;
+import main.java.UserCredential;
+import main.java.exception.CredentialsException;
+import main.java.exception.DuplicateMailException;
+import main.java.sql.ConectionDB;
 import main.java.Util;
 
 import java.awt.Font;
@@ -13,17 +18,19 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 public class Login extends JPanel {
 	private JTextField textFieldCorreo;
-	private JTextField fieldPassword;
+	private JPasswordField fieldPassword;
 
 	/**
 	 * Create the panel.
 	 */
-	public Login() {
+	public Login(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -54,6 +61,18 @@ public class Login extends JPanel {
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 28));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					UserCredential userCredential = ConectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
+					main.changePanel(main.frame, new Lobby(main, userCredential));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnNewButton.setBounds(320, 623, 200, 55);

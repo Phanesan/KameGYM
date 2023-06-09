@@ -23,6 +23,5 @@ public class Inicio extends JPanel {
 		lblKameLogo.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblKameLogo.setBounds(7, 65, 1186, 621);
 		add(lblKameLogo);
-		
 	}
 }
