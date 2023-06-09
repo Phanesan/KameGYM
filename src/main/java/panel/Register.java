@@ -4,9 +4,17 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import main.java.Util;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
@@ -46,11 +54,6 @@ public class Register extends JPanel {
 		lblContraseña.setFont(new Font("Arial", Font.BOLD, 32));
 		lblContraseña.setBounds(52, 352, 193, 37);
 		add(lblContraseña);
-		
-		JButton btn = new JButton("Entrar");
-		btn.setFont(new Font("Arial", Font.BOLD, 32));
-		btn.setBounds(514, 652, 171, 55);
-		add(btn);
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 32));
@@ -92,9 +95,133 @@ public class Register extends JPanel {
 		add(newCheckBox);
 		
 		JLabel lblImage = new JLabel("");
-		lblImage.setOpaque(true);
-		lblImage.setBackground(Color.WHITE);
+		lblImage.setIcon(new ImageIcon(Util.resizeImage(390, 800, Util.getStream("main/resources/gyv.jpg"))));
 		lblImage.setBounds(810, 0, 390, 800);
 		add(lblImage);
+		
+		JButton btn = new JButton("Entrar");
+		btn.setFont(new Font("Arial", Font.BOLD, 32));
+		btn.setBounds(514, 652, 171, 55);
+		add(btn);
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				verificarNombre(textFieldNombre);
+				verificarApellido(textFieldApellidos);
+				verificarCorreo(textFieldCorreo);
+				verificarContraseña(passwordField, repeatPasswordField);
+				verificarCheckBox(newCheckBox);
+			}
+		});
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarCorreo(JTextField textField) {
+	    String texto = textField.getText();
+	    
+	    // Verificar si el correo contiene un "@" y un "."
+	    if (!texto.contains("@") || !texto.contains(".")) {
+	        try {
+	        	throw new IllegalArgumentException("El correo electrónico debe contener obligatoriamente un '@' y un '.'");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+	    }
+	    
+	    return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	public boolean verificarNombre(JTextField textField) {
+	    String texto = textField.getText();
+
+	    // Verificar la longitud del texto
+	    if (texto.length() > 40) {
+	    	try {
+	        	throw new IllegalArgumentException("Nombre: Limite de caracteres excedido: 40");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+	    }
+
+	    // Verificar si el texto contiene caracteres no permitidos
+	    if (!texto.matches("[A-Za-z\\s]+")) {
+	    	try {
+	        	throw new IllegalArgumentException("Nombre: Solo se aceptan letras y espacios");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+	    }
+	    return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarApellido(JTextField textField) {
+	    String texto = textField.getText();
+
+	    // Verificar la longitud del texto
+	    if (texto.length() > 40) {
+	    	try {
+	        	throw new IllegalArgumentException("Apellido: Limite de caracteres excedido: 40");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+	    }
+
+	    // Verificar si el texto contiene caracteres no permitidos
+	    if (!texto.matches("[A-Za-z\\s]+")) {
+	    	try {
+	        	throw new IllegalArgumentException("Apellido: Solo se aceptan letras y espacios");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+	    }
+	    return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarContraseña(JPasswordField passwordField, JPasswordField confirmPaswordField) {
+		String contra = new String(passwordField.getPassword());
+		String confirmContra = new String(confirmPaswordField.getPassword());
+		
+		// Verificar si la contraseña es la misma en repetir contraseña
+		if(!contra.equals(confirmContra)) {
+			try {
+	        	throw new IllegalArgumentException("Repita contraseña");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+		// Verificar si el campo esta en blanco
+		if(contra.isEmpty()) {
+			try {
+	        	throw new IllegalArgumentException("Contraseña: Espacio en blanco");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+		// Verificar el limite de caracteres en el campo
+		if (contra.length() > 40) {
+	    	try {
+	        	throw new IllegalArgumentException("Contraseña: Limite de caracteres excedido: 40");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+	    }
+		
+		return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarCheckBox(JCheckBox checkBox) {
+		if(!checkBox.isSelected()) {
+			JOptionPane.showMessageDialog(null, "Acepte terminos y condiciones");
+		}
+		return true;
 	}
 }
