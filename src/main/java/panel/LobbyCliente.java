@@ -35,12 +35,16 @@ public class LobbyCliente extends JPanel {
 		lblBack.setBackground(null);
 		add(lblBack);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 30));
 		
 		//	CONSULTA LOS USUARIOS
 		
-		ConectionDB.getClientesCorreo();
+		String[] correoClientes = ConectionDB.getClientesCorreo();
+		
+		for(int i = 0; i < correoClientes.length; i++) {
+			comboBox.addItem(correoClientes[i]);
+		}
 		
 		///////////////////////////
 		
