@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import main.java.panel.ConsultarCliente;
+import main.java.panel.LobbyInstructores;
 import main.java.panel.CrearClase;
 import main.java.panel.CrearCliente;
 import main.java.panel.CrearTarifa;
