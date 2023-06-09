@@ -9,12 +9,23 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import main.java.Main;
+import main.java.UserCredential;
+import main.java.UserCredential.UserCredentialBuilder;
 import main.java.Util;
+import main.java.exception.DuplicateMailException;
+import main.java.exception.InvalidDayException;
+import main.java.exception.InvalidHeightException;
+import main.java.exception.InvalidMonthException;
+import main.java.exception.InvalidWeightException;
+import main.java.exception.InvalidYearException;
+import main.java.sql.ConectionDB;
 
 public class RegisterDatos extends JPanel {
 	private JTextField textFieldPeso;
@@ -26,7 +37,7 @@ public class RegisterDatos extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public RegisterDatos() {
+	public RegisterDatos(Main main, UserCredentialBuilder builder) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -108,70 +119,103 @@ public class RegisterDatos extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			validarPeso(textFieldPeso);
-			validarEstatura(textFieldEstatura);
-			validarDia(txtDay);
-			validarMes(txtMonth);
-			validarAño(txtYear);
+				try {
+					validarPeso(textFieldPeso);
+					validarEstatura(textFieldEstatura);
+					validarDia(txtDay);
+					validarMes(txtMonth);
+					validarAño(txtYear);
+					
+					StringBuilder sb = new StringBuilder();
+					sb.append(txtYear.getText());
+					sb.append("-");
+					sb.append(txtMonth.getText());
+					sb.append("-");
+					sb.append(txtDay.getText());
+					
+					String date = sb.toString();
+					
+					UserCredential userCredential = builder.setPeso(Float.parseFloat(textFieldPeso.getText()))
+									.setEstatura(Float.parseFloat(textFieldEstatura.getText()))
+									.setFechaDeNacimiento(date)
+									.build();
+					
+					ConectionDB.registerRequest(userCredential);
+					
+					main.changePanel(main.frame, new Login(main));
+				} catch (InvalidWeightException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidDayException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidMonthException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidYearException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidHeightException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (DuplicateMailException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean validarPeso(JTextField textField) {
+	public void validarPeso(JTextField textField) throws InvalidWeightException{
 	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
 
 	    // Verificar si el texto cumple con el patrón deseado
 	    if (!texto.matches("^\\d{1,3}(\\.\\d{1,2})?$")) {
 	    	JOptionPane.showMessageDialog(null, "Error Peso: Solo se acepta (3) numeros y (2) punto decimal");
-	        return false;
+	    	throw new InvalidWeightException();
 	    }
-	    return true;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean validarEstatura(JTextField textField) {
+	public void validarEstatura(JTextField textField) throws InvalidHeightException{
 	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
 
 	    // Verificar si el texto cumple con el patrón deseado
 	    if (!texto.matches("^\\d{1}(\\.\\d{1,2})?$")) {
 	    	JOptionPane.showMessageDialog(null, "Error Estatura: Solo se acepta (1) numeros y (2) punto decimal");
-	        return false;
+	        throw new InvalidHeightException();
 	    }
-	    return true;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean validarDia(JTextField textField) {
+	public void validarDia(JTextField textField) throws InvalidDayException{
 	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
 
 	    // Verificar si el texto cumple con el patrón deseado
 	    if (!texto.matches("^\\d{1,2}$")) {
 	    	JOptionPane.showMessageDialog(null, "Error Dia: Solo se acepta (2) numeros");
-	        return false;
+	        throw new InvalidDayException();
 	    }
-
-	    return true;
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean validarMes(JTextField textField) {
+	public void validarMes(JTextField textField) throws InvalidMonthException{
 	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
 
 	    // Verificar si el texto cumple con el patrón deseado
 	    if (!texto.matches("^\\d{1,2}$")) {
 	    	JOptionPane.showMessageDialog(null, "Error Mes: Solo se acepta (2) numeros");
-	        return false;
+	        throw new InvalidMonthException();
 	    }
-
-	    return true;
 	}
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean validarAño(JTextField textField) {
+	public void validarAño(JTextField textField) throws InvalidYearException{
 		String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
 		
 		// Verificar si el texto cumple con el patrón deseado
 		if (!texto.matches("^\\d{4}$")) {
 			JOptionPane.showMessageDialog(null, "Error Año: Solo se acepta (4) numeros");
-			return false;
+			throw new InvalidYearException();
 		}
-		
-		return true;
 	}
 }

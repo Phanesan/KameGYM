@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 
 import main.java.Main;
 import main.java.Util;
+import main.java.sql.ConectionDB;
 
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
@@ -34,10 +35,20 @@ public class LobbyCliente extends JPanel {
 		lblBack.setBackground(null);
 		add(lblBack);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 30));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Cliente 1", "Cliente 2", "Cliente 3", "Cliente 4", "Cliente 5"}));
-		comboBox.setToolTipText("");
+		
+		//	CONSULTA LOS USUARIOS
+		
+		String[] correoClientes = ConectionDB.getClientesCorreo();
+		
+		for(int i = 0; i < correoClientes.length; i++) {
+			comboBox.addItem(correoClientes[i]);
+		}
+		
+		///////////////////////////
+		
+		comboBox.setToolTipText("Usuarios");
 		comboBox.setBounds(108, 120, 399, 43);
 		add(comboBox);
 		

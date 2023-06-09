@@ -80,6 +80,13 @@ public class Login extends JPanel {
 		JButton btnRegistrarse = new JButton("Registrarse");
 		btnRegistrarse.setFont(new Font("Arial", Font.BOLD, 28));
 		btnRegistrarse.setBounds(680, 623, 200, 55);
+		btnRegistrarse.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new Register(main));
+			}
+		});
 		add(btnRegistrarse);
 		
 		JLabel lblImage = new JLabel("");

@@ -88,13 +88,7 @@ public abstract class ConectionDB {
 		return userCredential;
 	}
 	
-	public static void registerRequest(String correo,
-										String nombre,
-										String apellidos,
-										String password,
-										String peso,
-										String estatura,
-										String fechaDeNacimiento) throws SQLException,DuplicateMailException{
+	public static void registerRequest(UserCredential userCredential) throws SQLException,DuplicateMailException{
 		Connection sql = connect();
 		PreparedStatement statement = null;
 		ResultSet result = null;
@@ -103,7 +97,7 @@ public abstract class ConectionDB {
 			String query = "SELECT COUNT(*) as count FROM mydb.usuario WHERE correo = ? HAVING count > 0";
 			statement = sql.prepareStatement(query);
 			
-			statement.setString(1, correo);
+			statement.setString(1, userCredential.correo);
 			
 			result = statement.executeQuery();
 			result.next();
@@ -120,13 +114,13 @@ public abstract class ConectionDB {
 			
 			statement = sql.prepareStatement(query);
 			
-			statement.setString(1, correo);
-			statement.setString(2, nombre);
-			statement.setString(3, apellidos);
-			statement.setString(4, password);
-			statement.setString(5, peso);
-			statement.setString(6, estatura);
-			statement.setDate(7, Date.valueOf(fechaDeNacimiento));
+			statement.setString(1, userCredential.correo);
+			statement.setString(2, userCredential.nombre);
+			statement.setString(3, userCredential.apellidos);
+			statement.setString(4, userCredential.password);
+			statement.setString(5, String.valueOf(userCredential.peso));
+			statement.setString(6, String.valueOf(userCredential.estatura));
+			statement.setDate(7, Date.valueOf(userCredential.fechaDeNacimiento));
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -168,6 +162,42 @@ public abstract class ConectionDB {
 		}
 		
 		return userCredential;
+	}
+	
+	public static String[] getClientesCorreo() {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		String[] clientes = null;
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.usuario";
+			statement = sql.prepareStatement(query);
+			result = statement.executeQuery();
+			result.next();
+			int row = result.getInt("count");
+			
+			statement.close();
+			result.close();
+			
+			query = "SELECT correo FROM mydb.usuario";
+			statement = sql.prepareStatement(query);
+			
+			result = statement.executeQuery();
+			
+			System.out.println(row);
+			clientes = new String[row];
+			
+			int i = 0;
+			while(result.next()) {
+				clientes[i] = result.getString("correo");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		return clientes;
 	}
 	
 }

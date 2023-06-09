@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.Main;
+import main.java.UserCredential.UserCredentialBuilder;
 import main.java.Util;
 
 import java.awt.Font;
@@ -28,7 +30,7 @@ public class Register extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Register() {
+	public Register(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -99,25 +101,38 @@ public class Register extends JPanel {
 		lblImage.setBounds(810, 0, 390, 800);
 		add(lblImage);
 		
-		JButton btn = new JButton("Entrar");
+		JButton btn = new JButton("Continuar");
 		btn.setFont(new Font("Arial", Font.BOLD, 32));
-		btn.setBounds(514, 652, 171, 55);
+		btn.setBounds(514, 652, 271, 55);
 		add(btn);
 		btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				verificarNombre(textFieldNombre);
-				verificarApellido(textFieldApellidos);
-				verificarCorreo(textFieldCorreo);
-				verificarContraseña(passwordField, repeatPasswordField);
-				verificarCheckBox(newCheckBox);
+				try {
+					verificarNombre(textFieldNombre);
+					verificarApellido(textFieldApellidos);
+					verificarCorreo(textFieldCorreo);
+					verificarContraseña(passwordField, repeatPasswordField);
+					verificarCheckBox(newCheckBox);
+					
+					UserCredentialBuilder builder = new UserCredentialBuilder(textFieldCorreo.getText())
+																			.setNombre(textFieldNombre.getText())
+																			.setApellidos(textFieldApellidos.getText())
+																			.setPassword(new String(passwordField.getPassword()));
+					
+					main.changePanel(main.frame, new RegisterDatos(main,builder));
+				} catch(IllegalArgumentException e1) {
+					e1.printStackTrace();
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarCorreo(JTextField textField) {
+	public boolean verificarCorreo(JTextField textField) throws IllegalArgumentException{
 	    String texto = textField.getText();
 	    
 	    // Verificar si el correo contiene un "@" y un "."
@@ -133,7 +148,7 @@ public class Register extends JPanel {
 	    return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	public boolean verificarNombre(JTextField textField) {
+	public boolean verificarNombre(JTextField textField) throws IllegalArgumentException{
 	    String texto = textField.getText();
 
 	    // Verificar la longitud del texto
@@ -158,7 +173,7 @@ public class Register extends JPanel {
 	    return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarApellido(JTextField textField) {
+	public boolean verificarApellido(JTextField textField) throws IllegalArgumentException{
 	    String texto = textField.getText();
 
 	    // Verificar la longitud del texto
@@ -183,7 +198,7 @@ public class Register extends JPanel {
 	    return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarContraseña(JPasswordField passwordField, JPasswordField confirmPaswordField) {
+	public boolean verificarContraseña(JPasswordField passwordField, JPasswordField confirmPaswordField) throws IllegalArgumentException{
 		String contra = new String(passwordField.getPassword());
 		String confirmContra = new String(confirmPaswordField.getPassword());
 		
@@ -218,9 +233,9 @@ public class Register extends JPanel {
 		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarCheckBox(JCheckBox checkBox) {
+	public boolean verificarCheckBox(JCheckBox checkBox) throws Exception{
 		if(!checkBox.isSelected()) {
-			JOptionPane.showMessageDialog(null, "Acepte terminos y condiciones");
+			throw new Exception("Acepte los terminos y condiciones");
 		}
 		return true;
 	}
