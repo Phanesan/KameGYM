@@ -4,16 +4,24 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import main.java.Util;
+
 public class RegisterDatos extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField txtDd;
-	private JTextField txtMm;
-	private JTextField txtYy;
+	private JTextField textFieldPeso;
+	private JTextField textFieldEstatura;
+	private JTextField txtDay;
+	private JTextField txtMonth;
+	private JTextField txtYear;
 
 	/**
 	 * Create the panel.
@@ -24,8 +32,7 @@ public class RegisterDatos extends JPanel {
 		setLayout(null);
 		
 		JLabel lblImage = new JLabel("");
-		lblImage.setOpaque(true);
-		lblImage.setBackground(Color.WHITE);
+		lblImage.setIcon(new ImageIcon(Util.resizeImage(390, 800, Util.getStream("main/resources/gyv.jpg"))));
 		lblImage.setBounds(810, 0, 390, 800);
 		add(lblImage);
 		
@@ -34,7 +41,7 @@ public class RegisterDatos extends JPanel {
 		lblPeso.setBounds(34, 49, 257, 37);
 		add(lblPeso);
 		
-		JLabel lblIngreseSuEstatura = new JLabel("Ingrese su estatura (cm):");
+		JLabel lblIngreseSuEstatura = new JLabel("Ingrese su estatura (m):");
 		lblIngreseSuEstatura.setFont(new Font("Arial", Font.BOLD, 32));
 		lblIngreseSuEstatura.setBounds(330, 49, 390, 37);
 		add(lblIngreseSuEstatura);
@@ -54,49 +61,117 @@ public class RegisterDatos extends JPanel {
 		lblAviso.setBounds(34, 469, 728, 71);
 		add(lblAviso);
 		
-		JButton btn = new JButton("Entrar");
-		btn.setFont(new Font("Arial", Font.BOLD, 32));
-		btn.setBounds(286, 656, 171, 55);
-		add(btn);
+		textFieldPeso = new JTextField();
+		textFieldPeso.setFont(new Font("Arial", Font.PLAIN, 18));
+		textFieldPeso.setColumns(10);
+		textFieldPeso.setBounds(34, 97, 257, 43);
+		add(textFieldPeso);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField.setColumns(10);
-		textField.setBounds(34, 97, 257, 43);
-		add(textField);
+		textFieldEstatura = new JTextField();
+		textFieldEstatura.setFont(new Font("Arial", Font.PLAIN, 18));
+		textFieldEstatura.setColumns(10);
+		textFieldEstatura.setBounds(330, 97, 257, 43);
+		add(textFieldEstatura);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField_1.setColumns(10);
-		textField_1.setBounds(330, 97, 257, 43);
-		add(textField_1);
+		txtDay = new JTextField();
+		txtDay.setText("dd");
+		txtDay.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtDay.setColumns(10);
+		txtDay.setBounds(34, 268, 138, 43);
+		add(txtDay);
 		
-		txtDd = new JTextField();
-		txtDd.setText("dd");
-		txtDd.setFont(new Font("Arial", Font.PLAIN, 18));
-		txtDd.setColumns(10);
-		txtDd.setBounds(34, 268, 138, 43);
-		add(txtDd);
+		txtMonth = new JTextField();
+		txtMonth.setText("mm");
+		txtMonth.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtMonth.setColumns(10);
+		txtMonth.setBounds(216, 268, 138, 43);
+		add(txtMonth);
 		
-		txtMm = new JTextField();
-		txtMm.setText("mm");
-		txtMm.setFont(new Font("Arial", Font.PLAIN, 18));
-		txtMm.setColumns(10);
-		txtMm.setBounds(216, 268, 138, 43);
-		add(txtMm);
-		
-		txtYy = new JTextField();
-		txtYy.setText("yy");
-		txtYy.setFont(new Font("Arial", Font.PLAIN, 18));
-		txtYy.setColumns(10);
-		txtYy.setBounds(399, 268, 138, 43);
-		add(txtYy);
+		txtYear = new JTextField();
+		txtYear.setText("yy");
+		txtYear.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtYear.setColumns(10);
+		txtYear.setBounds(399, 268, 138, 43);
+		add(txtYear);
 		
 		JLabel lblTiene = new JLabel("tiene: \" \"");
 		lblTiene.setFont(new Font("Arial", Font.BOLD, 32));
 		lblTiene.setBounds(34, 403, 636, 55);
 		add(lblTiene);
 		
+		JButton btn = new JButton("Entrar");
+		btn.setFont(new Font("Arial", Font.BOLD, 32));
+		btn.setBounds(286, 656, 171, 55);
+		add(btn);
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			validarPeso(textFieldPeso);
+			validarEstatura(textFieldEstatura);
+			validarDia(txtDay);
+			validarMes(txtMonth);
+			validarAño(txtYear);
+			}
+		});
 	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean validarPeso(JTextField textField) {
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
 
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,3}(\\.\\d{1,2})?$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Peso: Solo se acepta (3) numeros y (2) punto decimal");
+	        return false;
+	    }
+	    return true;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean validarEstatura(JTextField textField) {
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1}(\\.\\d{1,2})?$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Estatura: Solo se acepta (1) numeros y (2) punto decimal");
+	        return false;
+	    }
+	    return true;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean validarDia(JTextField textField) {
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,2}$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Dia: Solo se acepta (2) numeros");
+	        return false;
+	    }
+
+	    return true;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean validarMes(JTextField textField) {
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,2}$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Mes: Solo se acepta (2) numeros");
+	        return false;
+	    }
+
+	    return true;
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean validarAño(JTextField textField) {
+		String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+		
+		// Verificar si el texto cumple con el patrón deseado
+		if (!texto.matches("^\\d{4}$")) {
+			JOptionPane.showMessageDialog(null, "Error Año: Solo se acepta (4) numeros");
+			return false;
+		}
+		
+		return true;
+	}
 }
