@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 import main.java.Main;
+import main.java.UserCredential;
 import main.java.Util;
 
 import javax.swing.AbstractButton;
@@ -17,11 +18,23 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 
 public class Lobby extends JPanel {
-
+	
+	public UserCredential userCredential;
+	
 	/**
 	 * Create the panel.
 	 */
-	public Lobby(Main main) {
+	public Lobby(Main main, UserCredential userCredential) {
+		this.userCredential = userCredential;
+		
+		System.out.println(userCredential.correo);
+		System.out.println(userCredential.nombre);
+		System.out.println(userCredential.apellidos);
+		System.out.println(userCredential.password);
+		System.out.println(userCredential.peso);
+		System.out.println(userCredential.estatura);
+		System.out.println(userCredential.fechaDeNacimiento);
+		
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);

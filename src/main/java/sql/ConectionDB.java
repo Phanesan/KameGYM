@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import main.java.UserCredential;
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
 
@@ -57,10 +58,11 @@ public abstract class ConectionDB {
 	    }
 	}
 	
-	public static void loginRequest(String correo, String password) throws SQLException,CredentialsException{
+	public static UserCredential loginRequest(String correo, String password) throws SQLException,CredentialsException{
 		Connection sql = connect();
 		PreparedStatement statement = null;
 		ResultSet result = null;
+		UserCredential userCredential = null;
 		try {
 			String query = "SELECT correo,contraseña FROM mydb.usuario WHERE correo = ? && contraseña = ?";
 			
@@ -76,14 +78,14 @@ public abstract class ConectionDB {
 				throw new CredentialsException();
 			}
 			
-			closeConnection(result, statement, sql);
-			
+			userCredential = loadUserCredential(correo);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new SQLException();
 		} finally {
 			closeConnection(result, statement, sql);
 		}
+		return userCredential;
 	}
 	
 	public static void registerRequest(String correo,
@@ -127,14 +129,45 @@ public abstract class ConectionDB {
 			statement.setDate(7, Date.valueOf(fechaDeNacimiento));
 			
 			statement.executeUpdate();
-			
-			closeConnection(result, statement, sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new SQLException();
 		} finally {
 			closeConnection(result, statement, sql);
 		}
+	}
+	
+	public static UserCredential loadUserCredential(String correo) throws CredentialsException{
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		UserCredential userCredential = null;
+		try {
+			String query = "SELECT * FROM mydb.usuario WHERE correo = ?";
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, correo);
+			
+			result = statement.executeQuery();
+			result.next();
+			if(result.getRow() != 0) {
+				userCredential = new UserCredential(result.getString("correo"),
+													result.getString("nombre"),
+													result.getString("apellidos"),
+													result.getString("contraseña"),
+													result.getFloat("peso_kg"),
+													result.getFloat("estatura_m"),
+													result.getString("fecha_de_nacimiento"));
+			} else {
+				throw new CredentialsException("Credenciales no encontradas");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		
+		return userCredential;
 	}
 	
 }

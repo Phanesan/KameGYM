@@ -7,6 +7,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import main.java.Main;
+import main.java.UserCredential;
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
 import main.java.sql.ConectionDB;
@@ -62,8 +63,8 @@ public class Login extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					ConectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
-					
+					UserCredential userCredential = ConectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
+					main.changePanel(main.frame, new Lobby(main, userCredential));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
