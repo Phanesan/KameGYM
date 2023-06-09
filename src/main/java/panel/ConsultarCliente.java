@@ -37,12 +37,6 @@ public class ConsultarCliente extends JPanel {
 		JMenu mnNewMenu = new JMenu("Inicio");
 		menuBar.add(mnNewMenu);
 		
-		JMenu mnNewMenu_1 = new JMenu("Cuenta");
-		menuBar.add(mnNewMenu_1);
-		
-		JMenu mnNewMenu_2 = new JMenu("Clases");
-		menuBar.add(mnNewMenu_2);
-		
 		JMenu mnNewMenu_3 = new JMenu("Logout");
 		menuBar.add(mnNewMenu_3);
 		
@@ -51,6 +45,7 @@ public class ConsultarCliente extends JPanel {
 		lblNewLabel.setOpaque(true);
 		add(lblNewLabel);
 		
+
 		JLabel lblBack = new JLabel("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 31, 65, 65);
@@ -63,7 +58,7 @@ public class ConsultarCliente extends JPanel {
 		Fondo.setBackground(null);
 		add(Fondo);
 		
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_1.setBounds(554, 504, 100, 33);
@@ -112,6 +107,11 @@ public class ConsultarCliente extends JPanel {
 		Historial_de_Pagos.setBounds(670, 540, 230, 200);
 		add(Historial_de_Pagos);
 		add(Historial_de_Pagos);
+		
+		JLabel lblImage = new JLabel("");
+		lblImage.setBounds(0, 21, 1200, 221);
+		lblImage.setIcon(new ImageIcon(Util.resizeImage(1200, 221, Util.getStream("main/resources/TituloConsulta.png"))));
+		add(lblImage);
 		
 		////////////////////////////////
 	}
