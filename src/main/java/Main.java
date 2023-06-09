@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import main.java.panel.ClientesPago;
 import main.java.panel.ConsultarCliente;
 import main.java.panel.LobbyInstructores;
 import main.java.panel.CrearClase;
@@ -49,7 +50,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new LobbyCliente(this));
+		changePanel(frame,new ClientesPago());
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
