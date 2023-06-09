@@ -49,7 +49,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new ConsultarCliente());
+		changePanel(frame,new LobbyCliente(this));
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{

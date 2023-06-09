@@ -41,7 +41,7 @@ public class ConsultarCliente extends JPanel {
 		menuBar.add(mnNewMenu_3);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(550, 393, 100, 100);
+		lblNewLabel.setBounds(550, 360, 100, 100);
 		lblNewLabel.setOpaque(true);
 		add(lblNewLabel);
 		
@@ -53,19 +53,21 @@ public class ConsultarCliente extends JPanel {
 		add(lblBack);
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon(Util.resizeImage(1200, 380, Util.getStream("main/resources/ClientesConsulta.jpg"))));
-		Fondo.setBounds(0, 0, 1200, 400);
+		Fondo.setIcon(new ImageIcon(Util.resizeImage(1200, 340, Util.getStream("main/resources/ClientesConsulta.jpg"))));
+		Fondo.setBounds(0, 0, 1200, 340);
 		Fondo.setBackground(null);
 		add(Fondo);
 		
 
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
-		lblNewLabel_1.setBounds(554, 504, 100, 33);
+		lblNewLabel_1.setBounds(554, 465, 100, 33);
 		add(lblNewLabel_1);
+		
+		
 		JButton Historial_Asistencia = new JButton("");
-		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
-		ImageIcon editar_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
+		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Historial_Asistencia_In.png")));
+		ImageIcon editar_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Historial_Asistencia_Out.png")));
 		Historial_Asistencia.setRolloverIcon(editar_in);
 		Historial_Asistencia.setBorderPainted(false);
 		Historial_Asistencia.setOpaque(false);
@@ -87,14 +89,14 @@ public class ConsultarCliente extends JPanel {
 
 		////////////////////////////////
 		JButton Historial_de_Pagos = new JButton("");
-		ImageIcon editar_in1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
-		ImageIcon editar_out1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
-		Historial_de_Pagos.setRolloverIcon(editar_in);
+		ImageIcon editar_in1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Historial_Pagos_In.png")));
+		ImageIcon editar_out1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Historial_Pagos_Out.png")));
+		Historial_de_Pagos.setRolloverIcon(editar_in1);
 		Historial_de_Pagos.setBorderPainted(false);
 		Historial_de_Pagos.setOpaque(false);
 		Historial_de_Pagos.setContentAreaFilled(false);
-		Historial_de_Pagos.setIcon(editar_out);
-		Historial_de_Pagos.setPressedIcon(editar_in);
+		Historial_de_Pagos.setIcon(editar_out1);
+		Historial_de_Pagos.setPressedIcon(editar_in1);
 		Historial_de_Pagos.setUI(new BasicButtonUI() {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
