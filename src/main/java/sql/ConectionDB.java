@@ -170,4 +170,31 @@ public abstract class ConectionDB {
 		return userCredential;
 	}
 	
+	public static String[] getClientesCorreo() {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		String[] clientes = null;
+		try {
+			String query = "SELECT * FROM mydb.usuario";
+			statement = sql.prepareStatement(query);
+			
+			result = statement.executeQuery();
+			
+			int row = result.getRow();
+			clientes = new String[row];
+			
+			int i = 0;
+			while(result.next()) {
+				clientes[i] = result.getString("correo");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		return clientes;
+	}
+	
 }
