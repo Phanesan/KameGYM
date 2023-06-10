@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
 import main.java.panel.ClientesPago;
@@ -25,6 +27,8 @@ import main.java.panel.Inicio;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
 import main.java.panel.Register;
+import javax.swing.JToolBar;
+import java.awt.BorderLayout;
 
 public class Main {
 
@@ -53,7 +57,19 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new Login(this));
+		changePanel(frame,new Lobby(this, new UserCredential(null, null,null,null,0,0,null)));
+		
+		JMenuBar barraMenu = new JMenuBar();
+		barraMenu.setSize(frame.getWidth(), 20);
+		frame.setJMenuBar(barraMenu);
+		
+		JMenu menu1 = new JMenu("Inicio");
+		JMenu menu2 = new JMenu("Logout");
+		JMenu menu3 = new JMenu("Creditos");
+		
+		barraMenu.add(menu1);
+		barraMenu.add(menu2);
+		barraMenu.add(menu3);
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{

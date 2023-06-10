@@ -30,28 +30,26 @@ public class EditarCliente extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public EditarCliente() {
+	public EditarCliente(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1200, 22);
-		add(menuBar);
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		JMenu mnNewMenu_1 = new JMenu("Cuenta");
-		menuBar.add(mnNewMenu_1);
-		JMenu mnNewMenu_2 = new JMenu("Clases");
-		menuBar.add(mnNewMenu_2);
-		JMenu mnNewMenu_3 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_3);
 	
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
-		lblBack.setBounds(10, 31, 65, 65);
+		lblBack.setBounds(10, 11, 65, 65);
 		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
+		lblBack.setOpaque(false);
 		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new LobbyCliente(main));	
+			}
+		});
 		
 		JLabel lblNewLabel = new JLabel("Repetir Contraseña");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 23));

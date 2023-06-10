@@ -33,7 +33,16 @@ public class LobbyCliente extends JPanel {
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
 		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
 		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new Lobby(main, Lobby.userCredential));	
+			}
+		});
 		
 		JComboBox<String> comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 30));
@@ -80,7 +89,7 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new ConsultarCliente());
+				main.changePanel(main.frame, new ConsultarCliente(main));
 			}
 		});
 		JButton btnEditar = new JButton("Editar");
@@ -92,7 +101,7 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new EditarCliente());
+				main.changePanel(main.frame, new EditarCliente(main));
 			}
 		});
 		

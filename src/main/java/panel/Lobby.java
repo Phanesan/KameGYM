@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 
 public class Lobby extends JPanel {
 	
-	public UserCredential userCredential;
+	public static UserCredential userCredential;
 	
 	/**
 	 * Create the panel.
@@ -40,12 +40,7 @@ public class Lobby extends JPanel {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
-		
-		JButton lblBack = new JButton("");
-		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
-		lblBack.setBounds(10, 11, 65, 65);
-		lblBack.setBackground(null);
-		add(lblBack);
+
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JButton btnClientes = new JButton("");
 		btnClientes.setBounds(224, 110, 200, 200);

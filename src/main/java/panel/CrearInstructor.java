@@ -33,7 +33,6 @@ public class CrearInstructor extends JPanel {
 		Back.setIcon(new ImageIcon(Util.resizeImage(130, 110, Util.getStream("main/resources/back.png"))));
 		Back.setBounds(10, 20, 130, 120);
 		add(Back);
-		
 
 		JLabel User = new JLabel("");
 		User.setIcon(new ImageIcon(Util.resizeImage(160, 160, Util.getStream("main/resources/user2.jpg"))));
@@ -50,7 +49,6 @@ public class CrearInstructor extends JPanel {
 		lblNewLabel2.setForeground(Color.orange);
 		lblNewLabel2.setBounds(380, 0, 290, 440);
 		add(lblNewLabel2);
-		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 128, 0));
@@ -154,17 +152,6 @@ public class CrearInstructor extends JPanel {
 		btnNewButton.setBounds(804, 670, 201, 45);
 		panel.add(btnNewButton);
 		
-		
 		panel.setBackground(Color.decode("#FF7121"));
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1190, 22);
-		panel.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
 	}
 }
