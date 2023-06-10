@@ -12,7 +12,7 @@ import main.java.UserCredential;
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
 
-public abstract class ConectionDB {
+public abstract class ConnectionDB {
 	
 	public static final String url = "jdbc:mysql://localhost:3306/mydb";
 	public static final String user = "root";

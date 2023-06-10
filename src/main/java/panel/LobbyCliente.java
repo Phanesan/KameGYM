@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 import main.java.Main;
 import main.java.Util;
-import main.java.sql.ConectionDB;
+import main.java.sql.ConnectionDB;
 
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
@@ -40,7 +40,7 @@ public class LobbyCliente extends JPanel {
 		
 		//	CONSULTA LOS USUARIOS
 		
-		String[] correoClientes = ConectionDB.getClientesCorreo();
+		String[] correoClientes = ConnectionDB.getClientesCorreo();
 		
 		for(int i = 0; i < correoClientes.length; i++) {
 			comboBox.addItem(correoClientes[i]);
@@ -53,11 +53,6 @@ public class LobbyCliente extends JPanel {
 		add(comboBox);
 		
 		JButton btnNewUser = new JButton("Crear Usuario");
-		btnNewUser.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				main.changePanel(main.frame, new CrearCliente());
-			}
-		});
 		btnNewUser.setFont(new Font("Arial", Font.BOLD, 32));
 		btnNewUser.setBounds(170, 538, 283, 55);
 		add(btnNewUser);
@@ -66,7 +61,7 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new CrearCliente());
+				main.changePanel(main.frame, new CrearCliente(main));
 			}
 		});
 		
