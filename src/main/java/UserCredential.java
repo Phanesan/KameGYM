@@ -9,6 +9,7 @@ public class UserCredential {
 	public float peso;
 	public float estatura;
 	public String fechaDeNacimiento;
+	public byte[] icono;
 	
 	public UserCredential(String correo,
 							String nombre,
@@ -16,7 +17,8 @@ public class UserCredential {
 							String password,
 							float peso,
 							float estatura,
-							String fechaDeNacimiento) {
+							String fechaDeNacimiento,
+							byte[] icono) {
 		this.correo = correo;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
@@ -24,6 +26,7 @@ public class UserCredential {
 		this.peso = peso;
 		this.estatura = estatura;
 		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.icono = icono;
 	}
 	
 	public UserCredential(UserCredentialBuilder builder) {
@@ -34,6 +37,7 @@ public class UserCredential {
 		this.peso = builder.peso;
 		this.estatura = builder.estatura;
 		this.fechaDeNacimiento = builder.fechaDeNacimiento;
+		this.icono = builder.icono;
 	}
 	
 	public static class UserCredentialBuilder {
@@ -44,6 +48,7 @@ public class UserCredential {
 		private float peso;
 		private float estatura;
 		private String fechaDeNacimiento;
+		private byte[] icono;
 		
 		public UserCredentialBuilder(String correo) {
 			this.correo = correo;
@@ -76,6 +81,11 @@ public class UserCredential {
 		
 		public UserCredentialBuilder setFechaDeNacimiento(String fechaDeNacimiento) {
 			this.fechaDeNacimiento = fechaDeNacimiento;
+			return this;
+		}
+		
+		public UserCredentialBuilder setIcono(byte[] icono) {
+			this.icono = icono;
 			return this;
 		}
 		

@@ -110,7 +110,7 @@ public abstract class ConnectionDB {
 			
 			//	AGREGA LOS DATOS A LA TABLA
 			
-			query = "INSERT INTO mydb.usuario (correo, nombre, apellidos, contraseña, peso_kg, estatura_m, fecha_de_nacimiento) VALUES (?,?,?,?,?,?,?)";
+			query = "INSERT INTO mydb.usuario (correo, nombre, apellidos, contraseña, peso_kg, estatura_m, fecha_de_nacimiento, icono) VALUES (?,?,?,?,?,?,?,?)";
 			
 			statement = sql.prepareStatement(query);
 			
@@ -121,6 +121,7 @@ public abstract class ConnectionDB {
 			statement.setString(5, String.valueOf(userCredential.peso));
 			statement.setString(6, String.valueOf(userCredential.estatura));
 			statement.setDate(7, Date.valueOf(userCredential.fechaDeNacimiento));
+			statement.setBytes(8, userCredential.icono);
 			
 			statement.executeUpdate();
 		} catch (SQLException e) {
@@ -151,7 +152,8 @@ public abstract class ConnectionDB {
 													result.getString("contraseña"),
 													result.getFloat("peso_kg"),
 													result.getFloat("estatura_m"),
-													result.getString("fecha_de_nacimiento"));
+													result.getString("fecha_de_nacimiento"),
+													result.getBytes("icono"));
 			} else {
 				throw new CredentialsException("Credenciales no encontradas");
 			}

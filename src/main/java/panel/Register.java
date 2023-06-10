@@ -10,6 +10,7 @@ import main.java.UserCredential.UserCredentialBuilder;
 import main.java.Util;
 
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,6 +20,9 @@ import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
+import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Register extends JPanel {
 	private JTextField textFieldCorreo;
@@ -26,6 +30,7 @@ public class Register extends JPanel {
 	private JTextField textFieldNombre;
 	private JTextField textFieldApellidos;
 	private JPasswordField repeatPasswordField;
+	private String pathIcon;
 
 	/**
 	 * Create the panel.
@@ -38,7 +43,7 @@ public class Register extends JPanel {
 		textFieldCorreo = new JTextField();
 		textFieldCorreo.setFont(new Font("Arial", Font.PLAIN, 18));
 		textFieldCorreo.setColumns(10);
-		textFieldCorreo.setBounds(52, 298, 661, 43);
+		textFieldCorreo.setBounds(52, 298, 358, 43);
 		add(textFieldCorreo);
 		
 		JLabel lblCorreo = new JLabel("Correo");
@@ -49,7 +54,7 @@ public class Register extends JPanel {
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Arial", Font.PLAIN, 18));
 		passwordField.setColumns(10);
-		passwordField.setBounds(52, 400, 661, 43);
+		passwordField.setBounds(52, 400, 358, 43);
 		add(passwordField);
 		
 		JLabel lblContraseña = new JLabel("Contraseña");
@@ -65,7 +70,7 @@ public class Register extends JPanel {
 		textFieldNombre = new JTextField();
 		textFieldNombre.setFont(new Font("Arial", Font.PLAIN, 18));
 		textFieldNombre.setColumns(10);
-		textFieldNombre.setBounds(52, 94, 661, 43);
+		textFieldNombre.setBounds(52, 94, 358, 43);
 		add(textFieldNombre);
 		
 		JLabel lblApellidos = new JLabel("Apellidos");
@@ -76,7 +81,7 @@ public class Register extends JPanel {
 		textFieldApellidos = new JTextField();
 		textFieldApellidos.setFont(new Font("Arial", Font.PLAIN, 18));
 		textFieldApellidos.setColumns(10);
-		textFieldApellidos.setBounds(52, 196, 661, 43);
+		textFieldApellidos.setBounds(52, 196, 358, 43);
 		add(textFieldApellidos);
 		
 		JLabel lblRepetirContrasea = new JLabel("Repetir contraseña");
@@ -87,7 +92,7 @@ public class Register extends JPanel {
 		repeatPasswordField = new JPasswordField();
 		repeatPasswordField.setFont(new Font("Arial", Font.PLAIN, 18));
 		repeatPasswordField.setColumns(10);
-		repeatPasswordField.setBounds(52, 502, 661, 43);
+		repeatPasswordField.setBounds(52, 502, 358, 43);
 		add(repeatPasswordField);
 		
 		JCheckBox newCheckBox = new JCheckBox("Acepto los terminos y condiciones");
@@ -101,9 +106,37 @@ public class Register extends JPanel {
 		lblImage.setBounds(810, 0, 390, 800);
 		add(lblImage);
 		
+		JLabel iconArea = new JLabel("");
+		iconArea.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		iconArea.setBounds(538, 94, 180, 180);
+		add(iconArea);
+		
+		JButton btnExaminar = new JButton("Examinar");
+		btnExaminar.setFont(new Font("Arial", Font.BOLD, 22));
+		btnExaminar.setBounds(538, 298, 180, 37);
+		add(btnExaminar);
+		btnExaminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.setMultiSelectionEnabled(false);
+				fc.removeChoosableFileFilter(fc.getAcceptAllFileFilter());
+				fc.addChoosableFileFilter(new FileNameExtensionFilter("Archivo de imagen", "png", "jpg"));
+				int code = fc.showOpenDialog(main.frame);
+				
+				if(code == JFileChooser.APPROVE_OPTION) {
+					pathIcon = fc.getSelectedFile().getAbsolutePath();
+					Image image = new ImageIcon(pathIcon).getImage();
+					ImageIcon icon = new ImageIcon(image.getScaledInstance(180, 180, Image.SCALE_SMOOTH));
+					iconArea.setIcon(icon);
+				}
+			}
+		});
+		
 		JButton btn = new JButton("Continuar");
 		btn.setFont(new Font("Arial", Font.BOLD, 32));
-		btn.setBounds(514, 652, 271, 55);
+		btn.setBounds(283, 655, 271, 55);
 		add(btn);
 		btn.addActionListener(new ActionListener() {
 			
@@ -117,10 +150,17 @@ public class Register extends JPanel {
 					verificarContraseña(passwordField, repeatPasswordField);
 					verificarCheckBox(newCheckBox);
 					
+					byte[] iconBytes = Util.getImageBytes(pathIcon);
+					
+					if(iconBytes == null) {
+						iconBytes = Util.getImageBytes(Util.getStream("main/resources/user.png"));
+					}
+					
 					UserCredentialBuilder builder = new UserCredentialBuilder(textFieldCorreo.getText())
 																			.setNombre(textFieldNombre.getText())
 																			.setApellidos(textFieldApellidos.getText())
-																			.setPassword(new String(passwordField.getPassword()));
+																			.setPassword(new String(passwordField.getPassword()))
+																			.setIcono(iconBytes);
 					
 					main.changePanel(main.frame, new RegisterDatos(main,builder));
 				} catch(IllegalArgumentException e1) {
