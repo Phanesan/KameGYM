@@ -57,7 +57,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new Lobby(this, new UserCredential(null, null,null,null,0,0,null)));
+		changePanel(frame,new Login(this));
 		
 		JMenuBar barraMenu = new JMenuBar();
 		barraMenu.setSize(frame.getWidth(), 20);
