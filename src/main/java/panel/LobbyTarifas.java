@@ -32,7 +32,17 @@ public class LobbyTarifas extends JPanel {
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
 		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
+		lblBack.setOpaque(false);
 		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new Lobby(main, Lobby.userCredential));	
+			}
+		});
 		
 		JButton btnConsultar = new JButton("");
 		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Consultar_In.png")));
@@ -52,11 +62,11 @@ public class LobbyTarifas extends JPanel {
 		add(btnConsultar);
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.changePanel(main.frame, new ConsultarTarifa());
+				main.changePanel(main.frame, new ConsultarTarifa(main));
 			}
 		});
 		
-		/////////////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JButton btnEditar = new JButton("");
 		ImageIcon editar_in1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
 		ImageIcon editar_out1 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_Out.png")));
@@ -78,10 +88,10 @@ public class LobbyTarifas extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new EditarTarifa());
+				main.changePanel(main.frame, new EditarTarifa(main));
 			}
 		});
-		//////////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JButton btnCrear = new JButton("");
 		ImageIcon editar_in2 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_In.png")));
 		ImageIcon editar_out2 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_Out.png")));
@@ -103,10 +113,10 @@ public class LobbyTarifas extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new CrearTarifa());
+				main.changePanel(main.frame, new CrearTarifa(main));
 			}
 		});
-		///////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JButton Eliminar = new JButton("");
 		ImageIcon editar_in3 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Eliminar_In.png")));
 		ImageIcon editar_out3 = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Eliminar_Out.png")));
@@ -127,42 +137,12 @@ public class LobbyTarifas extends JPanel {
 		Eliminar.setFont(new Font("Arial", Font.BOLD, 32));
 		Eliminar.setBounds(650, 500, 230, 200);
 		add(Eliminar);
-		/////
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(380, 101, 439, 67);
 		add(comboBox);
-		
-		JButton btnCrearTarifa = new JButton();
-		btnCrearTarifa.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new CrearTarifa());
-			}
-		});
-		
-		/*JButton btnConsultarTarifa = new JButton();
-		btnConsultarTarifa.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new ConsultarTarifa());
-			}
-		});*/
-		
-		/*JButton btnEditarTarifa = new JButton();
-		btnEditarTarifa.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new EditarTarifa());
-			}
-		});*/
-		
+	
 	}
 
 }

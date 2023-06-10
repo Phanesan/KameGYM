@@ -2,12 +2,15 @@ package main.java.panel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.Main;
 import main.java.Util;
 import javax.swing.JButton;
 
@@ -18,15 +21,26 @@ public class CrearClase extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CrearClase() {
+	public CrearClase(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
 		
-		JLabel lblBack = new JLabel("");
+		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
+		lblBack.setOpaque(false);
 		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new LobbyClases(main));	
+			}
+		});
 		
 		JLabel lblNombre = new JLabel("Nombre");
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 32));

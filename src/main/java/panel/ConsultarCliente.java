@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import main.java.Main;
 import main.java.Util;
 
 import javax.swing.JLabel;
@@ -25,45 +26,42 @@ public class ConsultarCliente extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ConsultarCliente() {
+	public ConsultarCliente(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1200, 22);
-		add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_3 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_3);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(550, 360, 100, 100);
-		lblNewLabel.setOpaque(true);
-		add(lblNewLabel);
-		
-
-		JLabel lblBack = new JLabel("");
+	
+		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
-		lblBack.setBounds(10, 31, 65, 65);
+		lblBack.setBounds(10, 11, 65, 65);
 		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
+		lblBack.setOpaque(false);
 		add(lblBack);
-		
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new LobbyCliente(main));	
+			}
+		});
+
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Util.resizeImage(1200, 340, Util.getStream("main/resources/ClientesConsulta.jpg"))));
 		Fondo.setBounds(0, 0, 1200, 340);
 		Fondo.setBackground(null);
 		add(Fondo);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(550, 360, 100, 100);
+		lblNewLabel.setOpaque(true);
+		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
 		lblNewLabel_1.setBounds(554, 465, 100, 33);
 		add(lblNewLabel_1);
-		
 		
 		JButton Historial_Asistencia = new JButton("");
 		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Historial_Asistencia_In.png")));

@@ -29,7 +29,6 @@ public class EditarInstructor extends JPanel {
 	public EditarInstructor() {
 		setLayout(null);
 		
-
 		JLabel User = new JLabel("");
 		User.setIcon(new ImageIcon(Util.resizeImage(160, 160, Util.getStream("main/resources/user2.jpg"))));
 		User.setBounds(200, 100, 160, 160);
@@ -45,7 +44,6 @@ public class EditarInstructor extends JPanel {
 		lblNewLabel2.setForeground(Color.orange);
 		lblNewLabel2.setBounds(380, 0, 290, 440);
 		add(lblNewLabel2);
-		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 128, 0));
@@ -148,7 +146,6 @@ public class EditarInstructor extends JPanel {
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(439, 676, 201, 45);
 		panel.add(btnNewButton);
-		
 		
 		panel.setBackground(Color.decode("#FF7121"));
 		

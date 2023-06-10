@@ -33,7 +33,16 @@ public class LobbyClases extends JPanel {
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
 		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
 		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new Lobby(main, Lobby.userCredential));	
+			}
+		});
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 11));
@@ -58,7 +67,7 @@ public class LobbyClases extends JPanel {
 		add(btnEditar);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.changePanel(main.frame, new EditarClase());
+				main.changePanel(main.frame, new EditarClase(main));
 			}
 		});
 		
@@ -84,7 +93,7 @@ public class LobbyClases extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new ConsultarClases());
+				main.changePanel(main.frame, new ConsultarClases(main));
 			}
 		});
 		
@@ -117,13 +126,13 @@ public class LobbyClases extends JPanel {
 		JButton btnCrear = new JButton("");
 		ImageIcon crear_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_In.png")));
 		ImageIcon crear_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Crear_Out.png")));
-		btnCrear.setIcon(eliminar_out);
-		btnCrear.setRolloverIcon(eliminar_in);
+		btnCrear.setIcon(crear_out);
+		btnCrear.setRolloverIcon(crear_in);
 		btnCrear.setBorderPainted(false);
 		btnCrear.setOpaque(false);
 		btnCrear.setContentAreaFilled(false);
-		btnCrear.setIcon(eliminar_out);
-		btnCrear.setPressedIcon(eliminar_in);
+		btnCrear.setIcon(crear_out);
+		btnCrear.setPressedIcon(crear_in);
 		btnCrear.setUI(new BasicButtonUI() {
             @Override
             protected void paintButtonPressed(Graphics g, AbstractButton b) {}
@@ -136,7 +145,7 @@ public class LobbyClases extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new CrearClase());
+				main.changePanel(main.frame, new CrearClase(main));
 			}
 		});
 	}

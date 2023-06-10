@@ -39,16 +39,6 @@ public class ClientesPago extends JPanel {
 		Back.setBounds(10, 40, 60, 60);
 		panel.add(Back);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1200, 22);
-		panel.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
-		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(new Color(240, 240, 240));
 		lblNewLabel.setBounds(158, 85, 140, 140);

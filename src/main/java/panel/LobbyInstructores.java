@@ -28,34 +28,20 @@ public class LobbyInstructores extends JPanel {
 		setSize(1200,800);
 		setLayout(null);
 		
+		JButton lblBack = new JButton("");
+		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
+		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
+		add(lblBack);
+		
 		JPanel panel = new JPanel();
 		panel.setBounds(0, 0, 1200, 800);
 		add(panel);
 		panel.setLayout(null);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1190, 22);
-		panel.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
-		
-		JLabel Back = new JLabel("");
-		Back.setIcon(new ImageIcon(Util.resizeImage(60, 60, Util.getStream("main/resources/back.png"))));
-		Back.setBounds(10, 40, 60, 60);
-		panel.add(Back);
-		
-		
-		
-		
-		
+	
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(384, 350, 439, 46);
 		panel.add(comboBox);
-		
 		
 		JButton Eliminar = new JButton("");
 		Eliminar.setFont(new Font("Arial", Font.BOLD, 22));

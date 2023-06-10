@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import main.java.Util;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,6 +24,12 @@ public class HistorialInstructores extends JPanel {
 	public HistorialInstructores() {
 		setForeground(new Color(255, 128, 64));
 		setLayout(null);
+		
+		JButton lblBack = new JButton("");
+		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
+		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
+		add(lblBack);
 		
 		JLabel User = new JLabel("");
 		User.setIcon(new ImageIcon(Util.resizeImage(120, 120, Util.getStream("main/resources/user2.jpg"))));
@@ -52,21 +59,5 @@ public class HistorialInstructores extends JPanel {
 		table = new JTable();
 		table.setBounds(323, 255, 500, 396);
 		panel.add(table);
-		
-		JLabel Back = new JLabel("");
-		Back.setBounds(10, 39, 130, 120);
-		panel.add(Back);
-		Back.setIcon(new ImageIcon(Util.resizeImage(130, 110, Util.getStream("main/resources/back.png"))));
-
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1190, 22);
-		panel.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
-		panel.setBackground(Color.decode("#FF7121"));
 	}
 }
