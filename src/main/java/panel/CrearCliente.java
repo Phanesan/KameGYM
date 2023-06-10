@@ -5,33 +5,49 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.java.Main;
+import main.java.UserCredential;
 import main.java.Util;
+import main.java.UserCredential.UserCredentialBuilder;
+import main.java.exception.DuplicateMailException;
+import main.java.exception.InvalidDayException;
+import main.java.exception.InvalidHeightException;
+import main.java.exception.InvalidMonthException;
+import main.java.exception.InvalidWeightException;
+import main.java.exception.InvalidYearException;
+import main.java.sql.ConnectionDB;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 public class CrearCliente extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
+	private JTextField nombreField;
+	private JTextField apellidosField;
+	private JTextField correoField;
+	private JPasswordField passwordField;
+	private JPasswordField repeatPasswordField;
+	private JTextField pesoField;
+	private JTextField estaturaField;
+	private JTextField dayField;
+	private JTextField monthField;
+	private JTextField yearField;
 
 	/**
 	 * Create the panel.
 	 */
-	public CrearCliente() {
+	public CrearCliente(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -53,30 +69,30 @@ public class CrearCliente extends JPanel {
 		lblBack.setBackground(null);
 		add(lblBack);
 		
-		textField = new JTextField();
-		textField.setBounds(88, 293, 325, 40);
-		add(textField);
-		textField.setColumns(10);
+		nombreField = new JTextField();
+		nombreField.setBounds(88, 293, 325, 40);
+		add(nombreField);
+		nombreField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(88, 393, 325, 40);
-		add(textField_1);
+		apellidosField = new JTextField();
+		apellidosField.setColumns(10);
+		apellidosField.setBounds(88, 393, 325, 40);
+		add(apellidosField);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(88, 493, 325, 40);
-		add(textField_2);
+		correoField = new JTextField();
+		correoField.setColumns(10);
+		correoField.setBounds(88, 493, 325, 40);
+		add(correoField);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(88, 593, 325, 40);
-		add(textField_3);
+		passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		passwordField.setBounds(88, 593, 325, 40);
+		add(passwordField);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(88, 693, 325, 40);
-		add(textField_4);
+		repeatPasswordField = new JPasswordField();
+		repeatPasswordField.setColumns(10);
+		repeatPasswordField.setBounds(88, 693, 325, 40);
+		add(repeatPasswordField);
 		
 		JLabel lblNewLabel = new JLabel("Repetir Contraseña");
 		lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 23));
@@ -153,30 +169,30 @@ public class CrearCliente extends JPanel {
 		lblNewLabel_11.setBounds(1102, 567, 46, 38);
 		add(lblNewLabel_11);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(740, 393, 162, 40);
-		add(textField_5);
+		pesoField = new JTextField();
+		pesoField.setColumns(10);
+		pesoField.setBounds(740, 393, 162, 40);
+		add(pesoField);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(966, 393, 162, 40);
-		add(textField_6);
+		estaturaField = new JTextField();
+		estaturaField.setColumns(10);
+		estaturaField.setBounds(966, 393, 162, 40);
+		add(estaturaField);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(740, 567, 107, 40);
-		add(textField_7);
+		dayField = new JTextField();
+		dayField.setColumns(10);
+		dayField.setBounds(740, 567, 107, 40);
+		add(dayField);
 		
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		textField_8.setBounds(881, 567, 107, 40);
-		add(textField_8);
+		monthField = new JTextField();
+		monthField.setColumns(10);
+		monthField.setBounds(881, 567, 107, 40);
+		add(monthField);
 		
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		textField_9.setBounds(1021, 567, 107, 40);
-		add(textField_9);
+		yearField = new JTextField();
+		yearField.setColumns(10);
+		yearField.setBounds(1021, 567, 107, 40);
+		add(yearField);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Peso");
 		lblNewLabel_3_1.setFont(new Font("Impact", Font.PLAIN, 23));
@@ -196,8 +212,228 @@ public class CrearCliente extends JPanel {
 		JButton btnNewButton = new JButton("Crear");
 		btnNewButton.setFont(new Font("Impact", Font.PLAIN, 23));
 		btnNewButton.setBounds(808, 671, 251, 40);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					verificarCorreo(correoField);
+					verificarNombre(nombreField);
+					verificarApellido(apellidosField);
+					verificarContraseña(passwordField, repeatPasswordField);
+					validarPeso(pesoField);
+					validarEstatura(estaturaField);
+					validarDia(dayField);
+					validarMes(monthField);
+					validarAño(yearField);
+				} catch (InvalidWeightException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidHeightException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidDayException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidMonthException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidYearException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				StringBuilder sb = new StringBuilder();
+				sb.append(yearField.getText());
+				sb.append("-");
+				sb.append(monthField.getText());
+				sb.append("-");
+				sb.append(dayField.getText());
+				
+				String date = sb.toString();
+				
+				UserCredential userCredential = new UserCredentialBuilder(correoField.getText())
+																	.setNombre(nombreField.getText())
+																	.setApellidos(apellidosField.getText())
+																	.setPassword(new String(passwordField.getPassword()))
+																	.setPeso(Float.parseFloat(pesoField.getText()))
+																	.setEstatura(Float.parseFloat(estaturaField.getText()))
+																	.setFechaDeNacimiento(date)
+																	.build();
+				
+				try {
+					ConnectionDB.registerRequest(userCredential);
+					
+					main.changePanel(main.frame, new LobbyCliente(main));
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (DuplicateMailException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		add(btnNewButton);	
 	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarCorreo(JTextField textField) throws IllegalArgumentException{
+		String texto = textField.getText();
 
+		// Verificar si el correo contiene un "@" y un "."
+		if (!texto.contains("@") || !texto.contains(".")) {
+			try {
+				throw new IllegalArgumentException("El correo electrónico debe contener obligatoriamente un '@' y un '.'");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
 
+		return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	public boolean verificarNombre(JTextField textField) throws IllegalArgumentException{
+		String texto = textField.getText();
+
+		// Verificar la longitud del texto
+		if (texto.length() > 40) {
+			try {
+				throw new IllegalArgumentException("Nombre: Limite de caracteres excedido: 40");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+
+		// Verificar si el texto contiene caracteres no permitidos
+		if (!texto.matches("[A-Za-z\\s]+")) {
+			try {
+				throw new IllegalArgumentException("Nombre: Solo se aceptan letras y espacios");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+		return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarApellido(JTextField textField) throws IllegalArgumentException{
+		String texto = textField.getText();
+
+		// Verificar la longitud del texto
+		if (texto.length() > 40) {
+			try {
+				throw new IllegalArgumentException("Apellido: Limite de caracteres excedido: 40");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+
+		// Verificar si el texto contiene caracteres no permitidos
+		if (!texto.matches("[A-Za-z\\s]+")) {
+			try {
+				throw new IllegalArgumentException("Apellido: Solo se aceptan letras y espacios");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+		return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarContraseña(JPasswordField passwordField, JPasswordField confirmPaswordField) throws IllegalArgumentException{
+		String contra = new String(passwordField.getPassword());
+		String confirmContra = new String(confirmPaswordField.getPassword());
+
+		// Verificar si la contraseña es la misma en repetir contraseña
+		if(!contra.equals(confirmContra)) {
+			try {
+				throw new IllegalArgumentException("Repita contraseña");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+		// Verificar si el campo esta en blanco
+		if(contra.isEmpty()) {
+			try {
+				throw new IllegalArgumentException("Contraseña: Espacio en blanco");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+		// Verificar el limite de caracteres en el campo
+		if (contra.length() > 40) {
+			try {
+				throw new IllegalArgumentException("Contraseña: Limite de caracteres excedido: 40");
+			} catch (IllegalArgumentException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, e1);
+			}
+		}
+
+		return true;
+	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public boolean verificarCheckBox(JCheckBox checkBox) throws Exception{
+		if(!checkBox.isSelected()) {
+			throw new Exception("Acepte los terminos y condiciones");
+		}
+		return true;
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarPeso(JTextField textField) throws InvalidWeightException{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,3}(\\.\\d{1,2})?$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Peso: Solo se acepta (3) numeros y (2) punto decimal");
+	    	throw new InvalidWeightException();
+	    }
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarEstatura(JTextField textField) throws InvalidHeightException{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1}(\\.\\d{1,2})?$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Estatura: Solo se acepta (1) numeros y (2) punto decimal");
+	        throw new InvalidHeightException();
+	    }
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarDia(JTextField textField) throws InvalidDayException{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,2}$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Dia: Solo se acepta (2) numeros");
+	        throw new InvalidDayException();
+	    }
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarMes(JTextField textField) throws InvalidMonthException{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,2}$")) {
+	    	JOptionPane.showMessageDialog(null, "Error Mes: Solo se acepta (2) numeros");
+	        throw new InvalidMonthException();
+	    }
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarAño(JTextField textField) throws InvalidYearException{
+		String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+		
+		// Verificar si el texto cumple con el patrón deseado
+		if (!texto.matches("^\\d{4}$")) {
+			JOptionPane.showMessageDialog(null, "Error Año: Solo se acepta (4) numeros");
+			throw new InvalidYearException();
+		}
+	}
+	
 }

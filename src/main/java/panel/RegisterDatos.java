@@ -25,7 +25,7 @@ import main.java.exception.InvalidHeightException;
 import main.java.exception.InvalidMonthException;
 import main.java.exception.InvalidWeightException;
 import main.java.exception.InvalidYearException;
-import main.java.sql.ConectionDB;
+import main.java.sql.ConnectionDB;
 
 public class RegisterDatos extends JPanel {
 	private JTextField textFieldPeso;
@@ -140,7 +140,7 @@ public class RegisterDatos extends JPanel {
 									.setFechaDeNacimiento(date)
 									.build();
 					
-					ConectionDB.registerRequest(userCredential);
+					ConnectionDB.registerRequest(userCredential);
 					
 					main.changePanel(main.frame, new Login(main));
 				} catch (InvalidWeightException e1) {

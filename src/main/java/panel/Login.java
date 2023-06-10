@@ -10,7 +10,7 @@ import main.java.Main;
 import main.java.UserCredential;
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
-import main.java.sql.ConectionDB;
+import main.java.sql.ConnectionDB;
 import main.java.Util;
 
 import java.awt.Font;
@@ -63,7 +63,7 @@ public class Login extends JPanel {
 				verificarCorreo(textFieldCorreo);
 				verificarContraseña(fieldPassword);
 				try {
-					UserCredential userCredential = ConectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
+					UserCredential userCredential = ConnectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
 					main.changePanel(main.frame, new Lobby(main, userCredential));
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
