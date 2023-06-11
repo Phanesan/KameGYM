@@ -1,6 +1,8 @@
 package main.java;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -8,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JMenuItem;
 
 import main.java.panel.ClientesPago;
 import main.java.panel.ConsultarCliente;
@@ -33,7 +36,9 @@ import java.awt.BorderLayout;
 public class Main {
 
 	public JFrame frame;
-
+	public JMenuBar barraMenu = new JMenuBar();
+	public Main main;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -52,6 +57,7 @@ public class Main {
 	}
 
 	private void initialize() {
+		main = this;
 		frame = new JFrame();
 		frame.setSize(1200,800);
 		frame.setLocationRelativeTo(null);
@@ -59,17 +65,24 @@ public class Main {
 		frame.setResizable(false);
 		changePanel(frame,new Login(this));
 		
-		JMenuBar barraMenu = new JMenuBar();
 		barraMenu.setSize(frame.getWidth(), 20);
 		frame.setJMenuBar(barraMenu);
-		
-		JMenu menu1 = new JMenu("Inicio");
-		JMenu menu2 = new JMenu("Logout");
-		JMenu menu3 = new JMenu("Creditos");
-		
+		JMenuItem menu1 = new JMenuItem("Inicio");
+		JMenuItem menu2 = new JMenuItem("Logout");
+		JMenuItem menu3 = new JMenuItem("Creditos");
+		menu1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changePanel(frame, new Lobby(main, Lobby.userCredential));
+			}
+		});
 		barraMenu.add(menu1);
 		barraMenu.add(menu2);
 		barraMenu.add(menu3);
+		barraMenu.setVisible(false);
+		
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
@@ -84,5 +97,5 @@ public class Main {
 		frame.revalidate();
 		frame.repaint();
 	}
-
+	
 }

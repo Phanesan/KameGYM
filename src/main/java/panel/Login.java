@@ -65,6 +65,7 @@ public class Login extends JPanel {
 				try {
 					UserCredential userCredential = ConnectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
 					main.changePanel(main.frame, new Lobby(main, userCredential));
+					main.barraMenu.setVisible(true);
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
