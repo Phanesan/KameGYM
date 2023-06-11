@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.java.Main;
+import main.java.TextPrompt;
 import main.java.Util;
 import main.java.exception.InvalidHourFee;
 import main.java.exception.InvalidNameClass;
@@ -22,7 +23,8 @@ import javax.swing.JButton;
 public class CrearClase extends JPanel {
 	private JTextField textDuracion;
 	private JTextField textInstructor;
-
+	private TextPrompt tp;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -67,6 +69,7 @@ public class CrearClase extends JPanel {
 		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setColumns(10);
 		textDuracion.setBounds(51, 313, 607, 43);
+		tp = new TextPrompt("mins", textDuracion);
 		add(textDuracion);
 		
 		JLabel lblNombre_1_1 = new JLabel("Instructor");

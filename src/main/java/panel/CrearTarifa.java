@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import main.java.Main;
+import main.java.TextPrompt;
 import main.java.Util;
 import main.java.exception.InvalidHeightException;
 import main.java.exception.InvalidHourFee;
@@ -23,6 +24,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class CrearTarifa extends JPanel {
+	
+	private TextPrompt tp;
 	
 	/**
 	 * Create the panel.
@@ -68,6 +71,7 @@ public class CrearTarifa extends JPanel {
 		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setColumns(10);
 		textDuracion.setBounds(269, 362, 661, 43);
+		tp = new TextPrompt("meses", textDuracion);
 		add(textDuracion);
 		
 		JLabel lblPrecio = new JLabel("Precio");

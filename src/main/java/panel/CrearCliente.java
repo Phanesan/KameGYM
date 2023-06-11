@@ -134,7 +134,7 @@ public class CrearCliente extends JPanel {
 		iconArea.setBounds(459, 64, 173, 172);
 		add(iconArea);
 		
-		JLabel lblNewLabel_6 = new JLabel("foto de perfil");
+		JLabel lblNewLabel_6 = new JLabel("Foto de perfil");
 		lblNewLabel_6.setFont(new Font("Arial", Font.BOLD, 26));
 		lblNewLabel_6.setBounds(652, 84, 178, 53);
 		add(lblNewLabel_6);
