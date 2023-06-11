@@ -89,19 +89,7 @@ public class HistorialPagos extends JPanel {
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(1043, 306, 17, 350);
 		panel.add(scrollBar);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1200, 22);
-		panel.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
-		
-		
-		
+	
 
 	}
 }

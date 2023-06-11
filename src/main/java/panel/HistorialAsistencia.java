@@ -43,7 +43,7 @@ public class HistorialAsistencia extends JPanel {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(Util.resizeImage(150, 150, Util.getStream("main/resources/User2.jpg"))));
-		lblNewLabel.setBounds(254, 69, 151, 150);
+		lblNewLabel.setBounds(151, 73, 151, 150);
 		lblNewLabel.setOpaque(true);
 		panel.add(lblNewLabel);
 		
@@ -77,23 +77,14 @@ public class HistorialAsistencia extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1.setBounds(434, 84, 145, 24);
+		lblNewLabel_1.setBounds(329, 85, 145, 24);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("ID:123456");
 		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1_1.setBounds(434, 120, 145, 24);
+		lblNewLabel_1_1.setBounds(329, 121, 145, 24);
 		panel.add(lblNewLabel_1_1);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1200, 22);
-		panel.add(menuBar);
-		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
 		
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(1043, 306, 17, 350);

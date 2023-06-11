@@ -72,15 +72,7 @@ public class Creditos extends JPanel {
 		lblBack.setBackground(Color.decode("#FF7121"));
 		panel.add(lblBack);
 		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 1200, 22);
-		panel.add(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Inicio");
-		menuBar.add(mnNewMenu);
-		
-		JMenu mnNewMenu_1 = new JMenu("Logout");
-		menuBar.add(mnNewMenu_1);
 
 	}
 
