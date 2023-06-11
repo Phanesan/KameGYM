@@ -4,10 +4,17 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import main.java.Main;
 import main.java.Util;
+import main.java.exception.InvalidHeightException;
+import main.java.exception.InvalidHourFee;
+import main.java.exception.InvalidMonthException;
+import main.java.exception.InvalidNameFee;
+import main.java.exception.InvalidPriceFee;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,27 +64,80 @@ public class CrearTarifa extends JPanel {
 		lblDuracion.setBounds(269, 314, 193, 37);
 		add(lblDuracion);
 		
-		JTextField textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField_1.setColumns(10);
-		textField_1.setBounds(269, 362, 661, 43);
-		add(textField_1);
+		JTextField textDuracion = new JTextField();
+		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
+		textDuracion.setColumns(10);
+		textDuracion.setBounds(269, 362, 661, 43);
+		add(textDuracion);
 		
 		JLabel lblPrecio = new JLabel("Precio");
 		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
 		lblPrecio.setBounds(269, 416, 193, 37);
 		add(lblPrecio);
 		
-		JTextField textField_2 = new JTextField();
-		textField_2.setFont(new Font("Arial", Font.PLAIN, 18));
-		textField_2.setColumns(10);
-		textField_2.setBounds(269, 464, 661, 43);
-		add(textField_2);
+		JTextField textPrecio = new JTextField();
+		textPrecio.setFont(new Font("Arial", Font.PLAIN, 18));
+		textPrecio.setColumns(10);
+		textPrecio.setBounds(269, 464, 661, 43);
+		add(textPrecio);
 		
 		JButton btnNewButton = new JButton("Crear");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 30));
 		btnNewButton.setBounds(469, 591, 309, 65);
 		add(btnNewButton);
-		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					validarNombre(textField);
+					validarHora(textDuracion);
+					validarPrecio(textPrecio);
+				} catch (InvalidNameFee e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidHourFee e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidPriceFee e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 	}
+	
+	public void validarNombre(JTextField textField) throws InvalidNameFee{
+	    String texto = textField.getText();
+
+	    // Verificar la longitud del texto
+	    if (texto.length() > 15) {
+	        	throw new InvalidNameFee("Nombre: Limite de caracteres excedido: 15");
+	    }
+
+	    // Verificar si el texto contiene caracteres no permitidos
+	    if (!texto.matches("[A-Za-z\\s]+")) {
+	        	throw new InvalidNameFee("Nombre: Solo se aceptan letras y espacios");
+	    }
+	}
+	
+	public void validarHora(JTextField textField) throws InvalidHourFee{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,2}$")) {
+	        throw new InvalidHourFee("Duracion: Solo se permiten dos digitos");
+	    }
+	}
+	
+	public void validarPrecio(JTextField textField) throws InvalidPriceFee{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("[0-9]+(\\.[0-9]+)?")) {
+	        throw new InvalidPriceFee("Precio: Solo se permite numeros y un punto decimal ");
+	    }
+	}
+	
 }
