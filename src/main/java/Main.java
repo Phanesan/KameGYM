@@ -10,9 +10,12 @@ import main.java.panel.ConsultarCliente;
 import main.java.panel.LobbyInstructores;
 import main.java.panel.CrearClase;
 import main.java.panel.CrearCliente;
+import main.java.panel.CrearInstructor;
 import main.java.panel.CrearTarifa;
 import main.java.panel.EditarClase;
 import main.java.panel.EditarCliente;
+import main.java.panel.HistorialAsistencia;
+import main.java.panel.HistorialPagos;
 import main.java.panel.LobbyClases;
 import main.java.panel.LobbyCliente;
 import main.java.panel.RegisterDatos;
@@ -50,7 +53,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new ClientesPago());
+		changePanel(frame,new HistorialAsistencia());
 	}
 	
 	public void changePanel(JFrame frame, JPanel panel) throws NullPointerException{
