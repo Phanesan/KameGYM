@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 import main.java.Main;
+import main.java.TextPrompt;
 import main.java.UserCredential;
 import main.java.UserCredential.UserCredentialBuilder;
 import main.java.Util;
@@ -33,6 +34,7 @@ public class RegisterDatos extends JPanel {
 	private JTextField txtDay;
 	private JTextField txtMonth;
 	private JTextField txtYear;
+	private TextPrompt tp;
 
 	/**
 	 * Create the panel.
@@ -52,7 +54,7 @@ public class RegisterDatos extends JPanel {
 		lblPeso.setBounds(34, 49, 257, 37);
 		add(lblPeso);
 		
-		JLabel lblIngreseSuEstatura = new JLabel("Ingrese su estatura (m):");
+		JLabel lblIngreseSuEstatura = new JLabel("Ingrese su estatura:");
 		lblIngreseSuEstatura.setFont(new Font("Arial", Font.BOLD, 32));
 		lblIngreseSuEstatura.setBounds(330, 49, 390, 37);
 		add(lblIngreseSuEstatura);
@@ -76,33 +78,35 @@ public class RegisterDatos extends JPanel {
 		textFieldPeso.setFont(new Font("Arial", Font.PLAIN, 18));
 		textFieldPeso.setColumns(10);
 		textFieldPeso.setBounds(34, 97, 257, 43);
+		tp = new TextPrompt("kg", textFieldPeso);
 		add(textFieldPeso);
 		
 		textFieldEstatura = new JTextField();
 		textFieldEstatura.setFont(new Font("Arial", Font.PLAIN, 18));
 		textFieldEstatura.setColumns(10);
 		textFieldEstatura.setBounds(330, 97, 257, 43);
+		tp = new TextPrompt("m", textFieldEstatura);
 		add(textFieldEstatura);
 		
 		txtDay = new JTextField();
-		txtDay.setText("dd");
 		txtDay.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtDay.setColumns(10);
 		txtDay.setBounds(34, 268, 138, 43);
+		tp = new TextPrompt("dd", txtDay);
 		add(txtDay);
 		
 		txtMonth = new JTextField();
-		txtMonth.setText("mm");
 		txtMonth.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtMonth.setColumns(10);
 		txtMonth.setBounds(216, 268, 138, 43);
+		tp = new TextPrompt("mm", txtMonth);
 		add(txtMonth);
 		
 		txtYear = new JTextField();
-		txtYear.setText("yy");
 		txtYear.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtYear.setColumns(10);
 		txtYear.setBounds(399, 268, 138, 43);
+		tp = new TextPrompt("yy", txtYear);
 		add(txtYear);
 		
 		JLabel lblTiene = new JLabel("tiene: \" \"");

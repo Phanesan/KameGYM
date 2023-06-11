@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import main.java.Main;
+import main.java.TextPrompt;
 import main.java.Util;
 import main.java.exception.InvalidHourFee;
 import main.java.exception.InvalidNameFee;
@@ -19,6 +20,8 @@ import main.java.exception.InvalidPriceFee;
 
 public class EditarTarifa extends JPanel {
 
+	private TextPrompt tp;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -55,13 +58,13 @@ public class EditarTarifa extends JPanel {
 		textField.setBounds(107, 238, 661, 43);
 		add(textField);
 		
-		JLabel lblDuracion = new JLabel("Duracion (meses)");
+		JLabel lblDuracion = new JLabel("Duracion");
 		lblDuracion.setFont(new Font("Arial", Font.BOLD, 32));
 		lblDuracion.setBounds(107, 292, 358, 37);
 		add(lblDuracion);
 		
 		JTextField textDuracion = new JTextField();
-		textDuracion.setText("60");
+		tp = new TextPrompt("meses", textDuracion);
 		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setColumns(10);
 		textDuracion.setBounds(107, 340, 661, 43);
