@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 
 import main.java.Main;
 import main.java.Util;
+import main.java.exception.InvalidNameClass;
+import main.java.exception.InvalidTimeClass;
+
 import javax.swing.JButton;
 
 public class EditarClase extends JPanel {
@@ -86,6 +89,60 @@ public class EditarClase extends JPanel {
 		btn.setFont(new Font("Arial", Font.BOLD, 32));
 		btn.setBounds(262, 617, 220, 55);
 		add(btn);
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					validarNombre(textField);
+					validarDuracion(textDuracion);
+					validarNombreInstructor(textInstructor);
+				} catch (InvalidNameClass e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (InvalidTimeClass e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}	
+			}
+		});
 	}
+	
+	public void validarNombre(JTextField textField) throws InvalidNameClass{
+	    String texto = textField.getText();
 
+	    // Verificar la longitud del texto
+	    if (texto.length() > 15) {
+	        	throw new InvalidNameClass("Nombre: Limite de caracteres excedido: 15");
+	    }
+
+	    // Verificar si el texto contiene caracteres no permitidos
+	    if (!texto.matches("[A-Za-z\\s]+")) {
+	        	throw new InvalidNameClass("Nombre: Solo se aceptan letras y espacios");
+	    }
+	}
+	
+	public void validarDuracion(JTextField textField) throws InvalidTimeClass{
+	    String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+	    // Verificar si el texto cumple con el patrón deseado
+	    if (!texto.matches("^\\d{1,2}$")) {
+	        throw new InvalidTimeClass("Duracion: Solo se permiten dos digitos");
+	    }
+	}
+	
+	public void validarNombreInstructor(JTextField textField) throws InvalidNameClass{
+	    String texto = textField.getText();
+
+	    // Verificar la longitud del texto
+	    if (texto.length() > 15) {
+	        	throw new InvalidNameClass("Nombre: Limite de caracteres excedido: 45");
+	    }
+
+	    // Verificar si el texto contiene caracteres no permitidos
+	    if (!texto.matches("[A-Za-z\\s]+")) {
+	        	throw new InvalidNameClass("Nombre: Solo se aceptan letras y espacios");
+	    }
+	}
 }
