@@ -36,7 +36,7 @@ public class EditarInstructor extends JPanel {
 		
 		JLabel User = new JLabel("");
 		User.setIcon(new ImageIcon(Util.resizeImage(160, 160, Util.getStream("main/resources/user2.jpg"))));
-		User.setBounds(200, 100, 160, 160);
+		User.setBounds(118, 102, 160, 160);
 		add(User);
 		
 		JButton lblBack = new JButton("");
@@ -58,13 +58,13 @@ public class EditarInstructor extends JPanel {
 		JLabel lblNewLabel = new JLabel("Selecciona una ");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 26));
 		lblNewLabel.setForeground(Color.orange);
-		lblNewLabel.setBounds(380, 0, 290, 360);
+		lblNewLabel.setBounds(285, -26, 290, 360);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel2 = new JLabel("foto de perfil");
 		lblNewLabel2.setFont(new Font("Arial", Font.BOLD, 26));
 		lblNewLabel2.setForeground(Color.orange);
-		lblNewLabel2.setBounds(380, 0, 290, 440);
+		lblNewLabel2.setBounds(285, -13, 290, 440);
 		add(lblNewLabel2);
 
 		JLabel lblNewLabel_4 = new JLabel("dd");

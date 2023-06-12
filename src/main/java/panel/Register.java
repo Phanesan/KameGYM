@@ -162,14 +162,15 @@ public class Register extends JPanel {
 																			.setApellidos(textFieldApellidos.getText())
 																			.setPassword(new String(passwordField.getPassword()))
 																			.setIcono(iconBytes);
-					
+					JOptionPane.showMessageDialog(Register.this, "Su cuenta a sido registrada con exito!!");
 					main.changePanel(main.frame, new RegisterDatos(main,builder));
 				} catch(IllegalArgumentException e1) {
 					e1.printStackTrace();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}
+				JOptionPane.showMessageDialog(Register.this, "Su cuenta a sido registrada con exito!!");
+			}		
 		});
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
