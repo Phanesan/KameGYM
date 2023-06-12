@@ -129,6 +129,14 @@ public class Lobby extends JPanel {
             @Override
             protected void paintButtonPressed(Graphics g, AbstractButton b) {}
         });
+		btnInstructores.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new LobbyInstructores(main));
+			}
+		});
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		JLabel lblImage = new JLabel("");
 		lblImage.setBounds(560, 360, 80, 80);
