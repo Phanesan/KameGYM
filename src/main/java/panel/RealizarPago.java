@@ -99,7 +99,7 @@ public class RealizarPago extends JPanel {
 		});
 		add(btnPago);
 		
-		JLabel lblPrecio = null;
+		JLabel lblPrecio = new JLabel();
 		try {
 			lblPrecio = new JLabel("$"+ConnectionDB.loadTariff((String) comboBox.getSelectedItem()).precio);
 		} catch (CredentialsException e1) {
@@ -108,10 +108,7 @@ public class RealizarPago extends JPanel {
 		}
 		lblPrecio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
-		lblPrecio.setBounds(655, 513, 220, 34);
+		lblPrecio.setBounds(653, 513, 220, 34);
 		add(lblPrecio);
 	}
-	
-	
-	
 }
