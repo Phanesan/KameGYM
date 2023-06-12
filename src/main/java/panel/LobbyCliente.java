@@ -10,11 +10,11 @@ import java.awt.Image;
 
 import javax.swing.JTextField;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.UserCredential;
 import main.java.Util;
 import main.java.exception.CredentialsException;
-import main.java.sql.ConnectionDB;
 
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
@@ -128,6 +128,14 @@ public class LobbyCliente extends JPanel {
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 32));
 		btnEliminar.setBounds(759, 396, 283, 55);
+		btnEliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ConnectionDB.deleteUser((String) comboBox.getSelectedItem());
+				comboBox.removeItem(comboBox.getSelectedItem());
+			}
+		});
 		add(btnEliminar);
 		
 		JButton btnRealizar = new JButton("Realizar pago");

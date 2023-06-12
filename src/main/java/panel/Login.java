@@ -6,11 +6,11 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.UserCredential;
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
-import main.java.sql.ConnectionDB;
 import main.java.Util;
 
 import java.awt.Font;

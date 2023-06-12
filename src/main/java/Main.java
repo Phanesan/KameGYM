@@ -26,7 +26,6 @@ import main.java.panel.HistorialPagos;
 import main.java.panel.LobbyClases;
 import main.java.panel.LobbyCliente;
 import main.java.panel.RegisterDatos;
-import main.java.sql.ConnectionDB;
 import main.java.panel.LobbyTarifas;
 import main.java.panel.LobbyClases;
 import main.java.panel.Inicio;
@@ -67,7 +66,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new RealizarPago());
+		changePanel(frame,new Login(this));
 		
 		barraMenu.setSize(frame.getWidth(), 20);
 		frame.setJMenuBar(barraMenu);
