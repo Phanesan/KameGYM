@@ -5,9 +5,13 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.time.Clock;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
@@ -525,7 +529,8 @@ public abstract class ConnectionDB {
 			
 			statement.setString(1, nombreTarifa);
 			statement.setString(2, correo);
-			statement.setString(3, LocalDate.now().toString());
+			Timestamp time = new Timestamp(new Date(System.currentTimeMillis()).getTime());
+			statement.setTimestamp(3, time);
 			statement.setDouble(4, Double.valueOf(monto));
 			
 			statement.executeUpdate();
@@ -534,6 +539,81 @@ public abstract class ConnectionDB {
 			e.printStackTrace();
 		} finally {
 			closeConnection(null, statement, sql);
+		}
+	}
+	
+	public static String[] getColumns(String tableSql) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		String[] columns = null;
+		
+		String query = "SELECT * FROM " + tableSql;
+		try {
+			statement = sql.prepareStatement(query);
+			
+			result = statement.executeQuery();
+			ResultSetMetaData resultSetMetaData = result.getMetaData();
+			int columnCount = resultSetMetaData.getColumnCount();
+			columns = new String[columnCount+1];
+            for (int i = 1; i <= columnCount; i++) {
+                String columnName = resultSetMetaData.getColumnName(i);
+                columns[i] = columnName;
+            }
+            return columns;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+	}
+	
+	public static PaymentModel[] getPayment(String correo){
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		PaymentModel[] payments = null;
+		try {
+			String query = "SELECT * FROM mydb.pago WHERE USUARIO_correo = ?";
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, correo);
+			
+			result = statement.executeQuery();
+			
+			int lenght = 0;
+			while(result.next()) {
+				lenght++;
+			}
+			
+			statement.close();
+			result.close();
+			
+			query = "SELECT * FROM mydb.pago WHERE USUARIO_correo = ?";
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, correo);
+			
+			result = statement.executeQuery();
+			payments = new PaymentModel[lenght];
+			int i = 0;
+			while(result.next()) {
+				payments[i] = new PaymentModel(result.getString("idPago"),
+												result.getString("TARIFA_nombre"),
+												result.getString("USUARIO_correo"),
+												result.getString("fecha_pago"),
+												result.getString("monto"));
+				i++;
+			}
+			
+			return payments;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeConnection(result, statement, sql);
 		}
 	}
 }

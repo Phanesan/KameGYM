@@ -22,7 +22,6 @@ import main.java.panel.Creditos;
 import main.java.panel.EditarClase;
 import main.java.panel.EditarCliente;
 import main.java.panel.HistorialAsistencia;
-import main.java.panel.HistorialPagos;
 import main.java.panel.LobbyClases;
 import main.java.panel.LobbyCliente;
 import main.java.panel.RegisterDatos;

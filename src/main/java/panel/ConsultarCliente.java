@@ -112,6 +112,7 @@ public class ConsultarCliente extends JPanel {
 	    });
 		Historial_de_Pagos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new HistorialPagos(main));
 			}
 		});
 		Historial_de_Pagos.setFont(new Font("Arial", Font.BOLD, 32));
