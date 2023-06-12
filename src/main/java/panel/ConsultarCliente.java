@@ -49,18 +49,18 @@ public class ConsultarCliente extends JPanel {
 
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Util.resizeImage(1200, 340, Util.getStream("main/resources/ClientesConsulta.jpg"))));
-		Fondo.setBounds(0, 0, 1200, 340);
+		Fondo.setBounds(0, 0, 1200, 273);
 		Fondo.setBackground(null);
 		add(Fondo);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(550, 360, 100, 100);
+		lblNewLabel.setBounds(550, 305, 100, 100);
 		lblNewLabel.setOpaque(true);
 		add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
-		lblNewLabel_1.setBounds(554, 465, 100, 33);
+		lblNewLabel_1.setBounds(550, 410, 100, 33);
 		add(lblNewLabel_1);
 		
 		JButton Historial_Asistencia = new JButton("");
@@ -81,7 +81,7 @@ public class ConsultarCliente extends JPanel {
 			}
 		});
 		Historial_Asistencia.setFont(new Font("Arial", Font.BOLD, 32));
-		Historial_Asistencia.setBounds(300, 540, 230, 200);
+		Historial_Asistencia.setBounds(300, 479, 200, 200);
 		add(Historial_Asistencia);
 		add(Historial_Asistencia);
 
@@ -104,7 +104,7 @@ public class ConsultarCliente extends JPanel {
 			}
 		});
 		Historial_de_Pagos.setFont(new Font("Arial", Font.BOLD, 32));
-		Historial_de_Pagos.setBounds(670, 540, 230, 200);
+		Historial_de_Pagos.setBounds(700, 479, 200, 200);
 		add(Historial_de_Pagos);
 		add(Historial_de_Pagos);
 		
