@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import main.java.Main;
+import main.java.Tariff;
 import main.java.Util;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -19,7 +20,7 @@ public class ConsultarTarifa extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ConsultarTarifa(Main main) {
+	public ConsultarTarifa(Main main, Tariff tariff) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -61,21 +62,21 @@ public class ConsultarTarifa extends JPanel {
 		lblImage.setOpaque(true);
 		add(lblImage);
 		
-		JLabel lblNameTarifa = new JLabel("Tarifa 1");
+		JLabel lblNameTarifa = new JLabel(tariff.nombre);
 		lblNameTarifa.setOpaque(true);
 		lblNameTarifa.setBackground(Color.WHITE);
 		lblNameTarifa.setFont(new Font("Arial", Font.BOLD, 32));
 		lblNameTarifa.setBounds(131, 267, 416, 37);
 		add(lblNameTarifa);
 		
-		JLabel lblDuracionTarifa = new JLabel("1");
+		JLabel lblDuracionTarifa = new JLabel(tariff.duracion);
 		lblDuracionTarifa.setOpaque(true);
 		lblDuracionTarifa.setBackground(Color.WHITE);
 		lblDuracionTarifa.setFont(new Font("Arial", Font.BOLD, 32));
 		lblDuracionTarifa.setBounds(131, 368, 416, 37);
 		add(lblDuracionTarifa);
 		
-		JLabel lblPrecioTarifa = new JLabel("$123456");
+		JLabel lblPrecioTarifa = new JLabel("$ " + tariff.precio);
 		lblPrecioTarifa.setOpaque(true);
 		lblPrecioTarifa.setBackground(Color.WHITE);
 		lblPrecioTarifa.setFont(new Font("Arial", Font.BOLD, 32));

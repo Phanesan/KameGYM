@@ -14,8 +14,11 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.JButton;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.Util;
+import main.java.exception.CredentialsException;
+
 import javax.swing.JComboBox;
 
 public class LobbyTarifas extends JPanel {
@@ -27,6 +30,24 @@ public class LobbyTarifas extends JPanel {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(414, 101, 372, 48);
+		comboBox.setFont(new Font("Arial", Font.BOLD, 32));
+		comboBox.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+		String[] tarifaNombres = ConnectionDB.getTarifasNombre();
+		for(String nombre : tarifaNombres) {
+			comboBox.addItem(nombre);
+		}
+		add(comboBox);
 		
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
@@ -62,7 +83,15 @@ public class LobbyTarifas extends JPanel {
 		add(btnConsultar);
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				main.changePanel(main.frame, new ConsultarTarifa(main));
+				try {
+					main.changePanel(main.frame, new ConsultarTarifa(main, ConnectionDB.loadTariff((String) comboBox.getSelectedItem())));
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		
@@ -88,7 +117,15 @@ public class LobbyTarifas extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new EditarTarifa(main));
+				try {
+					main.changePanel(main.frame, new EditarTarifa(main, ConnectionDB.loadTariff((String) comboBox.getSelectedItem())));
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,18 +167,17 @@ public class LobbyTarifas extends JPanel {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 	    });
-		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		Eliminar.setFont(new Font("Arial", Font.BOLD, 32));
 		Eliminar.setBounds(650, 500, 230, 200);
+		Eliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ConnectionDB.deleteTariff((String) comboBox.getSelectedItem());
+				comboBox.removeItem(comboBox.getSelectedItem());
+			}
+		});
 		add(Eliminar);
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(380, 101, 439, 67);
-		add(comboBox);
 	
 	}
 

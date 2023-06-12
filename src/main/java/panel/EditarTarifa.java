@@ -11,7 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.ConnectionDB;
 import main.java.Main;
+import main.java.Tariff;
 import main.java.TextPrompt;
 import main.java.Util;
 import main.java.exception.InvalidHourFee;
@@ -21,11 +23,14 @@ import main.java.exception.InvalidPriceFee;
 public class EditarTarifa extends JPanel {
 
 	private TextPrompt tp;
+	private String nombreAnterior;
 	
 	/**
 	 * Create the panel.
 	 */
-	public EditarTarifa(Main main) {
+	public EditarTarifa(Main main, Tariff tariff) {
+		nombreAnterior = tariff.nombre;
+		
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -52,9 +57,9 @@ public class EditarTarifa extends JPanel {
 		add(lblNombre);
 		
 		JTextField textField = new JTextField();
-		textField.setText("Tarifa 1");
 		textField.setFont(new Font("Arial", Font.PLAIN, 18));
 		textField.setColumns(10);
+		textField.setText(tariff.nombre);
 		textField.setBounds(107, 238, 661, 43);
 		add(textField);
 		
@@ -65,8 +70,10 @@ public class EditarTarifa extends JPanel {
 		
 		JTextField textDuracion = new JTextField();
 		tp = new TextPrompt("meses", textDuracion);
+		tp.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setColumns(10);
+		textDuracion.setText(tariff.duracion);
 		textDuracion.setBounds(107, 340, 661, 43);
 		add(textDuracion);
 		
@@ -76,9 +83,9 @@ public class EditarTarifa extends JPanel {
 		add(lblPrecio);
 		
 		JTextField textPrecio = new JTextField();
-		textPrecio.setText("$123456789");
 		textPrecio.setFont(new Font("Arial", Font.PLAIN, 18));
 		textPrecio.setColumns(10);
+		textPrecio.setText(tariff.precio);
 		textPrecio.setBounds(107, 442, 661, 43);
 		add(textPrecio);
 		
@@ -101,6 +108,14 @@ public class EditarTarifa extends JPanel {
 					validarNombre(textField);
 					validarHora(textDuracion);
 					validarPrecio(textPrecio);
+					
+					tariff.nombre = textField.getText();
+					tariff.duracion = textDuracion.getText();
+					tariff.precio = textPrecio.getText();
+					
+					ConnectionDB.updateTariff(tariff, nombreAnterior);
+					
+					main.changePanel(main.frame, new LobbyTarifas(main));
 				} catch (InvalidNameFee e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

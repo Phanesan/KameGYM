@@ -58,6 +58,145 @@ public abstract class ConnectionDB {
 	    }
 	}
 	
+	public static void createTarifaRequest(String nombre,
+			String duracion,
+			String precio) throws DuplicateTarifaException {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.tarifa WHERE nombre = ? HAVING count > 0";
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, nombre);
+
+			result = statement.executeQuery();
+			result.next();
+
+			if(result.getRow() != 0) {
+				throw new DuplicateTarifaException();
+			}
+
+			statement.close();
+
+			query = "INSERT INTO mydb.tarifa (nombre,duracion_horas,precio) VALUES (?,?,?);";
+
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, nombre);
+			statement.setInt(2, Integer.valueOf(duracion));
+			statement.setFloat(3, Float.valueOf(precio));
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+	}
+
+	public static String[] getTarifasNombre() {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		String[] tarifas = null;
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.tarifa";
+			statement = sql.prepareStatement(query);
+			result = statement.executeQuery();
+			result.next();
+			int row = result.getInt("count");
+
+			statement.close();
+			result.close();
+
+			query = "SELECT nombre FROM mydb.tarifa";
+			statement = sql.prepareStatement(query);
+
+			result = statement.executeQuery();
+
+			tarifas = new String[row];
+
+			int i = 0;
+			while(result.next()) {
+				tarifas[i] = result.getString("nombre");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		return tarifas;
+	}
+
+	public static Tariff loadTariff(String nombreTarifa) throws CredentialsException{
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		Tariff tariff = null;
+		try {
+			String query = "SELECT * FROM mydb.tarifa WHERE nombre = ?";
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, nombreTarifa);
+
+			result = statement.executeQuery();
+			result.next();
+			if(result.getRow() != 0) {
+				tariff = new Tariff(result.getString("nombre"), result.getString("duracion_horas"), result.getString("precio"));
+			} else {
+				throw new CredentialsException("Credenciales no encontradas");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+
+		return tariff;
+	}
+
+	public static void updateTariff(Tariff tariff, String nombreAnterior) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+
+		String query = "UPDATE mydb.tarifa SET nombre = ?, duracion_horas = ?, precio = ? WHERE nombre = ?";
+		try {
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, tariff.nombre);
+			statement.setInt(2, Integer.valueOf(tariff.duracion));
+			statement.setFloat(3, Float.valueOf(tariff.precio));
+			statement.setString(4, nombreAnterior);
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
+
+	public static void deleteTariff(String nombre) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+
+		try {
+			String query = "DELETE FROM mydb.tarifa WHERE nombre = ?";
+			statement = sql.prepareStatement(query);
+			statement.setString(1, nombre);
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
+	
 	public static UserCredential loginRequest(String correo, String password) throws SQLException,CredentialsException{
 		Connection sql = connect();
 		PreparedStatement statement = null;
@@ -185,7 +324,6 @@ public abstract class ConnectionDB {
 			
 			result = statement.executeQuery();
 			
-			System.out.println(row);
 			clientes = new String[row];
 			
 			int i = 0;
@@ -216,43 +354,6 @@ public abstract class ConnectionDB {
 			e.printStackTrace();
 		} finally {
 			closeConnection(null, statement, sql);
-		}
-	}
-	
-	public static void createTarifaRequest(String nombre,
-											String duracion,
-											String precio) throws DuplicateTarifaException {
-		Connection sql = connect();
-		PreparedStatement statement = null;
-		ResultSet result = null;
-		try {
-			String query = "SELECT COUNT(*) as count FROM mydb.tarifa WHERE nombre = ? HAVING count > 0";
-			statement = sql.prepareStatement(query);
-			
-			statement.setString(1, nombre);
-			
-			result = statement.executeQuery();
-			result.next();
-
-			if(result.getRow() != 0) {
-				throw new DuplicateTarifaException();
-			}
-			
-			statement.close();
-			
-			query = "INSERT INTO mydb.tarifa (nombre,duracion_horas,precio) VALUES (?,?,?);";
-			
-			statement = sql.prepareStatement(query);
-			
-			statement.setString(1, nombre);
-			statement.setInt(2, Integer.valueOf(duracion));
-			statement.setFloat(3, Float.valueOf(precio));
-			
-			statement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			closeConnection(result, statement, sql);
 		}
 	}
 	
