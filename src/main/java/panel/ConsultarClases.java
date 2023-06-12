@@ -11,19 +11,35 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.ClassCredential;
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.Util;
+import main.java.exception.CredentialsException;
 
 public class ConsultarClases extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public ConsultarClases(Main main) {
+	private LobbyClases clase;
+	String nombreClase;
+	ClassCredential classCredential;
+	
+	public ConsultarClases(Main main){
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
 		
+		nombreClase = clase.claseSeleccionada;
+		try {
+			classCredential = ConnectionDB.loadClassCredential(nombreClase);
+		} catch (CredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println(nombreClase);
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
@@ -45,12 +61,12 @@ public class ConsultarClases extends JPanel {
 		lblNombre.setFont(new Font("Arial", Font.BOLD, 32));
 		add(lblNombre);
 		
-		JLabel lblDuracion = new JLabel("Duracion (mins)");
+		JLabel lblDuracion = new JLabel("Duracion (hrs)");
 		lblDuracion.setBounds(131, 317, 683, 37);
 		lblDuracion.setFont(new Font("Arial", Font.BOLD, 32));
 		add(lblDuracion);
 		
-		JLabel lblPrecio = new JLabel("Precio");
+		JLabel lblPrecio = new JLabel("Instructor");
 		lblPrecio.setBounds(131, 416, 193, 37);
 		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
 		add(lblPrecio);
@@ -60,26 +76,26 @@ public class ConsultarClases extends JPanel {
 		lblImage.setBounds(824, 0, 376, 800);
 		add(lblImage);
 		
-		JLabel lblNameTarifa = new JLabel("Clase 1");
+		JLabel lblNameTarifa = new JLabel(classCredential.getNombre());
 		lblNameTarifa.setOpaque(true);
 		lblNameTarifa.setBackground(Color.WHITE);
 		lblNameTarifa.setFont(new Font("Arial", Font.BOLD, 32));
 		lblNameTarifa.setBounds(131, 267, 416, 37);
 		add(lblNameTarifa);
 		
-		JLabel lblDuracionTarifa = new JLabel("60");
-		lblDuracionTarifa.setOpaque(true);
-		lblDuracionTarifa.setBackground(Color.WHITE);
-		lblDuracionTarifa.setFont(new Font("Arial", Font.BOLD, 32));
-		lblDuracionTarifa.setBounds(131, 368, 416, 37);
-		add(lblDuracionTarifa);
+		JLabel lblDuracionClase = new JLabel(String.valueOf(classCredential.getDuracionHoras()));
+		lblDuracionClase.setOpaque(true);
+		lblDuracionClase.setBackground(Color.WHITE);
+		lblDuracionClase.setFont(new Font("Arial", Font.BOLD, 32));
+		lblDuracionClase.setBounds(131, 368, 416, 37);
+		add(lblDuracionClase);
 		
-		JLabel lblPrecioTarifa = new JLabel("$123456");
-		lblPrecioTarifa.setOpaque(true);
-		lblPrecioTarifa.setBackground(Color.WHITE);
-		lblPrecioTarifa.setFont(new Font("Arial", Font.BOLD, 32));
-		lblPrecioTarifa.setBounds(131, 464, 416, 37);
-		add(lblPrecioTarifa);
+		JLabel lblNombreInstructor = new JLabel(classCredential.getInstructor());
+		lblNombreInstructor.setOpaque(true);
+		lblNombreInstructor.setBackground(Color.WHITE);
+		lblNombreInstructor.setFont(new Font("Arial", Font.BOLD, 32));
+		lblNombreInstructor.setBounds(131, 464, 416, 37);
+		add(lblNombreInstructor);
 	}
-
+	
 }

@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.Util;
 
@@ -17,6 +18,7 @@ import java.awt.Graphics;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.awt.event.ActionEvent;
 
 public class LobbyClases extends JPanel {
@@ -24,6 +26,10 @@ public class LobbyClases extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	
+	public static String claseSeleccionada;
+	public static String[] nombreClases = ConnectionDB.getClases();
+	
 	public LobbyClases(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
@@ -45,9 +51,11 @@ public class LobbyClases extends JPanel {
 		});
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Arial", Font.BOLD, 11));
+		comboBox.setFont(new Font("Arial", Font.BOLD, 32));
 		comboBox.setBounds(391, 85, 417, 53);
+		obtenerClases(comboBox);
 		add(comboBox);
+		
 		
 		JButton btnEditar = new JButton("");
 		ImageIcon editar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Editar_In.png")));
@@ -67,6 +75,7 @@ public class LobbyClases extends JPanel {
 		add(btnEditar);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				claseSeleccionada = (String) comboBox.getSelectedItem();
 				main.changePanel(main.frame, new EditarClase(main));
 			}
 		});
@@ -93,6 +102,7 @@ public class LobbyClases extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				claseSeleccionada = (String) comboBox.getSelectedItem();
 				main.changePanel(main.frame, new ConsultarClases(main));
 			}
 		});
@@ -119,7 +129,10 @@ public class LobbyClases extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				ConnectionDB.deleteClass((String)comboBox.getSelectedItem());
+				obtenerClases(comboBox);
+				revalidate();
+				repaint();
 			}
 		});
 		
@@ -148,5 +161,13 @@ public class LobbyClases extends JPanel {
 				main.changePanel(main.frame, new CrearClase(main));
 			}
 		});
+	}
+	
+	public static void obtenerClases(JComboBox comboBox) {
+		comboBox.removeAllItems();
+		nombreClases = ConnectionDB.getClases();
+		for(int i = 0; i < nombreClases.length;i++) {
+			comboBox.addItem(nombreClases[i]);
+		}
 	}
 }
