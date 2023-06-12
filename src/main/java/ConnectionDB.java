@@ -290,4 +290,31 @@ public abstract class ConnectionDB {
 		return tarifas;
 	}
 	
+	public static Tariff loadTariff(String nombreTarifa) throws CredentialsException{
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		Tariff tariff = null;
+		try {
+			String query = "SELECT * FROM mydb.tarifa WHERE nombre = ?";
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, nombreTarifa);
+			
+			result = statement.executeQuery();
+			result.next();
+			if(result.getRow() != 0) {
+				tariff = new Tariff(result.getString("nombre"), result.getString("duracion_horas"), result.getString("precio"));
+			} else {
+				throw new CredentialsException("Credenciales no encontradas");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		
+		return tariff;
+	}
+	
 }
