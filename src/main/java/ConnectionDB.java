@@ -256,4 +256,132 @@ public abstract class ConnectionDB {
 		}
 	}
 	
+	public static String[] getClases() {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		String[] clases = null;
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.clase";
+			statement = sql.prepareStatement(query);
+			result = statement.executeQuery();
+			result.next();
+			int row = result.getInt("count");
+			
+			statement.close();
+			result.close();
+			
+			query = "SELECT nombre FROM mydb.clase";
+			statement = sql.prepareStatement(query);
+			
+			result = statement.executeQuery();
+
+			clases = new String[row];
+			
+			int i = 0;
+			while(result.next()) {
+				clases[i] = result.getString("nombre");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		return clases;
+	}
+	
+	public static ClassCredential loadClassCredential(String nombre) throws CredentialsException{
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		ClassCredential classCredential = null;
+		try {
+			String query = "SELECT instructor.nombre as \"instructor\", clase.nombre, clase.duracion_horas FROM mydb.clase INNER JOIN instructor WHERE clase.idInstructor = instructor.idInstructor AND clase.nombre = ?;";
+			statement = sql.prepareStatement(query);
+
+			statement.setString(1, nombre);
+			
+			result = statement.executeQuery();
+			result.next();
+			if(result.getRow() != 0) {
+				classCredential = new ClassCredential(result.getString("instructor"),
+														result.getString("nombre"),
+														result.getInt("duracion_horas"));
+			} else {
+				throw new CredentialsException("Credenciales no encontradas");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		
+		return classCredential;
+	}
+	
+	public static void deleteClass(String nombre) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		try {
+			String query = "DELETE FROM mydb.clase WHERE nombre = ?";
+			statement = sql.prepareStatement(query);
+			statement.setString(1, nombre);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
+	
+	public static void createClassRequest(String instructor,
+			String nombre,
+			String duracion) throws DuplicateTarifaException {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		try {
+			String query = "INSERT INTO mydb.clase (idInstructor,nombre,duracion_horas) VALUES (?,?,?);";
+
+			statement = sql.prepareStatement(query);
+
+			statement.setInt(1, Integer.valueOf(instructor));
+			statement.setString(2, nombre);
+			statement.setInt(3, Integer.valueOf(duracion));
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+	}
+	
+	public static void editClassRequest(String nombre,
+			String duracion,
+			String nombreAnterior) throws DuplicateTarifaException {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		try {
+			String query = "UPDATE mydb.clase SET nombre = ?, duracion_horas = ? WHERE nombre = ?;";
+			
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, nombre);
+			statement.setInt(2, Integer.valueOf(duracion));
+			statement.setString(3, nombreAnterior);
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e);
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+	}
 }

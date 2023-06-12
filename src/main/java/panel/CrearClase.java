@@ -7,12 +7,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.ClassCredential;
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.TextPrompt;
 import main.java.Util;
+import main.java.exception.DuplicateTarifaException;
 import main.java.exception.InvalidHourFee;
 import main.java.exception.InvalidNameClass;
 import main.java.exception.InvalidNameFee;
@@ -69,7 +73,7 @@ public class CrearClase extends JPanel {
 		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setColumns(10);
 		textDuracion.setBounds(51, 313, 607, 43);
-		tp = new TextPrompt("mins", textDuracion);
+		tp = new TextPrompt("hrs", textDuracion);
 		add(textDuracion);
 		
 		JLabel lblNombre_1_1 = new JLabel("Instructor");
@@ -81,7 +85,9 @@ public class CrearClase extends JPanel {
 		textInstructor.setFont(new Font("Arial", Font.PLAIN, 18));
 		textInstructor.setColumns(10);
 		textInstructor.setBounds(51, 415, 607, 43);
+		tp = new TextPrompt("Dylan Ojeda", textInstructor);
 		add(textInstructor);
+		textInstructor.disable();
 		
 		JLabel lblImage = new JLabel("");
 		lblImage.setOpaque(true);
@@ -102,7 +108,16 @@ public class CrearClase extends JPanel {
 				try {
 					validarNombre(textField);
 					validarDuracion(textDuracion);
-					validarNombreInstructor(textInstructor);
+					
+					try {
+						ConnectionDB.createClassRequest("1", textField.getText(), textDuracion.getText());
+						JOptionPane.showMessageDialog(null, "Clase creada exitosamente");
+						main.changePanel(main.frame, new LobbyClases(main));
+					} catch (DuplicateTarifaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				} catch (InvalidNameClass e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -7,12 +7,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.ClassCredential;
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.TextPrompt;
 import main.java.Util;
+import main.java.exception.CredentialsException;
+import main.java.exception.DuplicateTarifaException;
 import main.java.exception.InvalidNameClass;
 import main.java.exception.InvalidTimeClass;
 
@@ -22,6 +27,9 @@ public class EditarClase extends JPanel {
 	private JTextField textDuracion;
 	private JTextField textInstructor;
 	private TextPrompt tp;
+	private LobbyClases clase;
+	String nombreClase;
+	ClassCredential classCredential;
 
 	/**
 	 * Create the panel.
@@ -30,6 +38,14 @@ public class EditarClase extends JPanel {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
+		
+		nombreClase = clase.claseSeleccionada;
+		try {
+			classCredential = ConnectionDB.loadClassCredential(nombreClase);
+		} catch (CredentialsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
@@ -56,6 +72,7 @@ public class EditarClase extends JPanel {
 		textField.setFont(new Font("Arial", Font.PLAIN, 18));
 		textField.setColumns(10);
 		textField.setBounds(51, 211, 607, 43);
+		textField.setText(classCredential.getNombre());
 		add(textField);
 		
 		JLabel lblDuracion = new JLabel("Duracion");
@@ -67,7 +84,8 @@ public class EditarClase extends JPanel {
 		textDuracion.setFont(new Font("Arial", Font.PLAIN, 18));
 		textDuracion.setColumns(10);
 		textDuracion.setBounds(51, 313, 607, 43);
-		tp = new TextPrompt("mins", textDuracion);
+		tp = new TextPrompt("hrs", textDuracion);
+		textDuracion.setText(String.valueOf(classCredential.getDuracionHoras()));
 		add(textDuracion);
 		
 		JLabel lblNombre_1_1 = new JLabel("Instructor");
@@ -79,6 +97,8 @@ public class EditarClase extends JPanel {
 		textInstructor.setFont(new Font("Arial", Font.PLAIN, 18));
 		textInstructor.setColumns(10);
 		textInstructor.setBounds(51, 415, 607, 43);
+		textInstructor.setText("Dylan Ojeda");
+		textInstructor.disable();
 		add(textInstructor);
 		
 		JLabel lblImage = new JLabel("");
@@ -98,9 +118,19 @@ public class EditarClase extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				try {
+					
 					validarNombre(textField);
 					validarDuracion(textDuracion);
-					validarNombreInstructor(textInstructor);
+					
+					try {
+						ConnectionDB.editClassRequest(textField.getText(), textDuracion.getText(), nombreClase);
+						JOptionPane.showMessageDialog(null, "Clase editada exitosamente");
+						main.changePanel(main.frame, new LobbyClases(main));
+					} catch (DuplicateTarifaException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
 				} catch (InvalidNameClass e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
