@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.TextPrompt;
 import main.java.UserCredential;
@@ -21,7 +22,6 @@ import main.java.exception.InvalidHeightException;
 import main.java.exception.InvalidMonthException;
 import main.java.exception.InvalidWeightException;
 import main.java.exception.InvalidYearException;
-import main.java.sql.ConnectionDB;
 
 import javax.swing.JLabel;
 import java.awt.Font;

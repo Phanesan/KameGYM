@@ -1,4 +1,4 @@
-package main.java.sql;
+package main.java;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import main.java.UserCredential;
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
 
@@ -200,6 +199,22 @@ public abstract class ConnectionDB {
 			closeConnection(result, statement, sql);
 		}
 		return clientes;
+	}
+	
+	public static void deleteUser(String correo) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		try {
+			String query = "DELETE FROM mydb.usuario WHERE correo = ?";
+			statement = sql.prepareStatement(query);
+			statement.setString(1, correo);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

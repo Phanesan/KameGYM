@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.UserCredential;
 import main.java.UserCredential.UserCredentialBuilder;
@@ -25,7 +26,6 @@ import main.java.exception.InvalidHeightException;
 import main.java.exception.InvalidMonthException;
 import main.java.exception.InvalidWeightException;
 import main.java.exception.InvalidYearException;
-import main.java.sql.ConnectionDB;
 
 public class RegisterDatos extends JPanel {
 	private JTextField textFieldPeso;
