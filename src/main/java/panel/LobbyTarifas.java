@@ -167,12 +167,16 @@ public class LobbyTarifas extends JPanel {
 	        @Override
 	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
 	    });
-		btnCrear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		Eliminar.setFont(new Font("Arial", Font.BOLD, 32));
 		Eliminar.setBounds(650, 500, 230, 200);
+		Eliminar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ConnectionDB.deleteTariff((String) comboBox.getSelectedItem());
+				comboBox.removeItem(comboBox.getSelectedItem());
+			}
+		});
 		add(Eliminar);
 	
 	}

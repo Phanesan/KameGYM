@@ -339,4 +339,22 @@ public abstract class ConnectionDB {
 		}
 	}
 	
+	public static void deleteTariff(String nombre) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		try {
+			String query = "DELETE FROM mydb.tarifa WHERE nombre = ?";
+			statement = sql.prepareStatement(query);
+			statement.setString(1, nombre);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
+	
 }
