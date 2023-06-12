@@ -18,8 +18,11 @@ import main.java.panel.LobbyInstructores;
 import main.java.panel.CrearClase;
 import main.java.panel.CrearCliente;
 import main.java.panel.CrearTarifa;
+import main.java.panel.Creditos;
 import main.java.panel.EditarClase;
 import main.java.panel.EditarCliente;
+import main.java.panel.HistorialAsistencia;
+import main.java.panel.HistorialPagos;
 import main.java.panel.LobbyClases;
 import main.java.panel.LobbyCliente;
 import main.java.panel.RegisterDatos;
@@ -29,6 +32,7 @@ import main.java.panel.LobbyClases;
 import main.java.panel.Inicio;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
+import main.java.panel.RealizarPago;
 import main.java.panel.Register;
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;
@@ -63,7 +67,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new Login(this));
+		changePanel(frame,new RealizarPago());
 		
 		barraMenu.setSize(frame.getWidth(), 20);
 		frame.setJMenuBar(barraMenu);
