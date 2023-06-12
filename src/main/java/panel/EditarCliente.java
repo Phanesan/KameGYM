@@ -26,6 +26,7 @@ import main.java.exception.DuplicateTarifaException;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
 
 public class EditarCliente extends JPanel {
 	
@@ -88,31 +89,34 @@ public class EditarCliente extends JPanel {
 		add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setBounds(130, 38, 173, 172);
-		lblNewLabel_5.setOpaque(true);
+		lblNewLabel_5.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		lblNewLabel_5.setBounds(200, 43, 173, 172);
 		Image image = new ImageIcon(userCredential.icono).getImage();
 		ImageIcon icon = new ImageIcon(image.getScaledInstance(180, 180, Image.SCALE_SMOOTH));
 		lblNewLabel_5.setIcon(icon);
 		add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6_1 = new JLabel(userCredential.nombre + " " + userCredential.apellidos);
+		JLabel lblNewLabel_6_1 = new JLabel(userCredential.correo);
 		lblNewLabel_6_1.setFont(new Font("Arial", Font.BOLD, 23));
-		lblNewLabel_6_1.setBounds(331, 38, 178, 53);
+		lblNewLabel_6_1.setBounds(394, 43, 250, 40);
 		add(lblNewLabel_6_1);
 		
 		textField = new JTextField();
+		textField.setFont(new Font("Arial", Font.PLAIN, 24));
 		textField.setBounds(200, 293, 335, 40);
 		textField.setColumns(10);
 		textField.setText(userCredential.nombre);
 		add(textField);
 		
 		textApellidos = new JTextField();
+		textApellidos.setFont(new Font("Arial", Font.PLAIN, 24));
 		textApellidos.setColumns(10);
 		textApellidos.setBounds(200, 389, 335, 40);
 		textApellidos.setText(userCredential.apellidos);
 		add(textApellidos);
 		
 		textCorreo = new JTextField();
+		textCorreo.setFont(new Font("Arial", Font.PLAIN, 24));
 		textCorreo.setColumns(10);
 		textCorreo.setBounds(200, 491, 335, 40);
 		textCorreo.setEnabled(false);
@@ -120,11 +124,13 @@ public class EditarCliente extends JPanel {
 		add(textCorreo);
 		
 		textContraseña = new JPasswordField();
+		textContraseña.setFont(new Font("Arial", Font.PLAIN, 24));
 		textContraseña.setColumns(10);
 		textContraseña.setBounds(665, 293, 335, 40);
 		add(textContraseña);
 		
 		textRepetirContraseña = new JPasswordField();
+		textRepetirContraseña.setFont(new Font("Arial", Font.PLAIN, 24));
 		textRepetirContraseña.setColumns(10);
 		textRepetirContraseña.setBounds(665, 389, 335, 40);
 		add(textRepetirContraseña);
@@ -152,15 +158,6 @@ public class EditarCliente extends JPanel {
 			}
 		});
 		add(btnActualizar);
-		
-		JLabel lblNewLabel_3_1 = new JLabel("Tarifa");
-		lblNewLabel_3_1.setFont(new Font("Arial", Font.BOLD, 23));
-		lblNewLabel_3_1.setBounds(665, 458, 194, 22);
-		add(lblNewLabel_3_1);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(665, 491, 273, 40);
-		add(comboBox);
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	public boolean verificarCorreo(JTextField textField) throws IllegalArgumentException{
