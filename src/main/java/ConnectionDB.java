@@ -616,4 +616,50 @@ public abstract class ConnectionDB {
 			closeConnection(result, statement, sql);
 		}
 	}
+
+	public static AssistModel[] getAssist(String correo){
+        Connection sql = connect();
+        PreparedStatement statement = null;
+        ResultSet result = null;
+        AssistModel[] assists = null;
+        try {
+            String query = "SELECT * FROM mydb.asistencia_usuario WHERE USUARIO_correo = ?";
+            statement = sql.prepareStatement(query);
+
+            statement.setString(1, correo);
+
+            result = statement.executeQuery();
+
+            int lenght = 0;
+            while(result.next()) {
+                lenght++;
+            }
+
+            statement.close();
+            result.close();
+
+            query = "SELECT * FROM mydb.asistencia_usuario WHERE USUARIO_correo = ?";
+            statement = sql.prepareStatement(query);
+
+            statement.setString(1, correo);
+
+            result = statement.executeQuery();
+            assists = new AssistModel[lenght];
+            int i = 0;
+            while(result.next()) {
+            	assists[i] = new AssistModel(result.getString("USUARIO_correo"),
+                								result.getString("fecha"),
+                								result.getString("hora_entrada"),
+                								result.getString("hora_salida"));
+                i++;
+            }
+
+            return assists;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            closeConnection(result, statement, sql);
+        }
+    }
 }
