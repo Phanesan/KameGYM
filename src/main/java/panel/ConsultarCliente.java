@@ -10,23 +10,31 @@ import javax.swing.SwingConstants;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 import main.java.Main;
+import main.java.UserCredential;
 import main.java.Util;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.LineBorder;
 
 public class ConsultarCliente extends JPanel {
-
+	
+	public static UserCredential userCredential;
+	
 	/**
 	 * Create the panel.
 	 */
-	public ConsultarCliente(Main main) {
+	public ConsultarCliente(Main main, UserCredential userCredential) {
+		this.userCredential = userCredential;
+		
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
 		setLayout(null);
@@ -53,14 +61,18 @@ public class ConsultarCliente extends JPanel {
 		Fondo.setBackground(null);
 		add(Fondo);
 		
-		JLabel lblNewLabel = new JLabel("");
+		JLabel lblNewLabel = new JLabel();
+		Image image = new ImageIcon(userCredential.icono).getImage();
+		ImageIcon icon = new ImageIcon(image.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+		lblNewLabel.setIcon(icon);
+		lblNewLabel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		lblNewLabel.setBounds(550, 305, 100, 100);
-		lblNewLabel.setOpaque(true);
 		add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
+		JLabel lblNewLabel_1 = new JLabel(userCredential.correo);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
-		lblNewLabel_1.setBounds(550, 410, 100, 33);
+		lblNewLabel_1.setBounds(471, 410, 258, 33);
 		add(lblNewLabel_1);
 		
 		JButton Historial_Asistencia = new JButton("");
@@ -81,8 +93,7 @@ public class ConsultarCliente extends JPanel {
 			}
 		});
 		Historial_Asistencia.setFont(new Font("Arial", Font.BOLD, 32));
-		Historial_Asistencia.setBounds(300, 479, 200, 200);
-		add(Historial_Asistencia);
+		Historial_Asistencia.setBounds(500, 479, 200, 200);
 		add(Historial_Asistencia);
 
 		////////////////////////////////
@@ -104,14 +115,30 @@ public class ConsultarCliente extends JPanel {
 			}
 		});
 		Historial_de_Pagos.setFont(new Font("Arial", Font.BOLD, 32));
-		Historial_de_Pagos.setBounds(700, 479, 200, 200);
-		add(Historial_de_Pagos);
+		Historial_de_Pagos.setBounds(808, 479, 200, 200);
 		add(Historial_de_Pagos);
 		
-		JLabel lblImage = new JLabel("");
-		lblImage.setBounds(0, 21, 1200, 221);
-		lblImage.setIcon(new ImageIcon(Util.resizeImage(1200, 221, Util.getStream("main/resources/TituloConsulta.png"))));
-		add(lblImage);
+		JButton Consultar_Datos = new JButton("");
+		ImageIcon consultar_in = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Consultar_In.png")));
+		ImageIcon consultar_out = new ImageIcon(Util.resizeImage(200, 200, Util.getStream("main/resources/UI/Consultar_Out.png")));
+		Consultar_Datos.setRolloverIcon(consultar_in);
+		Consultar_Datos.setBorderPainted(false);
+		Consultar_Datos.setOpaque(false);
+		Consultar_Datos.setContentAreaFilled(false);
+		Consultar_Datos.setIcon(consultar_out);
+		Consultar_Datos.setPressedIcon(consultar_in);
+		Consultar_Datos.setUI(new BasicButtonUI() {
+	        @Override
+	        protected void paintButtonPressed(Graphics g, AbstractButton b) {}
+	    });
+		Consultar_Datos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new ConsultarClienteDatos(main));
+			}
+		});
+		Consultar_Datos.setFont(new Font("Arial", Font.BOLD, 32));
+		Consultar_Datos.setBounds(194, 479, 200, 200);
+		add(Consultar_Datos);
 		
 		////////////////////////////////
 	}
