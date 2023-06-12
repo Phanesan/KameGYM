@@ -124,7 +124,8 @@ public class Register extends JPanel {
 				fc.removeChoosableFileFilter(fc.getAcceptAllFileFilter());
 				fc.addChoosableFileFilter(new FileNameExtensionFilter("Archivo de imagen", "png", "jpg"));
 				int code = fc.showOpenDialog(main.frame);
-				
+				// IMPORTANTE
+				// https://www.youtube.com/watch?v=dQw4w9WgXcQ
 				if(code == JFileChooser.APPROVE_OPTION) {
 					pathIcon = fc.getSelectedFile().getAbsolutePath();
 					Image image = new ImageIcon(pathIcon).getImage();
