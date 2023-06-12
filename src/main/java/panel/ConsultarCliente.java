@@ -90,6 +90,7 @@ public class ConsultarCliente extends JPanel {
 	    });
 		Historial_Asistencia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				main.changePanel(main.frame, new HistorialAsistencia(main));
 			}
 		});
 		Historial_Asistencia.setFont(new Font("Arial", Font.BOLD, 32));
