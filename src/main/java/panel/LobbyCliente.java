@@ -159,7 +159,7 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				//main.changePanel(main.frame, new pagoCliente());
+				main.changePanel(main.frame, new RealizarPago(main,Lobby.userCredential));
 			}
 		});
 	}

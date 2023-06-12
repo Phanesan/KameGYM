@@ -31,7 +31,6 @@ import main.java.panel.LobbyClases;
 import main.java.panel.Inicio;
 import main.java.panel.Lobby;
 import main.java.panel.Login;
-import main.java.panel.RealizarPago;
 import main.java.panel.Register;
 import javax.swing.JToolBar;
 import java.awt.BorderLayout;

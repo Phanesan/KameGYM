@@ -2,84 +2,116 @@ package main.java.panel;
 
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import main.java.ConnectionDB;
+import main.java.Main;
+import main.java.UserCredential;
 import main.java.Util;
-import javax.swing.JTable;
-import java.awt.Font;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.UIManager;
-import javax.swing.border.EmptyBorder;
+import main.java.exception.CredentialsException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollBar;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
+import javax.swing.JButton;
 
 public class RealizarPago extends JPanel {
-	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public RealizarPago() {
+	public RealizarPago(Main main, UserCredential userCredential) {
+		setBackground(Color.decode("#FF7121"));
+		setSize(1200,800);
 		setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 1200, 800);
-		panel.setBackground(Color.decode("#FF7121"));
-		add(panel);
-		panel.setLayout(null);
-		
 		
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
-		lblBack.setBounds(10, 35, 65, 65);
-		lblBack.setBackground(Color.decode("#000000"));
-		lblBack.setOpaque(true);
-		panel.add(lblBack);
+		lblBack.setBounds(10, 11, 65, 65);
+		lblBack.setBackground(null);
+		lblBack.setOpaque(false);
+		lblBack.setBorderPainted(false);
+		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				main.changePanel(main.frame, new LobbyCliente(main));	
+			}
+		});
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(Util.resizeImage(150, 150, Util.getStream("main/resources/User2.jpg"))));
-		lblNewLabel.setBounds(399, 335, 151, 150);
-		lblNewLabel.setOpaque(true);
-		panel.add(lblNewLabel);
+		JLabel imagen = new JLabel();
+		imagen.setIcon(new ImageIcon(Util.resizeImage(1200, 474, Util.getStream("main/resources/FondoTarifas.png"))));
+		imagen.setBounds(0, 0, 1200, 309);
+		add(imagen);
 		
-		JLabel lblNewLabel_1 = new JLabel("Cliente 1");
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1.setBounds(600, 345, 145, 24);
-		panel.add(lblNewLabel_1);
+		JLabel iconLabel = new JLabel("");
+		Image image = new ImageIcon(userCredential.icono).getImage();
+		ImageIcon icon = new ImageIcon(image.getScaledInstance(180, 180, Image.SCALE_SMOOTH));
+		iconLabel.setIcon(icon);
+		iconLabel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		iconLabel.setBounds(193, 420, 180, 180);
+		add(iconLabel);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("ID:123456");
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1_1.setBounds(600, 391, 145, 24);
-		panel.add(lblNewLabel_1_1);
+		JLabel lblCorreo = new JLabel(userCredential.correo);
+		lblCorreo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCorreo.setFont(new Font("Arial", Font.BOLD, 22));
+		lblCorreo.setBounds(139, 619, 295, 34);
+		add(lblCorreo);
 		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Arial", Font.BOLD, 30));
+		comboBox.setBounds(602, 464, 326, 38);
+		String[] nombreTarifas = ConnectionDB.getTarifasNombre();
+		for(int i = 0; i < nombreTarifas.length; i++) {
+			comboBox.addItem(nombreTarifas[i]);
+		}
+		add(comboBox);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(399, 545, 346, 39);
-		panel.add(comboBox);
+		JLabel lblNewLabel_1 = new JLabel("Tarifa a pagar");
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 32));
+		lblNewLabel_1.setBounds(655, 420, 220, 34);
+		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Tarifa Actual:");
-		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_2.setBounds(500, 496, 172, 46);
-		panel.add(lblNewLabel_2);
+		JButton btnPago = new JButton("Realizar Pago");
+		btnPago.setFont(new Font("Arial", Font.BOLD, 24));
+		btnPago.setBounds(657, 605, 211, 43);
+		btnPago.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					ConnectionDB.makePayment((String)comboBox.getSelectedItem(), userCredential.correo, ConnectionDB.loadTariff((String) comboBox.getSelectedItem()).precio);
+					main.changePanel(main.frame, new LobbyCliente(main));
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		add(btnPago);
 		
-		JButton btnNewButton_1 = new JButton("Confirmar");
-		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 24));
-		btnNewButton_1.setBounds(485, 630, 200, 51);
-		panel.add(btnNewButton_1);
-		
-		JLabel Tarifas = new JLabel("");
-		Tarifas.setIcon(new ImageIcon(Util.resizeImage(1200, 302, Util.getStream("main/resources/FondoTarifas.png"))));
-		Tarifas.setBounds(0, 0, 1200, 302);
-		panel.add(Tarifas);
-		
-		
-		
-
+		JLabel lblPrecio = null;
+		try {
+			lblPrecio = new JLabel("$"+ConnectionDB.loadTariff((String) comboBox.getSelectedItem()).precio);
+		} catch (CredentialsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		lblPrecio.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
+		lblPrecio.setBounds(655, 513, 220, 34);
+		add(lblPrecio);
 	}
+	
+	
+	
 }
