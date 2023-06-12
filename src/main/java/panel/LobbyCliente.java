@@ -25,10 +25,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
 public class LobbyCliente extends JPanel {
-
+	
 	/**
 	 * Create the panel.
 	 */
+	
+	
 	public LobbyCliente(Main main) {
 		setBackground(Color.decode("#FF7121"));
 		setSize(1200,800);
@@ -121,7 +123,17 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new EditarCliente(main));
+				try {
+					main.changePanel(main.frame, new EditarCliente(main, ConnectionDB.loadUserCredential((String)comboBox.getSelectedItem())));
+
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		
@@ -151,4 +163,5 @@ public class LobbyCliente extends JPanel {
 			}
 		});
 	}
+
 }

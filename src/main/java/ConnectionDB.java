@@ -384,4 +384,31 @@ public abstract class ConnectionDB {
 			closeConnection(result, statement, sql);
 		}
 	}
+	
+	public static void editUserRequest(String correo,
+										String nombre,
+										String apellido,
+										String contraseña
+			) throws DuplicateTarifaException {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		try {
+			String query = "UPDATE mydb.usuario SET nombre = ?, apellidos = ?, contraseña = ? WHERE correo = ?;";
+			
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(4, correo);
+			statement.setString(1, nombre);
+			statement.setString(2, apellido);
+			statement.setString(3,contraseña);
+
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			System.out.println(e);
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+	}
 }
