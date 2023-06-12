@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
@@ -510,6 +511,29 @@ public abstract class ConnectionDB {
 			System.out.println(e);
 		} finally {
 			closeConnection(result, statement, sql);
+		}
+	}
+	
+	public static void makePayment(String nombreTarifa, String correo, String monto) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		String query = "INSERT INTO mydb.pago (TARIFA_nombre, USUARIO_correo, fecha_pago, monto) VALUES (?, ?, ?, ?)";
+		
+		try {
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, nombreTarifa);
+			statement.setString(2, correo);
+			statement.setString(3, LocalDate.now().toString());
+			statement.setDouble(4, Double.valueOf(monto));
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
 		}
 	}
 }
