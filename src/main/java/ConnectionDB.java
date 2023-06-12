@@ -317,4 +317,26 @@ public abstract class ConnectionDB {
 		return tariff;
 	}
 	
+	public static void updateTariff(Tariff tariff, String nombreAnterior) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		String query = "UPDATE mydb.tarifa SET nombre = ?, duracion_horas = ?, precio = ? WHERE nombre = ?";
+		try {
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, tariff.nombre);
+			statement.setInt(2, Integer.valueOf(tariff.duracion));
+			statement.setFloat(3, Float.valueOf(tariff.precio));
+			statement.setString(4, nombreAnterior);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
+	
 }
