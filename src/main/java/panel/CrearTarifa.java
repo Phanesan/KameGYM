@@ -7,9 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.TextPrompt;
 import main.java.Util;
+import main.java.exception.DuplicateTarifaException;
 import main.java.exception.InvalidHeightException;
 import main.java.exception.InvalidHourFee;
 import main.java.exception.InvalidMonthException;
@@ -98,6 +100,13 @@ public class CrearTarifa extends JPanel {
 					validarNombre(textField);
 					validarHora(textDuracion);
 					validarPrecio(textPrecio);
+					
+					String nombre = textField.getText();
+					String duracion = textDuracion.getText();
+					String precio = textPrecio.getText();
+					
+					ConnectionDB.createTarifaRequest(nombre, duracion, precio);
+					main.changePanel(main.frame, new LobbyTarifas(main));
 				} catch (InvalidNameFee e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -105,6 +114,9 @@ public class CrearTarifa extends JPanel {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (InvalidPriceFee e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (DuplicateTarifaException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

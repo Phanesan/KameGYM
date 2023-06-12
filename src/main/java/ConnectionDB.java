@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 import main.java.exception.CredentialsException;
 import main.java.exception.DuplicateMailException;
+import main.java.exception.DuplicateTarifaException;
 
 public abstract class ConnectionDB {
 	
@@ -125,7 +126,6 @@ public abstract class ConnectionDB {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new SQLException();
 		} finally {
 			closeConnection(result, statement, sql);
 		}
@@ -214,6 +214,45 @@ public abstract class ConnectionDB {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
+	
+	public static void createTarifaRequest(String nombre,
+											String duracion,
+											String precio) throws DuplicateTarifaException {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.tarifa WHERE nombre = ? HAVING count > 0";
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, nombre);
+			
+			result = statement.executeQuery();
+			result.next();
+
+			if(result.getRow() != 0) {
+				throw new DuplicateTarifaException();
+			}
+			
+			statement.close();
+			
+			query = "INSERT INTO mydb.tarifa (nombre,duracion_horas,precio) VALUES (?,?,?);";
+			
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, nombre);
+			statement.setInt(2, Integer.valueOf(duracion));
+			statement.setFloat(3, Float.valueOf(precio));
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
 		}
 	}
 	
