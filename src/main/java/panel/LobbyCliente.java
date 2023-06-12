@@ -71,7 +71,7 @@ public class LobbyCliente extends JPanel {
 		lblImage.setBounds(217, 239, 180, 180);
 		add(lblImage);
 		
-		JComboBox<String> comboBox = new JComboBox();
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 30));
 		comboBox.addActionListener(new ActionListener() {
 			@Override
@@ -111,7 +111,15 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new ConsultarCliente(main));
+				try {
+					main.changePanel(main.frame, new ConsultarCliente(main, ConnectionDB.loadUserCredential((String) comboBox.getSelectedItem())));
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		JButton btnEditar = new JButton("Editar");

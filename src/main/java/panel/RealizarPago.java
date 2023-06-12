@@ -24,6 +24,9 @@ import javax.swing.JButton;
 
 public class RealizarPago extends JPanel {
 
+	private JComboBox<String> comboBox;
+	private JLabel lblPrecio;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -67,9 +70,27 @@ public class RealizarPago extends JPanel {
 		lblCorreo.setBounds(139, 619, 295, 34);
 		add(lblCorreo);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
+		lblPrecio = new JLabel();
+		lblPrecio.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
+		lblPrecio.setBounds(653, 513, 220, 34);
+		add(lblPrecio);
+		
+		comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Arial", Font.BOLD, 30));
 		comboBox.setBounds(602, 464, 326, 38);
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					lblPrecio.setText("$"+ConnectionDB.loadTariff((String) comboBox.getSelectedItem()).precio);
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				};
+			}
+		});
 		String[] nombreTarifas = ConnectionDB.getTarifasNombre();
 		for(int i = 0; i < nombreTarifas.length; i++) {
 			comboBox.addItem(nombreTarifas[i]);
@@ -98,17 +119,5 @@ public class RealizarPago extends JPanel {
 			}
 		});
 		add(btnPago);
-		
-		JLabel lblPrecio = new JLabel();
-		try {
-			lblPrecio = new JLabel("$"+ConnectionDB.loadTariff((String) comboBox.getSelectedItem()).precio);
-		} catch (CredentialsException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		lblPrecio.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPrecio.setFont(new Font("Arial", Font.BOLD, 32));
-		lblPrecio.setBounds(653, 513, 220, 34);
-		add(lblPrecio);
 	}
 }
