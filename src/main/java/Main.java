@@ -83,6 +83,14 @@ public class Main {
 				changePanel(frame, new Lobby(main, Lobby.userCredential));
 			}
 		});
+		menu3.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				changePanel(frame, new Creditos(main));
+			}
+		});
 		barraMenu.add(menu1);
 		barraMenu.add(menu2);
 		barraMenu.add(menu3);

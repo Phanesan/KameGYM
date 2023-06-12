@@ -2,9 +2,12 @@ package main.java.panel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import main.java.Main;
 import main.java.Util;
 
 import javax.swing.ImageIcon;
@@ -21,15 +24,26 @@ public class HistorialInstructores extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HistorialInstructores() {
-		setForeground(new Color(255, 128, 64));
+	public HistorialInstructores(Main main) {
 		setLayout(null);
+		setBounds(0, 0, 1248, 800);
+		setBackground(Color.decode("#FF7121"));
 		
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 11, 65, 65);
 		lblBack.setBackground(null);
+		lblBack.setBorderPainted(false);
+		lblBack.setOpaque(false);
 		add(lblBack);
+		lblBack.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			main.changePanel(main.frame, new LobbyInstructores(main));	
+			}
+		});
 		
 		JLabel User = new JLabel("");
 		User.setIcon(new ImageIcon(Util.resizeImage(120, 120, Util.getStream("main/resources/user2.jpg"))));
@@ -46,18 +60,12 @@ public class HistorialInstructores extends JPanel {
 		lblNewLabel2.setBounds(500, 90, 200, 31);
 		add(lblNewLabel2);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 128, 0));
-		panel.setBounds(0, 0, 1248, 800);
-		add(panel);
-		panel.setLayout(null);
-		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(323, 208, 500, 36);
-		panel.add(comboBox);
+		add(comboBox);
 		
 		table = new JTable();
 		table.setBounds(323, 255, 500, 396);
-		panel.add(table);
+		add(table);
 	}
 }
