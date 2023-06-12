@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.JButton;
 
+import main.java.ConnectionDB;
 import main.java.Main;
 import main.java.Util;
 import javax.swing.JComboBox;
@@ -139,8 +140,20 @@ public class LobbyTarifas extends JPanel {
 		add(Eliminar);
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(380, 101, 439, 67);
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(414, 101, 372, 48);
+		comboBox.setFont(new Font("Arial", Font.BOLD, 32));
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		String[] tarifaNombres = ConnectionDB.getTarifasNombre();
+		for(String nombre : tarifaNombres) {
+			comboBox.addItem(nombre);
+		}
 		add(comboBox);
 	
 	}

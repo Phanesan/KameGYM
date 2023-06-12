@@ -185,7 +185,6 @@ public abstract class ConnectionDB {
 			
 			result = statement.executeQuery();
 			
-			System.out.println(row);
 			clientes = new String[row];
 			
 			int i = 0;
@@ -254,6 +253,41 @@ public abstract class ConnectionDB {
 		} finally {
 			closeConnection(result, statement, sql);
 		}
+	}
+	
+	public static String[] getTarifasNombre() {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		ResultSet result = null;
+		String[] tarifas = null;
+		try {
+			String query = "SELECT COUNT(*) as count FROM mydb.tarifa";
+			statement = sql.prepareStatement(query);
+			result = statement.executeQuery();
+			result.next();
+			int row = result.getInt("count");
+			
+			statement.close();
+			result.close();
+			
+			query = "SELECT nombre FROM mydb.tarifa";
+			statement = sql.prepareStatement(query);
+			
+			result = statement.executeQuery();
+			
+			tarifas = new String[row];
+			
+			int i = 0;
+			while(result.next()) {
+				tarifas[i] = result.getString("nombre");
+				i++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection(result, statement, sql);
+		}
+		return tarifas;
 	}
 	
 }
