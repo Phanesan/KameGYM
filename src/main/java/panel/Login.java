@@ -60,9 +60,9 @@ public class Login extends JPanel {
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 28));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				verificarCorreo(textFieldCorreo);
-				verificarContraseña(fieldPassword);
 				try {
+					verificarCorreo(textFieldCorreo);
+					verificarContraseña(fieldPassword);
 					UserCredential userCredential = ConnectionDB.loginRequest(textFieldCorreo.getText(), new String(fieldPassword.getPassword()));
 					main.changePanel(main.frame, new Lobby(main, userCredential));
 					main.barraMenu.setVisible(true);
@@ -72,6 +72,11 @@ public class Login extends JPanel {
 				} catch (CredentialsException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				} catch (IllegalArgumentException e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+					JOptionPane.showMessageDialog(null, e2.getMessage());
 				}
 			}
 		});
@@ -96,43 +101,24 @@ public class Login extends JPanel {
 		add(lblImage);
 	}
 	
-	public boolean verificarCorreo(JTextField textField) {
+	public void verificarCorreo(JTextField textField) throws IllegalArgumentException{
 	    String texto = textField.getText();
 	    
 	    // Verificar si el correo contiene un "@" y un "."
 	    if (!texto.contains("@") || !texto.contains(".")) {
-	        try {
 	        	throw new IllegalArgumentException("El correo electrónico debe contener obligatoriamente un '@' y un '.'");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
 	    }
-	    
-	    return true;
-	}
 	
-	public boolean verificarContraseña(JPasswordField passwordField) {
+	public void verificarContraseña(JPasswordField passwordField) throws IllegalArgumentException{
 		String contra = new String(passwordField.getPassword());
 		//Verificar si el campo esta en blanco
 		if(contra.isEmpty()) {
-			try {
 	        	throw new IllegalArgumentException("Contraseña: Espacio en blanco");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
-			}
-		}
 		// Verificar el limite de caracteres en el campo
-		if(contra.length() > 40) {
-	    	try {
-	        	throw new IllegalArgumentException("Contraseña: Limite de caracteres excedido: 40");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-	    }
-		
-		return true;
+		if(contra.length() > 40) {
+	        	throw new IllegalArgumentException("Contraseña: Limite de caracteres excedido: 40");
+			}
 	}
 }

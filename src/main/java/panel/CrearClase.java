@@ -105,26 +105,26 @@ public class CrearClase extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					validarNombre(textField);
-					validarDuracion(textDuracion);
-					
 					try {
+						validarNombre(textField);
+						validarDuracion(textDuracion);
 						ConnectionDB.createClassRequest("1", textField.getText(), textDuracion.getText());
 						JOptionPane.showMessageDialog(null, "Clase creada exitosamente");
 						main.changePanel(main.frame, new LobbyClases(main));
+					} catch (InvalidNameClass e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					} catch (InvalidTimeClass e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					} catch (DuplicateTarifaException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
 					
-				} catch (InvalidNameClass e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (InvalidTimeClass e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
 			}
 		});
 	}

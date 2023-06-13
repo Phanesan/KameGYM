@@ -152,13 +152,19 @@ public class EditarCliente extends JPanel {
 					ConnectionDB.editUserRequest(userCredential.correo, textField.getText(), textApellidos.getText(), new String(textContraseña.getPassword()));
 					JOptionPane.showMessageDialog(null, "Usuario editado exitosamente");
 					main.changePanel(main.frame, new LobbyCliente(main));
-				} catch (PasswordException e1) {
+				} catch (IllegalArgumentException e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+					JOptionPane.showMessageDialog(null, e2.getMessage());
+				}catch (PasswordException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				} catch (DuplicateTarifaException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				}
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				} 
 			}
 		});
 		add(btnActualizar);

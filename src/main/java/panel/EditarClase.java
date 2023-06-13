@@ -117,27 +117,25 @@ public class EditarClase extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				try {
-					
-					validarNombre(textField);
-					validarDuracion(textDuracion);
-					
 					try {
+						validarNombre(textField);
+						validarDuracion(textDuracion);
 						ConnectionDB.editClassRequest(textField.getText(), textDuracion.getText(), nombreClase);
 						JOptionPane.showMessageDialog(null, "Clase editada exitosamente");
 						main.changePanel(main.frame, new LobbyClases(main));
+					} catch (InvalidNameClass e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					} catch (InvalidTimeClass e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					} catch (DuplicateTarifaException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
-					
-				} catch (InvalidNameClass e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (InvalidTimeClass e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}	
 			}
 		});
 	}
