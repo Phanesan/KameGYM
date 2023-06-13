@@ -662,4 +662,28 @@ public abstract class ConnectionDB {
             closeConnection(result, statement, sql);
         }
     }
+	
+	public static void addAssist(String correo, String horaEntrada, String horaSalida) {
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		String query = "INSERT INTO mydb.asistencia_usuario (USUARIO_correo, fecha, hora_entrada, hora_salida) VALUES (?, ?, ?, ?)";
+		
+		try {
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, correo);
+			Date fechaActual = new Date(System.currentTimeMillis());
+			statement.setDate(2, fechaActual);
+			statement.setString(3, horaEntrada);
+			statement.setString(4, horaSalida);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnection(null, statement, sql);
+		}
+	}
 }

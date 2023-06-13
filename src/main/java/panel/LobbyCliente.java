@@ -172,7 +172,15 @@ public class LobbyCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new MarcarAsistencia(main));
+				try {
+					main.changePanel(main.frame, new MarcarAsistencia(main,ConnectionDB.loadUserCredential((String) comboBox.getSelectedItem())));
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 	}

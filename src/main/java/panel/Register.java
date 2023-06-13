@@ -169,7 +169,6 @@ public class Register extends JPanel {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(Register.this, "Su cuenta a sido registrada con exito!!");
 			}		
 		});
 	}
