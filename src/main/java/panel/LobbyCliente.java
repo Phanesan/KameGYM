@@ -104,7 +104,7 @@ public class LobbyCliente extends JPanel {
 		
 		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnConsultar.setBounds(759, 133, 283, 55);
+		btnConsultar.setBounds(759, 90, 283, 55);
 		add(btnConsultar);
 		btnConsultar.addActionListener(new ActionListener() {
 			
@@ -124,7 +124,7 @@ public class LobbyCliente extends JPanel {
 		});
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnEditar.setBounds(759, 262, 283, 55);
+		btnEditar.setBounds(759, 210, 283, 55);
 		add(btnEditar);
 		btnEditar.addActionListener(new ActionListener() {
 			
@@ -147,7 +147,7 @@ public class LobbyCliente extends JPanel {
 		
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnEliminar.setBounds(759, 396, 283, 55);
+		btnEliminar.setBounds(759, 330, 283, 55);
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -160,16 +160,20 @@ public class LobbyCliente extends JPanel {
 		
 		JButton btnRealizar = new JButton("Realizar pago");
 		btnRealizar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnRealizar.setBounds(759, 525, 283, 55);
+		btnRealizar.setBounds(759, 450, 283, 55);
 		add(btnRealizar);
-		btnRealizar.addActionListener(new ActionListener() {
+		
+		JButton btnMarcarAsistencia = new JButton("Marcar Asistencia");
+		btnMarcarAsistencia.setFont(new Font("Arial", Font.BOLD, 28));
+		btnMarcarAsistencia.setBounds(759, 570, 283, 55);
+		add(btnMarcarAsistencia);
+		btnMarcarAsistencia.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				main.changePanel(main.frame, new RealizarPago(main,Lobby.userCredential));
+				main.changePanel(main.frame, new MarcarAsistencia(main));
 			}
 		});
 	}
-
 }
