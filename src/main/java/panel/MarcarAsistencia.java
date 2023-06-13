@@ -5,10 +5,17 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.java.ConnectionDB;
 import main.java.Main;
+import main.java.UserCredential;
 import main.java.Util;
+import main.java.exception.InvalidDayException;
+import main.java.exception.InvalidMonthException;
+import main.java.exception.InvalidYearException;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,15 +24,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class MarcarAsistencia extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField horaEntrada;
+	private JTextField minutosEntrada;
+	private JTextField horaSalida;
+	private JTextField minutosSalida;
 
 	/**
 	 * Create the panel.
 	 */
-	public MarcarAsistencia(Main main) {
+	public MarcarAsistencia(Main main, UserCredential userCredential) {
 		setLayout(null);
 	
 		setBounds(0, 0, 1200, 800);
@@ -44,7 +51,7 @@ public class MarcarAsistencia extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			main.changePanel(main.frame, new LobbyCliente(main));	
+				main.changePanel(main.frame, new LobbyCliente(main));	
 			}
 		});
 		
@@ -74,25 +81,25 @@ public class MarcarAsistencia extends JPanel {
 		lblNewLabel_3_3.setBounds(753, 510, 46, 14);
 		add(lblNewLabel_3_3);
 		
-		textField = new JTextField();
-		textField.setBounds(360, 400, 207, 34);
-		add(textField);
-		textField.setColumns(10);
+		horaEntrada = new JTextField();
+		horaEntrada.setBounds(360, 400, 207, 34);
+		add(horaEntrada);
+		horaEntrada.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(605, 400, 207, 34);
-		add(textField_1);
+		minutosEntrada = new JTextField();
+		minutosEntrada.setColumns(10);
+		minutosEntrada.setBounds(605, 400, 207, 34);
+		add(minutosEntrada);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(360, 500, 207, 34);
-		add(textField_2);
+		horaSalida = new JTextField();
+		horaSalida.setColumns(10);
+		horaSalida.setBounds(360, 500, 207, 34);
+		add(horaSalida);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(605, 500, 207, 34);
-		add(textField_3);
+		minutosSalida = new JTextField();
+		minutosSalida.setColumns(10);
+		minutosSalida.setBounds(605, 500, 207, 34);
+		add(minutosSalida);
 		
 		JLabel lblNewLabel = new JLabel(":");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 27));
@@ -117,9 +124,64 @@ public class MarcarAsistencia extends JPanel {
 		JButton btnNewButton = new JButton("Confirmar");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 20));
 		btnNewButton.setBounds(497, 602, 207, 51);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					validarHora(horaEntrada);
+					validarMinutos(minutosEntrada);
+					validarHora(horaSalida);
+					validarMinutos(minutosSalida);
+					
+					StringBuilder sb = new StringBuilder();
+					sb.append(horaEntrada.getText());
+					sb.append(":");
+					sb.append(minutosEntrada.getText());
+					sb.append(":");
+					sb.append("00");
+					
+					String horaEntradaSB = sb.toString();
+					
+					sb = new StringBuilder();
+					sb.append(horaSalida.getText());
+					sb.append(":");
+					sb.append(minutosSalida.getText());
+					sb.append(":");
+					sb.append("00");
+					
+					String horaSalidaSB = sb.toString();
+					
+					ConnectionDB.addAssist(userCredential.correo, horaEntradaSB, horaSalidaSB);
+					main.changePanel(main.frame, new LobbyCliente(main));
+				} catch(IllegalArgumentException e1) {
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				
+			}
+		});
 		add(btnNewButton);
-		
-		
 
+	}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarHora(JTextField textField) throws IllegalArgumentException{
+		String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+		// Verificar si el texto cumple con el patrón deseado
+		if (!texto.matches("^\\d{1,2}$")) {
+			throw new IllegalArgumentException("Formato de hora invalida");
+		}
+	}
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public void validarMinutos(JTextField textField) throws IllegalArgumentException{
+		String texto = textField.getText().trim(); // Obtener el texto y eliminar espacios en blanco
+
+		// Verificar si el texto cumple con el patrón deseado
+		if (!texto.matches("^\\d{1,2}$")) {
+			throw new IllegalArgumentException("Formato de minutos invalido");
+		}
 	}
 }

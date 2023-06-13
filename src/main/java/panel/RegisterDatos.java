@@ -114,7 +114,7 @@ public class RegisterDatos extends JPanel {
 		lblTiene.setBounds(34, 403, 636, 55);
 		add(lblTiene);
 		
-		JButton btn = new JButton("Entrar");
+		JButton btn = new JButton("Crear Cuenta");
 		btn.setFont(new Font("Arial", Font.BOLD, 32));
 		btn.setBounds(286, 656, 171, 55);
 		add(btn);
@@ -145,7 +145,7 @@ public class RegisterDatos extends JPanel {
 									.build();
 					
 					ConnectionDB.registerRequest(userCredential);
-					
+					JOptionPane.showMessageDialog(RegisterDatos.this, "Su cuenta a sido registrada con exito!");
 					main.changePanel(main.frame, new Login(main));
 				} catch (InvalidWeightException e1) {
 					// TODO Auto-generated catch block
