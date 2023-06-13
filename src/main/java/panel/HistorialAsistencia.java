@@ -33,8 +33,7 @@ public class HistorialAsistencia extends JPanel {
 		panel.setBackground(Color.decode("#FF7121"));
 		add(panel);
 		panel.setLayout(null);
-		
-		
+	
 		JButton lblBack = new JButton("");
 		lblBack.setIcon(new ImageIcon(Util.resizeImage(65, 65, Util.getStream("main/resources/back.png"))));
 		lblBack.setBounds(10, 35, 65, 65);

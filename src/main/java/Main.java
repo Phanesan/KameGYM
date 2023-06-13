@@ -26,6 +26,7 @@ import main.java.panel.EditarClase;
 import main.java.panel.EditarCliente;
 import main.java.panel.EditarInstructor;
 import main.java.panel.EditarTarifa;
+import main.java.panel.MarcarAsistencia;
 import main.java.panel.HistorialAsistencia;
 import main.java.panel.HistorialInstructores;
 import main.java.panel.HistorialPagos;
@@ -73,7 +74,7 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new Login(this));
+		changePanel(frame,new MarcarAsistencia());
 		
 		barraMenu.setSize(frame.getWidth(), 20);
 		frame.setJMenuBar(barraMenu);
