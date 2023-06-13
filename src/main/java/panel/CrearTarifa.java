@@ -110,15 +110,19 @@ public class CrearTarifa extends JPanel {
 				} catch (InvalidNameFee e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				} catch (InvalidHourFee e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				} catch (InvalidPriceFee e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				} catch (DuplicateTarifaException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}
 		});

@@ -202,15 +202,19 @@ public class CrearCliente extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					verificarCorreo(correoField);
 					verificarNombre(nombreField);
 					verificarApellido(apellidosField);
+					verificarCorreo(correoField);
 					verificarContraseña(passwordField, repeatPasswordField);
 					validarPeso(pesoField);
 					validarEstatura(estaturaField);
 					validarDia(dayField);
 					validarMes(monthField);
 					validarAño(yearField);
+				} catch (IllegalArgumentException e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+					JOptionPane.showMessageDialog(null, e2.getMessage());
 				} catch (InvalidWeightException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -292,94 +296,56 @@ public class CrearCliente extends JPanel {
 	}
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarCorreo(JTextField textField) throws IllegalArgumentException{
+	public void verificarCorreo(JTextField textField) throws IllegalArgumentException{
 		String texto = textField.getText();
 
 		// Verificar si el correo contiene un "@" y un "."
 		if (!texto.contains("@") || !texto.contains(".")) {
-			try {
 				throw new IllegalArgumentException("El correo electrónico debe contener obligatoriamente un '@' y un '.'");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-		}
-
-		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
-	public boolean verificarNombre(JTextField textField) throws IllegalArgumentException{
+	public void verificarNombre(JTextField textField) throws IllegalArgumentException{
 		String texto = textField.getText();
 
 		// Verificar la longitud del texto
 		if (texto.length() > 40) {
-			try {
 				throw new IllegalArgumentException("Nombre: Limite de caracteres excedido: 40");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-		}
 
 		// Verificar si el texto contiene caracteres no permitidos
 		if (!texto.matches("[A-Za-z\\s]+")) {
-			try {
 				throw new IllegalArgumentException("Nombre: Solo se aceptan letras y espacios");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
+
 			}
-		}
-		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarApellido(JTextField textField) throws IllegalArgumentException{
+	public void verificarApellido(JTextField textField) throws IllegalArgumentException{
 		String texto = textField.getText();
 
 		// Verificar la longitud del texto
 		if (texto.length() > 40) {
-			try {
 				throw new IllegalArgumentException("Apellido: Limite de caracteres excedido: 40");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-		}
 
 		// Verificar si el texto contiene caracteres no permitidos
 		if (!texto.matches("[A-Za-z\\s]+")) {
-			try {
 				throw new IllegalArgumentException("Apellido: Solo se aceptan letras y espacios");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-		}
-		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarContraseña(JPasswordField passwordField, JPasswordField confirmPaswordField) throws IllegalArgumentException{
+	public void verificarContraseña(JPasswordField passwordField, JPasswordField confirmPaswordField) throws IllegalArgumentException{
 		String contra = new String(passwordField.getPassword());
 		String confirmContra = new String(confirmPaswordField.getPassword());
 
 		// Verificar si la contraseña es la misma en repetir contraseña
 		if(!contra.equals(confirmContra)) {
-			try {
 				throw new IllegalArgumentException("Repita contraseña");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-		}
 		// Verificar si el campo esta en blanco
 		if(contra.isEmpty()) {
-			try {
 				throw new IllegalArgumentException("Contraseña: Espacio en blanco");
-			} catch (IllegalArgumentException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, e1);
 			}
-		}
 		// Verificar el limite de caracteres en el campo
 		if (contra.length() > 40) {
 			try {
@@ -389,15 +355,13 @@ public class CrearCliente extends JPanel {
 				JOptionPane.showMessageDialog(null, e1);
 			}
 		}
-
-		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public boolean verificarCheckBox(JCheckBox checkBox) throws Exception{
+	public void verificarCheckBox(JCheckBox checkBox) throws Exception{
 		if(!checkBox.isSelected()) {
 			throw new Exception("Acepte los terminos y condiciones");
 		}
-		return true;
+
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public void validarPeso(JTextField textField) throws InvalidWeightException{
