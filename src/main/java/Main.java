@@ -97,6 +97,16 @@ public class Main {
 				changePanel(frame, new Creditos(main));
 			}
 		});
+		menu2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Lobby.userCredential = null;
+				changePanel(frame, new Login(main));
+				barraMenu.setVisible(false);
+			}
+		});
 		barraMenu.add(menu1);
 		barraMenu.add(menu2);
 		barraMenu.add(menu3);
