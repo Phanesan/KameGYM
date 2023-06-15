@@ -12,6 +12,7 @@ import main.java.exception.CredentialsException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 import java.awt.Image;
@@ -111,6 +112,7 @@ public class RealizarPago extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					ConnectionDB.makePayment((String)comboBox.getSelectedItem(), userCredential.correo, ConnectionDB.loadTariff((String) comboBox.getSelectedItem()).precio);
+					JOptionPane.showMessageDialog(RealizarPago.this, "Su pago ha sido realizado con exito!");
 					main.changePanel(main.frame, new LobbyCliente(main));
 				} catch (CredentialsException e1) {
 					// TODO Auto-generated catch block

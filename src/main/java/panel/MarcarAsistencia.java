@@ -154,6 +154,7 @@ public class MarcarAsistencia extends JPanel {
 					String horaSalidaSB = sb.toString();
 					
 					ConnectionDB.addAssist(userCredential.correo, horaEntradaSB, horaSalidaSB);
+					JOptionPane.showMessageDialog(MarcarAsistencia.this, "Asistencia marcada");
 					main.changePanel(main.frame, new LobbyCliente(main));
 				} catch(IllegalArgumentException e1) {
 					e1.printStackTrace();

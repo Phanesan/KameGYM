@@ -28,7 +28,7 @@ public class LobbyClases extends JPanel {
 	 */
 	
 	public static String claseSeleccionada;
-	public static String[] nombreClases = ConnectionDB.getClases();
+	public static String[] nombreClases;
 	
 	public LobbyClases(Main main) {
 		setBackground(Color.decode("#FF7121"));

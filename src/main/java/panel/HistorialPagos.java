@@ -47,7 +47,7 @@ public class HistorialPagos extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			main.changePanel(main.frame, new ConsultarCliente(main, ConsultarCliente.userCredential));	
+				main.changePanel(main.frame, new ConsultarCliente(main, ConsultarCliente.userCredential));	
 			}
 		});
 		

@@ -686,4 +686,47 @@ public abstract class ConnectionDB {
 			closeConnection(null, statement, sql);
 		}
 	}
+	
+	public static void registerUserClass(String correo, String nombreClase) throws SQLException{
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		String query = "INSERT INTO mydb.clases_cliente (USUARIO_correo, CLASE_nombre) VALUES (?,?);";
+		
+		try {
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, correo);
+			statement.setString(2, nombreClase);
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+	}
+	
+	public static void terminateUserClass(String correo, String nombreClase) throws SQLException, Exception{
+		Connection sql = connect();
+		PreparedStatement statement = null;
+		
+		String query = "DELETE FROM mydb.clases_cliente WHERE USUARIO_correo = ? and CLASE_nombre = ?";
+		
+		try {
+			statement = sql.prepareStatement(query);
+			
+			statement.setString(1, correo);
+			statement.setString(2, nombreClase);
+			
+			int row = statement.executeUpdate();
+			if(row == 0) {
+				throw new Exception();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+	}
 }
