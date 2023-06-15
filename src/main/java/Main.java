@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-import main.java.panel.ClientesPago;
 import main.java.panel.ConsultarClases;
 import main.java.panel.ConsultarCliente;
 import main.java.panel.ConsultarTarifa;
@@ -73,7 +72,25 @@ public class Main {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
-		changePanel(frame,new Login(this));
+		
+		Thread start = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				try {
+					changePanel(frame, new Inicio());
+					
+					Thread.sleep(2000);
+					
+					changePanel(frame,new Login(main));
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		start.start();
 		
 		barraMenu.setSize(frame.getWidth(), 20);
 		frame.setJMenuBar(barraMenu);

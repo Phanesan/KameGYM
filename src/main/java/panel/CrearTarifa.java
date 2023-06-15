@@ -106,6 +106,7 @@ public class CrearTarifa extends JPanel {
 					String precio = textPrecio.getText();
 					
 					ConnectionDB.createTarifaRequest(nombre, duracion, precio);
+					JOptionPane.showMessageDialog(CrearTarifa.this, "Tarifa creada exitosamente!");
 					main.changePanel(main.frame, new LobbyTarifas(main));
 				} catch (InvalidNameFee e1) {
 					// TODO Auto-generated catch block

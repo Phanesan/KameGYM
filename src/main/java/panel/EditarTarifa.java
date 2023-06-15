@@ -115,7 +115,7 @@ public class EditarTarifa extends JPanel {
 					tariff.precio = textPrecio.getText();
 					
 					ConnectionDB.updateTariff(tariff, nombreAnterior);
-					JOptionPane.showMessageDialog(null, "Clase editada exitosamente!");
+					JOptionPane.showMessageDialog(null, "Tarifa editada exitosamente!");
 					main.changePanel(main.frame, new LobbyTarifas(main));
 				} catch (InvalidNameFee e1) {
 					// TODO Auto-generated catch block

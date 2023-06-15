@@ -63,22 +63,22 @@ public class MarcarAsistencia extends JPanel {
 		
 		JLabel lblNewLabel_3 = new JLabel("Horas");
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_3.setBounds(509, 410, 46, 14);
+		lblNewLabel_3.setBounds(360, 438, 46, 14);
 		add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Minutos");
 		lblNewLabel_3_1.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_3_1.setBounds(753, 410, 46, 14);
+		lblNewLabel_3_1.setBounds(612, 438, 46, 14);
 		add(lblNewLabel_3_1);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Horas");
 		lblNewLabel_3_2.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_3_2.setBounds(509, 510, 46, 14);
+		lblNewLabel_3_2.setBounds(361, 537, 46, 14);
 		add(lblNewLabel_3_2);
 		
 		JLabel lblNewLabel_3_3 = new JLabel("Minutos");
 		lblNewLabel_3_3.setFont(new Font("Arial", Font.BOLD, 11));
-		lblNewLabel_3_3.setBounds(753, 510, 46, 14);
+		lblNewLabel_3_3.setBounds(612, 538, 46, 14);
 		add(lblNewLabel_3_3);
 		
 		horaEntrada = new JTextField();

@@ -68,7 +68,7 @@ public class RealizarPago extends JPanel {
 		JLabel lblCorreo = new JLabel(userCredential.correo);
 		lblCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCorreo.setFont(new Font("Arial", Font.BOLD, 22));
-		lblCorreo.setBounds(139, 619, 295, 34);
+		lblCorreo.setBounds(69, 617, 426, 34);
 		add(lblCorreo);
 		
 		lblPrecio = new JLabel();

@@ -86,7 +86,7 @@ public class HistorialAsistencia extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel(ConsultarCliente.userCredential.correo);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1.setBounds(329, 85, 311, 33);
+		lblNewLabel_1.setBounds(329, 85, 521, 33);
 		add(lblNewLabel_1);
 
 	}

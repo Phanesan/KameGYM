@@ -55,8 +55,8 @@ public class InscribirClase extends JPanel {
 		
 		JLabel lblCorreo = new JLabel((String) userCredential.correo);
 		lblCorreo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCorreo.setFont(new Font("Arial", Font.BOLD, 22));
-		lblCorreo.setBounds(116, 606, 295, 34);
+		lblCorreo.setFont(new Font("Arial", Font.BOLD, 20));
+		lblCorreo.setBounds(87, 609, 347, 34);
 		add(lblCorreo);
 		
 		JComboBox<String> comboBox = new JComboBox<String>();

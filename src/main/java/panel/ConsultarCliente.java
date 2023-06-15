@@ -72,7 +72,7 @@ public class ConsultarCliente extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel(userCredential.correo);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 23));
-		lblNewLabel_1.setBounds(409, 410, 381, 33);
+		lblNewLabel_1.setBounds(339, 410, 522, 33);
 		add(lblNewLabel_1);
 		
 		JButton Historial_Asistencia = new JButton("");
