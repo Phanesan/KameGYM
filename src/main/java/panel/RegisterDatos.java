@@ -64,14 +64,9 @@ public class RegisterDatos extends JPanel {
 		lblDate.setBounds(34, 192, 553, 37);
 		add(lblDate);
 		
-		JLabel lblIDM = new JLabel("Su IDM es de \" \" por lo que usted");
-		lblIDM.setFont(new Font("Arial", Font.BOLD, 32));
-		lblIDM.setBounds(34, 357, 636, 55);
-		add(lblIDM);
-		
 		JLabel lblAviso = new JLabel("Usaremos esta información para ayudarlo durante su \r\nestancia.");
 		lblAviso.setFont(new Font("Arial", Font.BOLD, 23));
-		lblAviso.setBounds(34, 469, 728, 71);
+		lblAviso.setBounds(34, 459, 728, 71);
 		add(lblAviso);
 		
 		textFieldPeso = new JTextField();
@@ -109,14 +104,9 @@ public class RegisterDatos extends JPanel {
 		tp = new TextPrompt("yy", txtYear);
 		add(txtYear);
 		
-		JLabel lblTiene = new JLabel("tiene: \" \"");
-		lblTiene.setFont(new Font("Arial", Font.BOLD, 32));
-		lblTiene.setBounds(34, 403, 636, 55);
-		add(lblTiene);
-		
 		JButton btn = new JButton("Crear Cuenta");
 		btn.setFont(new Font("Arial", Font.BOLD, 32));
-		btn.setBounds(286, 656, 171, 55);
+		btn.setBounds(277, 657, 235, 55);
 		add(btn);
 		btn.addActionListener(new ActionListener() {
 			

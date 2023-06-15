@@ -161,6 +161,22 @@ public class LobbyCliente extends JPanel {
 		JButton btnRealizar = new JButton("Realizar pago");
 		btnRealizar.setFont(new Font("Arial", Font.BOLD, 32));
 		btnRealizar.setBounds(759, 450, 283, 55);
+		btnRealizar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					main.changePanel(main.frame, new RealizarPago(main, ConnectionDB.loadUserCredential((String) comboBox.getSelectedItem())));
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		add(btnRealizar);
 		
 		JButton btnMarcarAsistencia = new JButton("Marcar Asistencia");
