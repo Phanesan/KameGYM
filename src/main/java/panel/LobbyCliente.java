@@ -124,7 +124,7 @@ public class LobbyCliente extends JPanel {
 		});
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnEditar.setBounds(759, 210, 283, 55);
+		btnEditar.setBounds(759, 187, 283, 55);
 		add(btnEditar);
 		btnEditar.addActionListener(new ActionListener() {
 			
@@ -147,7 +147,7 @@ public class LobbyCliente extends JPanel {
 		
 		JButton btnEliminar = new JButton("Eliminar");
 		btnEliminar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnEliminar.setBounds(759, 330, 283, 55);
+		btnEliminar.setBounds(759, 285, 283, 55);
 		btnEliminar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -160,7 +160,7 @@ public class LobbyCliente extends JPanel {
 		
 		JButton btnRealizar = new JButton("Realizar pago");
 		btnRealizar.setFont(new Font("Arial", Font.BOLD, 32));
-		btnRealizar.setBounds(759, 450, 283, 55);
+		btnRealizar.setBounds(759, 382, 283, 55);
 		btnRealizar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -181,8 +181,31 @@ public class LobbyCliente extends JPanel {
 		
 		JButton btnMarcarAsistencia = new JButton("Marcar Asistencia");
 		btnMarcarAsistencia.setFont(new Font("Arial", Font.BOLD, 28));
-		btnMarcarAsistencia.setBounds(759, 570, 283, 55);
+		btnMarcarAsistencia.setBounds(759, 478, 283, 55);
 		add(btnMarcarAsistencia);
+		
+		JButton btnInscribir = new JButton("Inscribir a Clase");
+		btnInscribir.setFont(new Font("Arial", Font.BOLD, 28));
+		btnInscribir.setBounds(759, 575, 283, 55);
+		add(btnInscribir);
+		
+		btnInscribir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					main.changePanel(main.frame, new InscribirClase(main,ConnectionDB.loadUserCredential((String) comboBox.getSelectedItem())));
+				} catch (NullPointerException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (CredentialsException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		btnMarcarAsistencia.addActionListener(new ActionListener() {
 			
 			@Override
