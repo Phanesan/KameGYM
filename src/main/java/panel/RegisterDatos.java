@@ -106,7 +106,7 @@ public class RegisterDatos extends JPanel {
 		
 		JButton btn = new JButton("Crear Cuenta");
 		btn.setFont(new Font("Arial", Font.BOLD, 32));
-		btn.setBounds(277, 657, 235, 55);
+		btn.setBounds(255, 657, 287, 55);
 		add(btn);
 		btn.addActionListener(new ActionListener() {
 			
