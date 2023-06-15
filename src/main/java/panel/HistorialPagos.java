@@ -62,7 +62,7 @@ public class HistorialPagos extends JPanel {
 		JLabel lblNewLabel_1 = new JLabel(ConsultarCliente.userCredential.correo);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel_1.setBounds(456, 238, 288, 33);
+		lblNewLabel_1.setBounds(384, 238, 431, 33);
 		add(lblNewLabel_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
